@@ -11,7 +11,7 @@ var Retrospective = (function(Retrospective) {
 
 			return(
 				<ul>
-					{this.props.items.map( (item, idx) =>
+					{this.props.items.map((item, idx) =>
 						<Item key={'list-' + idx} text={item} />
 					)}
 				</ul>
@@ -20,9 +20,7 @@ var Retrospective = (function(Retrospective) {
 	});
 
 	function ListItem(props) {
-		return (
-			<li>{props.text}</li>
-		);
+		return (<li>{props.text}</li>);
 	}
 	ListItem.propTypes = {
 		text: React.PropTypes.string.isRequired

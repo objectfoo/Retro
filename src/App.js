@@ -1,8 +1,11 @@
 var Retrospective = (function(Retrospective) {
 	var items = ['item 1', 'item 2'];
 
-
 	Retrospective.App = React.createClass({
+		getInitialState: function() {
+			return this.props.store.getState();
+		},
+
 		render: function() {
 			var List = Retrospective.List;
 
@@ -11,6 +14,7 @@ var Retrospective = (function(Retrospective) {
 					<header>
 						<h1>Retrospective</h1>
 						<h2>Q&D reactJs version</h2>
+						<p>Behold! Intro text... with some state: {this.state.count}</p>
 						<div>
 							<button type="button">Clear All</button>
 							<div>Date: XXXXXXX</div>

@@ -6,6 +6,10 @@ var Retrospective = function (Retrospective) {
 	Retrospective.App = React.createClass({
 		displayName: 'App',
 
+		getInitialState: function getInitialState() {
+			return this.props.store.getState();
+		},
+
 		render: function render() {
 			var List = Retrospective.List;
 
@@ -24,6 +28,12 @@ var Retrospective = function (Retrospective) {
 						'h2',
 						null,
 						'Q&D reactJs version'
+					),
+					React.createElement(
+						'p',
+						null,
+						'Behold! Intro text... with some state: ',
+						this.state.count
 					),
 					React.createElement(
 						'div',
@@ -166,13 +176,52 @@ var Retrospective = function (Retrospective) {
 'use strict';
 
 var Retrospective = function (Retrospective) {
+
+	var types = Retrospective.types = {
+		INCREMENT: 'INCREMENT'
+	};
+
+	var actions = Retrospective.actions = {
+		increment: increment
+	};
+
+	function increment() {
+		return { type: types.INCREMENT };
+	}
+
+	return Retrospective;
+}(window.Retrospective || {});
+'use strict';
+
+var Retrospective = function (Retrospective) {
 	// need to wait until DOMContentLoaded because we are not using a module system
 	// e.g. all the global modules need to be defined before we use them
 	document.addEventListener('DOMContentLoaded', function () {
-		ReactDOM.render(React.createElement(Retrospective.App, null), document.getElementById('app'));
+		var createStore = Redux.createStore;
+		var reducer = Retrospective.reducer;
+
+		var store = createStore(reducer);
+
+		ReactDOM.render(React.createElement(Retrospective.App, { store: store }), document.getElementById('app'));
 
 		document.querySelector('main').classList.remove('preload');
 	});
+
+	return Retrospective;
+}(window.Retrospective || {});
+"use strict";
+
+var Retrospective = function (Retrospective) {
+
+	Retrospective.reducer = function reducer(state, action) {
+
+		switch (action.type) {
+			default:
+				state = { count: 0 };
+		}
+
+		return state;
+	};
 
 	return Retrospective;
 }(window.Retrospective || {});
