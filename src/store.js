@@ -17,11 +17,12 @@
 		SORT: 'SORT',
 		ADD_ITEM: 'ADD_ITEM',
 		INCREMENT_VOTE: 'INCREMENT_VOTE',
-		RESET: 'RESET'
+		RESET: 'RESET',
+		SET_ITEM_TEXT: 'SET_ITEM_TEXT'
 	};
 
 	// Action creators
-	var actions = Retrospective.actions = {
+	Retrospective.actions = {
 		sort: function sort(data) {
 			return {
 				type: Retrospective.types.SORT,
@@ -34,6 +35,14 @@
 				type: Retrospective.types.ADD_ITEM,
 				data: data
 			};
+		},
+
+		setItemText: function(data) {
+			return {
+				type: Retrospective.types.SET_ITEM_TEXT,
+				data: data
+			};
+			console.log('asdf', data);
 		},
 
 		incrementVote: function incrementVote(data) {
@@ -63,16 +72,16 @@
 	function reduce(state, action) {
 
 		switch (action.type) {
-			// case Retrospective.types.SORT:
-			// 	sortList(state, action.value);
-			// 	break;
-
 			case Retrospective.types.RESET:
 				return reset();
 			break;
 
 			case Retrospective.types.ADD_ITEM:
 				return addItem(state, action.data);
+			break;
+
+			case Retrospective.types.SET_ITEM_TEXT:
+				return setItemText(state, action.data);
 			break;
 
 			case Retrospective.types.INCREMENT_VOTE:
@@ -94,7 +103,6 @@
 	// 	// set sorted flag
 	// 	console.log('transform::sortList()', data);
 	// }
-
 	function reset() {
 		var newState = Object.assign({}, initialState);
 		return newState;
@@ -105,12 +113,17 @@
 		return state;
 	}
 
+	function setItemText(state, data) {
+		var list = data.id;
+		var newText = data.text;
+		var idx = data.idx;
+		var newState = Object.assign({}, state);
+
+		newState[list][idx].text = newText;
+		return newState;
+	}
+
 	function addItem(state, data) {
-		// data.listid
-		// data.text
-		// ?data.vote
-		// set sorted to false
-		// console.log('transform:addItem', data);
 		var text = data.text;
 		var list = data.id;
 
