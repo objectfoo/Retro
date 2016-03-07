@@ -7,8 +7,6 @@
 		const Retrospective = g.Retrospective;
 		const store = Retrospective.store;
 
-		console.log(Object.keys(Retrospective));
-		
 		ReactDOM.render(
 			<Retrospective.App store={store} />,
 			document.getElementById('app')
