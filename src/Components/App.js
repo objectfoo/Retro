@@ -1,4 +1,5 @@
-var Retrospective = (function(Retrospective) {
+(function(global) {
+	global.Retrospective = global.Retrospective || {};
 	var items = ['item 1', 'item 2'];
 
 	Retrospective.App = React.createClass({
@@ -48,7 +49,7 @@ var Retrospective = (function(Retrospective) {
 		}
 	});
 
-	return Retrospective;
-})(window.Retrospective || {});
-
-
+	if (typeof exports !== 'undefined') {
+		exports.Retrospective = Retrospective;
+	}
+})(typeof global !== 'undefined' ? global : window);

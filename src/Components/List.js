@@ -1,4 +1,5 @@
-var Retrospective = (function(Retrospective) {
+(function(global) {
+	global.Retrospective = global.Retrospective || {};
 	
 	Retrospective.List = React.createClass({
 		displayName: 'List',
@@ -39,5 +40,9 @@ var Retrospective = (function(Retrospective) {
 		text: React.PropTypes.string.isRequired
 	};
 
+	if (typeof exports !== 'undefined') {
+		exports.Retrospective = Retrospective;
+	}
+
 	return Retrospective;
-})(window.Retrospective || {});
+})(typeof global !== 'undefined' ? global : window);

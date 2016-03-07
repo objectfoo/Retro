@@ -1,6 +1,7 @@
 'use strict';
 
-var Retrospective = function (Retrospective) {
+(function (global) {
+	global.Retrospective = global.Retrospective || {};
 	var items = ['item 1', 'item 2'];
 
 	Retrospective.App = React.createClass({
@@ -116,11 +117,14 @@ var Retrospective = function (Retrospective) {
 		}
 	});
 
-	return Retrospective;
-}(window.Retrospective || {});
+	if (typeof exports !== 'undefined') {
+		exports.Retrospective = Retrospective;
+	}
+})(typeof global !== 'undefined' ? global : window);
 'use strict';
 
-var Retrospective = function (Retrospective) {
+(function (global) {
+	global.Retrospective = global.Retrospective || {};
 
 	Retrospective.List = React.createClass({
 		displayName: 'List',
@@ -171,57 +175,131 @@ var Retrospective = function (Retrospective) {
 		text: React.PropTypes.string.isRequired
 	};
 
-	return Retrospective;
-}(window.Retrospective || {});
-'use strict';
-
-var Retrospective = function (Retrospective) {
-
-	var types = Retrospective.types = {
-		INCREMENT: 'INCREMENT'
-	};
-
-	var actions = Retrospective.actions = {
-		increment: increment
-	};
-
-	function increment() {
-		return { type: types.INCREMENT };
+	if (typeof exports !== 'undefined') {
+		exports.Retrospective = Retrospective;
 	}
 
 	return Retrospective;
-}(window.Retrospective || {});
+})(typeof global !== 'undefined' ? global : window);
 'use strict';
 
-var Retrospective = function (Retrospective) {
+(function (g) {
+	g.Retrospective = g.Retrospective || {};
+
 	// need to wait until DOMContentLoaded because we are not using a module system
 	// e.g. all the global modules need to be defined before we use them
 	document.addEventListener('DOMContentLoaded', function () {
-		var createStore = Redux.createStore;
-		var reducer = Retrospective.reducer;
+		var Retrospective = g.Retrospective;
+		var store = Retrospective.store;
 
-		var store = createStore(reducer);
+		console.log(Object.keys(Retrospective));
 
 		ReactDOM.render(React.createElement(Retrospective.App, { store: store }), document.getElementById('app'));
 
 		document.querySelector('main').classList.remove('preload');
 	});
 
+	if (typeof exports !== 'undefined') {
+		exports.Retrospective = Retrospective;
+	}
+
 	return Retrospective;
-}(window.Retrospective || {});
-"use strict";
+})(typeof global !== 'undefined' ? global : window);
+'use strict';
 
-var Retrospective = function (Retrospective) {
+(function (global) {
+	global.Retrospective = global.Retrospective || {};
+	// var Retrospective = global.Retrospective || {};
 
-	Retrospective.reducer = function reducer(state, action) {
-
-		switch (action.type) {
-			default:
-				state = { count: 0 };
-		}
-
-		return state;
+	// Initial State
+	var state = {
+		isSorted: false,
+		good: [],
+		bad: [],
+		next: []
 	};
 
-	return Retrospective;
-}(window.Retrospective || {});
+	// Action Types
+	Retrospective.types = {
+		SORT: 'SORT',
+		ADD_ITEM: 'ADD_ITEM'
+	};
+
+	// Action creators
+	var actions = Retrospective.actions = {
+		sort: function sort(data) {
+			return {
+				type: Retrospective.types.SORT,
+				value: data
+			};
+		},
+
+		addItem: function addItem(data) {
+			return {
+				type: Retrospective.types.ADD_ITEM,
+				data: data
+			};
+		}
+	};
+
+	// Store
+	Retrospective.store = {
+		getState: function getState() {
+			return state;
+		},
+		dispatch: function dispatch(action) {
+			state = reduce(state, action);
+		}
+	};
+
+	// Reducer
+	function reduce(state, action) {
+
+		switch (action.type) {
+			// case Retrospective.types.SORT:
+			// 	sortList(state, action.value);
+			// 	break;
+
+			case Retrospective.types.ADD_ITEM:
+				return addItem(state, action.data);
+				break;
+
+			default:
+				console.log('warning unknown action', action.type);
+		}
+
+		// emit new state message
+		return state;
+	}
+
+	// state transforms
+	// function sortList(data) {
+	// 	// hardcode data.listide
+	// 	// sort list
+	// 	// set sorted flag
+	// 	console.log('transform::sortList()', data);
+	// }
+
+	function addItem(state, data) {
+		// data.listid
+		// data.text
+		// ?data.vote
+		// set sorted to false
+		// console.log('transform:addItem', data);
+		var text = data.text;
+		var list = data.id;
+		var delta = {};
+
+		var newState = Object.assign({}, state);
+
+		newState[list] = newState[list].concat({
+			text: text
+		});
+
+		return newState;
+	}
+
+	if (typeof module !== 'undefined') {
+		module.exports = Retrospective;
+	}
+})(typeof global !== 'undefined' ? global : window);
