@@ -3,17 +3,21 @@
 	// var Retrospective = global.Retrospective || {};
 
 	// Initial State
-	var state = {
+	var initialState = {
 		isSorted: false,
 		good: [],
 		bad: [],
 		next: []
 	};
 
+	var state = initialState;
+
 	// Action Types
 	Retrospective.types = {
 		SORT: 'SORT',
-		ADD_ITEM: 'ADD_ITEM'
+		ADD_ITEM: 'ADD_ITEM',
+		INCREMENT_VOTE: 'INCREMENT_VOTE',
+		RESET: 'RESET'
 	};
 
 	// Action creators
@@ -29,6 +33,19 @@
 			return {
 				type: Retrospective.types.ADD_ITEM,
 				data: data
+			};
+		},
+
+		incrementVote: function incrementVote(data) {
+			return {
+				type: Retrospective.types.INCREMENT_VOTE,
+				data: data
+			};
+		},
+
+		reset: function reset(data) {
+			return {
+				type: Retrospective.types.RESET
 			};
 		}
 	};
@@ -50,9 +67,17 @@
 			// 	sortList(state, action.value);
 			// 	break;
 
+			case Retrospective.types.RESET:
+				return reset();
+			break;
+
 			case Retrospective.types.ADD_ITEM:
 				return addItem(state, action.data);
-				break;
+			break;
+
+			case Retrospective.types.INCREMENT_VOTE:
+				return incrementVote(state, action.data);
+			break;
 
 			default:
 				console.log('warning unknown action', action.type);
@@ -70,6 +95,16 @@
 	// 	console.log('transform::sortList()', data);
 	// }
 
+	function reset() {
+		var newState = Object.assign({}, initialState);
+		return newState;
+	}
+
+	function incrementVote(state, data) {
+		console.log('voting');
+		return state;
+	}
+
 	function addItem(state, data) {
 		// data.listid
 		// data.text
@@ -78,7 +113,6 @@
 		// console.log('transform:addItem', data);
 		var text = data.text;
 		var list = data.id;
-		var delta = {};
 
 		var newState = Object.assign({}, state);
 
