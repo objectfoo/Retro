@@ -8,10 +8,10 @@
 		},
 
 		render: function() {
-			var Item = this.props.isVoting ? VotingListItem : ListItem;
+			var Item = this.props.isVoting ? VotingRetrospectiveItem : RetrospectiveItem;
 
 			return(
-				<ul>
+				<ul className="pure-menu-list retrospective-list">
 					{this.props.items.map((item, idx) =>
 						<Item key={'list-' + idx} text={item} />
 					)}
@@ -20,23 +20,42 @@
 		}
 	});
 
-	function ListItem(props) {
-		return (<li>{props.text}</li>);
+	function RetrospectiveItem(props) {
+		return (
+			<li className="pure-menu-item retrospective-item">
+				<div className="retrospective-item__text">
+					{props.text}
+				</div>
+				<button type="button" className="close" aria-label={"Close"}>
+					<span arial-hidden="true">&times;</span>
+				</button>
+			</li>
+		);
 	}
-	ListItem.propTypes = {
+
+	RetrospectiveItem.propTypes = {
 		text: React.PropTypes.string.isRequired
 	};
 
 
-	function VotingListItem(props) {
+	function VotingRetrospectiveItem(props) {
 		return (
-			<li>
-				<button className="pure-button" type="button">+</button>
-				<label>Vote:<input autoComplete="off" type="text" /></label> {props.text}
+			<li className="retrospective-item retrospective-item--voting">
+				{/*TODO render input or text depending on editing state*/}
+				<div className="retrospective-item__vote-input">
+					<input autoComplete="off" type="text" />
+				</div>
+				<div className="retrospective-item__text">
+					{props.text}
+				</div>
+				<button type="button" className="close" aria-label={"Close"}>
+					<span arial-hidden="true">&times;</span>
+				</button>
 			</li>
 		);
 	}
-	VotingListItem.propTypes = {
+
+	VotingRetrospectiveItem.propTypes = {
 		text: React.PropTypes.string.isRequired
 	};
 

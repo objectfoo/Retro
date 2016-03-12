@@ -41,18 +41,10 @@ describe('List - voting', function() {
 		const buttons = scryRenderedDOMComponentsWithTag(component, 'button');
 
 		expect(buttons).to.have.lengthOf(2);
-		expect(buttons[0].textContent).to.have.string('+');
-		expect(buttons[1].textContent).to.have.string('+');
 	});
 
-	it('should render an input and label inside each item', function() {
-		const labels = scryRenderedDOMComponentsWithTag(component, 'label');
+	it('should render an input inside each item', function() {
 		const inputs = scryRenderedDOMComponentsWithTag(component, 'input');
-
-		expect(labels).to.have.lengthOf(2);
-
-		expect(labels[0].textContent).to.have.string('Vote:');
-		expect(labels[1].textContent).to.have.string('Vote:');
 
 		expect(inputs).to.have.lengthOf(2);
 	});
