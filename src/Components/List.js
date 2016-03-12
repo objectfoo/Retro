@@ -31,7 +31,7 @@
 	function VotingListItem(props) {
 		return (
 			<li>
-				<button type="button">+</button>
+				<button className="pure-button" type="button">+</button>
 				<label>Vote:<input autoComplete="off" type="text" /></label> {props.text}
 			</li>
 		);
@@ -43,6 +43,4 @@
 	if (typeof exports !== 'undefined') {
 		module.exports = Retrospective.List;
 	}
-
-	return Retrospective;
 })(typeof global !== 'undefined' ? global : window);

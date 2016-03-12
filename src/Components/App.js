@@ -17,8 +17,8 @@
 						<h2>Q&D reactJs version</h2>
 						<p>Behold! Intro text... with some state: {this.state.count}</p>
 						<div>
-							<button type="button">Clear All</button>
-							<div>Date: XXXXXXX</div>
+							<button className="pure-button button-default" type="button">Clear All</button>
+							<p>Date: XXXXXXX</p>
 						</div>
 					</header>
 
@@ -41,8 +41,8 @@
 					</section>
 
 					<footer>
-						<button type="button">Sort</button>
-						<button type="button">Printable</button>
+						<button className="pure-button button-default" type="button">Sort</button>
+						<button className="pure-button button-default" type="button">Printable</button>
 					</footer>
 				</div>
 			);
