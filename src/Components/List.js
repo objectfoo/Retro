@@ -32,7 +32,7 @@
 		return (
 			<li>
 				<button type="button">+</button>
-				Vote: <input autoComplete="off" type="text" /> {props.text}
+				<label>Vote:<input autoComplete="off" type="text" /></label> {props.text}
 			</li>
 		);
 	}
@@ -41,7 +41,7 @@
 	};
 
 	if (typeof exports !== 'undefined') {
-		exports.Retrospective = Retrospective;
+		module.exports = Retrospective.List;
 	}
 
 	return Retrospective;
