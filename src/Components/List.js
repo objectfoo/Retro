@@ -1,6 +1,6 @@
 (function(global) {
 	global.Retrospective = global.Retrospective || {};
-	
+
 	Retrospective.List = React.createClass({
 		displayName: 'List',
 		propTypes: {

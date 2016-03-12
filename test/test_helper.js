@@ -1,5 +1,5 @@
 import jsdom from 'jsdom';
-// import chai from 'chai';
+import chai from 'chai';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -11,17 +11,17 @@ const win = doc.defaultView;
 global.document = doc;
 global.window = win;
 
-const storectx = require('../src/store');
-global.types = storectx.types;
-global.actions = storectx.actions;
-global.store = storectx.store;
+// wire exported module to global context
+const store = require('../src/store');
+global.types = store.types;
+global.actions = store.actions;
+global.store = store.store;
 
 global.React = React;
 global.ReactDOM = ReactDOM;
 
-// requires React
-const AppCtx = require('../src/Components/App');
-global.App = AppCtx.App;
+// App requires React
+global.App = require('../src/Components/App').App;
 
 Object.keys(window).forEach((key) => {
 	if (!(key in global)) {

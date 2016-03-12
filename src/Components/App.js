@@ -21,7 +21,7 @@
 							<div>Date: XXXXXXX</div>
 						</div>
 					</header>
-					
+
 					<section>
 						<h2>What went well?</h2>
 						<div>input: <input autoComplete="off" type="text" /></div>
@@ -50,6 +50,6 @@
 	});
 
 	if (typeof exports !== 'undefined') {
-		exports.Retrospective = Retrospective;
+		module.exports = Retrospective.App;
 	}
 })(typeof global !== 'undefined' ? global : window);

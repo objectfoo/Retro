@@ -1,6 +1,5 @@
 (function(global) {
 	global.Retrospective = global.Retrospective || {};
-	// var Retrospective = global.Retrospective || {};
 
 	// Initial State
 	var initialState = {
@@ -137,6 +136,11 @@
 	}
 
 	if (typeof module !== 'undefined') {
+		module.exports = {
+			store: Retrospective.store,
+			types: Retrospective.types,
+			actions: Retrospective.actions
+		};
 		module.exports = Retrospective;
 	}
 })(typeof global !== 'undefined' ? global : window);
