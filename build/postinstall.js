@@ -12,6 +12,7 @@ deleteVendorFolder()
 	console.log('*********** posinstall - done ***********');
 })
 .catch(function(e) {
+	console.log('************ posinstall - error ***********');
 	console.error(e);
 });
 
@@ -24,30 +25,23 @@ function deleteVendorFolder() {
 }
 
 function copyReactToVendors() {
-	var p = createDestPath('node_modules/react/dist/react.js'
-		, 'react'
-		, destination
-	);
+	var source = 'node_modules/react/dist/react.js';
+	var dest = createDestPath(source, 'react', destination);
 
-	return cpFile('node_modules/react/dist/react.js', p).then(function() {
-		console.log('react copied to ' + p);
+	return cpFile(source, dest).then(function() {
+		console.log('cp', source, '>>', dest);
 	});
 }
 
 function copyReactDomToVendors() {
-	var p = createDestPath('node_modules/react/dist/react.js'
-		, 'react'
-		, destination
-	);
-	return cpFile('node_modules/react-dom/dist/react-dom.js', p).then(function() {
-		console.log('react-dom copied to ' + p);
+	var source = 'node_modules/react-dom/dist/react-dom.js';
+	var dest = createDestPath(source, 'react', destination);
+	return cpFile(source, dest).then(function() {
+		console.log('cp', source, '>>', dest);
 	});
 }
 
-createDestPath('node_modules/react/dist/react.js');
 function createDestPath(src, parent) {
-	var s = path.parse(src);
-	var dest;
 	var parts = [];
 
 	parts.push(destination);
@@ -55,8 +49,7 @@ function createDestPath(src, parent) {
 	if (parent !== undefined) {
 		parts.push(parent);
 	}
-	parts.push(s.base);
-	dest = path.join.apply(path, parts);
+	parts.push(path.basename(src));
 
-	return dest;
+	return path.join.apply(path, parts);;
 }
