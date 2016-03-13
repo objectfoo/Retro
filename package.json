@@ -5,11 +5,11 @@
   "description": "Retrospective rewrite experiment 4",
   "main": "index.js",
   "scripts": {
-		"postinstall": "node build/postinstall.js",
+    "postinstall": "node build/postinstall.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch",
-		"lint": "xo src/**/*.*",
-		"build": "babel src --out-file www/js/bundle.js",
+    "lint": "xo src/**/*.*",
+    "build": "babel src --out-file www/js/bundle.js",
     "build:watch": "npm run build -- --watch",
     "live-server": "npm run build && live-server --port=3004 --ignore=node_modules"
   },
@@ -25,6 +25,7 @@
     "chai": "^3.5.0",
     "cp-file": "^3.1.0",
     "eslint": "^2.4.0",
+    "eslint-config-xo": "^0.12.0",
     "eslint-config-xo-react": "^0.5.0",
     "eslint-plugin-react": "^4.2.1",
     "jsdom": "^8.1.0",
@@ -39,17 +40,30 @@
     "xo": "^0.13.0"
   },
   "xo": {
-		"globals": ["React", "window", "it", "should", "describe", "beforeEach", "afterEach", "before", "after"],
+    "globals": [
+      "React",
+      "window",
+      "it",
+      "should",
+      "describe",
+      "beforeEach",
+      "afterEach",
+      "before",
+      "after"
+    ],
     "esnext": true,
-		"plugins": [],
-		"rules": {
-			"babel/object-shorthand": [0],
-			"no-unused-vars": [0]
-		},
-		"envs": {
-			"browser": true,
-			"node": true,
-			"mocha": true
-		}
+    "rules": {
+      "babel/object-shorthand": [
+        0
+      ],
+      "no-unused-vars": [
+        0
+      ]
+    },
+    "envs": {
+      "browser": true,
+      "node": true,
+      "mocha": true
+    }
   }
 }

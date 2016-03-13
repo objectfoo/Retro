@@ -9,18 +9,38 @@
 		},
 
 		render: function () {
-			const Item = this.props.isVoting ? VotingRetrospectiveItem : RetrospectiveItem;
+			/* eslint-disable prefer-const */
+			const isVoting = this.props.isVoting !== undefined;
+
 			return (
 				<ul className="pure-menu-list retrospective-list">
-					{this.props.items.map((item, idx) =>
-						<Item key={`list-${idx}`} text={item} />
-					)}
+					{this.props.items.map((item, idx) => {
+						const props = {
+							key: `list-${idx}`,
+							text: item,
+							isVoting: isVoting
+						};
+						return <RetrospectiveItem
+							key={`list-${idx}`}
+							text={item}
+							isVoting={isVoting} />;
+					})}
 				</ul>
 			);
 		}
 	});
 
 	function RetrospectiveItem(props) {
+		const vote = props.vote;
+		const text = props.text;
+		const Component = props.isVoting ?
+			VotingRetrospectiveItem :
+			DefaultRetrospectiveItem;
+
+		return <Component text={text} vote={vote} />;
+	}
+
+	function DefaultRetrospectiveItem(props) {
 		return (
 			<li className="pure-menu-item retrospective-item">
 				<div className="retrospective-item__text">
@@ -33,7 +53,7 @@
 		);
 	}
 
-	RetrospectiveItem.propTypes = {
+	DefaultRetrospectiveItem.propTypes = {
 		text: React.PropTypes.string.isRequired
 	};
 

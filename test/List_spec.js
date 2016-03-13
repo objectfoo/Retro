@@ -13,6 +13,7 @@ describe('List', () => {
 
 	it('should render a list', () => {
 		const listItems = scryRenderedDOMComponentsWithTag(component, 'li');
+
 		expect(listItems.length).to.equal(2);
 		expect(listItems[0].textContent).to.include.string('item 1');
 		expect(listItems[1].textContent).to.include.string('item 2');
@@ -27,6 +28,7 @@ describe('List - voting', () => {
 
 	it('should render an item with text', () => {
 		const listItems = scryRenderedDOMComponentsWithTag(component, 'li');
+
 		expect(listItems).to.have.lengthOf(2);
 		expect(listItems[0].textContent).to.include.string('item 1');
 		expect(listItems[1].textContent).to.include.string('item 2');
