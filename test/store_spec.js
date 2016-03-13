@@ -7,7 +7,7 @@ describe('store', () => {
 	describe('getState()', () => {
 		it('should return state', () => {
 			const state = global.store.getState();
-			console.log(state);
+
 			expect(state).to.be.an.instanceof(Object);
 
 			expect(state).to.have.property('isSorted');
