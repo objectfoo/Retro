@@ -3,7 +3,7 @@
 
 	// Initial State
 	const initialState = {
-		isSorted: false,
+		isPrintable: false,
 		good: [],
 		bad: [],
 		next: []
@@ -16,6 +16,7 @@
 		SORT: 'SORT',
 		ADD_ITEM: 'ADD_ITEM',
 		INCREMENT_VOTE: 'INCREMENT_VOTE',
+		DECREMENT_VOTE: 'DECREMENT_VOTE',
 		RESET: 'RESET',
 		SET_ITEM_TEXT: 'SET_ITEM_TEXT'
 	};
@@ -25,7 +26,7 @@
 		sort: function sort(data) {
 			return {
 				type: Retrospective.types.SORT,
-				value: data
+				data: data
 			};
 		},
 
@@ -46,6 +47,13 @@
 		incrementVote: function incrementVote(data) {
 			return {
 				type: Retrospective.types.INCREMENT_VOTE,
+				data: data
+			};
+		},
+
+		decrementVote: function incrementVote(data) {
+			return {
+				type: Retrospective.types.DECREMENT_VOTE,
 				data: data
 			};
 		},
@@ -79,6 +87,10 @@
 				return setItemText(state, action.data);
 			case Retrospective.types.INCREMENT_VOTE:
 				return incrementVote(state, action.data);
+			case Retrospective.types.DECREMENT_VOTE:
+				return decrementVote(state, action.data);
+			case Retrospective.types.SORT:
+				return sortList(state, action.data);
 			default:
 				console.log('warning unknown action', action.type);
 				return state;
@@ -87,20 +99,34 @@
 	}
 
 	// state transforms
-	// function sortList(data) {
-	// 	// hardcode data.listide
-	// 	// sort list
-	// 	// set sorted flag
-	// 	console.log('transform::sortList()', data);
-	// }
-	function reset() {
-		const newState = Object.assign({}, initialState);
+	function sortList(state, data) {
+		const which = data.id;
+		const newState = Object.assign({}, state);
+		newState[which].sort((a, b) => {
+			return a.vote - b.vote;
+		});
+
 		return newState;
+	}
+	function reset() {
+		return Object.assign({}, initialState);
 	}
 
 	function incrementVote(state, data) {
-		console.log('voting');
-		return state;
+		const newState = Object.assign({}, state);
+
+		newState.bad[data.idx].vote += 1;
+
+		return newState;
+	}
+
+	function decrementVote(state, data) {
+		const newState = Object.assign({}, state);
+		const item = newState.bad[data.idx];
+
+		item.vote = Math.max(0, item.vote - 1);
+
+		return newState;
 	}
 
 	function setItemText(state, data) {
@@ -114,14 +140,15 @@
 	}
 
 	function addItem(state, data) {
-		const text = data.text;
 		const list = data.id;
-
 		const newState = Object.assign({}, state);
+		const newItem = {text: data.text};
 
-		newState[list] = newState[list].concat({
-			text: text
-		});
+		if (data.vote !== undefined) {
+			newItem.vote = data.vote;
+		}
+
+		newState[list] = newState[list].concat(newItem);
 
 		return newState;
 	}

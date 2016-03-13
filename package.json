@@ -39,7 +39,7 @@
     "xo": "^0.13.0"
   },
   "xo": {
-		"globals": ["React", "window", "it", "should", "describe"],
+		"globals": ["React", "window", "it", "should", "describe", "beforeEach", "afterEach", "before", "after"],
     "esnext": true,
 		"plugins": [],
 		"rules": {

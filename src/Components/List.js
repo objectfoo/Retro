@@ -9,7 +9,6 @@
 		},
 
 		render: function () {
-			console.log(this.props.isVoting);
 			const Item = this.props.isVoting ? VotingRetrospectiveItem : RetrospectiveItem;
 			return (
 				<ul className="pure-menu-list retrospective-list">
