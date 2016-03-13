@@ -49,5 +49,5 @@ function createDestPath(src, parent) {
 	}
 	parts.push(path.basename(src));
 
-	return path.join([...parts]);
+	return path.join.apply(path, parts);
 }
