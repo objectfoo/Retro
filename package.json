@@ -5,11 +5,11 @@
   "description": "Retrospective rewrite experiment 4",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node build/postinstall.js",
+    "old-postinstall": "node build/postinstall.js",
     "watchify": "watchify src/index.js -v -t babelify -o dist/js/bundle.js",
     "live-server": "live-server --port=3004 --ignore=node_modules,src",
     "lint": "xo --ignore=build/** --ignore=.git",
-    "build": "babel src --out-file dist/js/bundle.js",
+    "build": "browserify src/index.js -v -t babelify -o dist/js/bundle.js",
     "build:watch": "npm run build -- --watch",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch"
