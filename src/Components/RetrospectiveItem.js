@@ -73,10 +73,14 @@
 			return (
 				<li className="pure-menu-item retrospective-item pure-g">
 					<div className="pure-u-1-24">
-						<input className="pure-input-1" type="text" defaultValue={props.item.vote} />
+						<input
+							className="pure-input-1"
+							type="text"
+							defaultValue={props.item.vote}
+						/>
 					</div>
 					<div className="pure-u-23-24" onDoubleClick={this.onDoubleClick}>
-						{props.item.text}
+						<div className="retrospective-item__text">{props.item.text}</div>
 					</div>
 				</li>
 			);
