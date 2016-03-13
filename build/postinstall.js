@@ -1,48 +1,46 @@
-var path = require('path');
-var cpFile = require('cp-file');
-var rimraf = require('rimraf-then');
-var destination = 'www/vendor';
+const path = require('path');
+const cpFile = require('cp-file');
+const rimraf = require('rimraf-then');
+const destination = 'www/vendor';
 
 console.log('*************** posinstall ***************');
 
 deleteVendorFolder()
 .then(copyReactToVendors)
 .then(copyReactDomToVendors)
-.then(function() {
+.then(() => {
 	console.log('*********** posinstall - done ***********');
 })
-.catch(function(e) {
+.catch(e => {
 	console.log('************ posinstall - error ***********');
 	console.error(e);
 });
 
-
-
 function deleteVendorFolder() {
-	return rimraf(destination).then(function() {
-		console.log('cleaning folder ' + destination);
+	return rimraf(destination).then(() => {
+		console.log(`cleaning folder ${destination}`);
 	});
 }
 
 function copyReactToVendors() {
-	var source = 'node_modules/react/dist/react.js';
-	var dest = createDestPath(source, 'react', destination);
+	const source = 'node_modules/react/dist/react.js';
+	const dest = createDestPath(source, 'react', destination);
 
-	return cpFile(source, dest).then(function() {
+	return cpFile(source, dest).then(() => {
 		console.log('cp', source, '>>', dest);
 	});
 }
 
 function copyReactDomToVendors() {
-	var source = 'node_modules/react-dom/dist/react-dom.js';
-	var dest = createDestPath(source, 'react', destination);
-	return cpFile(source, dest).then(function() {
+	const source = 'node_modules/react-dom/dist/react-dom.js';
+	const dest = createDestPath(source, 'react', destination);
+	return cpFile(source, dest).then(() => {
 		console.log('cp', source, '>>', dest);
 	});
 }
 
 function createDestPath(src, parent) {
-	var parts = [];
+	const parts = [];
 
 	parts.push(destination);
 
@@ -51,5 +49,5 @@ function createDestPath(src, parent) {
 	}
 	parts.push(path.basename(src));
 
-	return path.join.apply(path, parts);;
+	return path.join([...parts]);
 }
