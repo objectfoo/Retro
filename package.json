@@ -5,12 +5,13 @@
   "description": "Retrospective rewrite experiment 4",
   "main": "index.js",
   "scripts": {
-		"xo": "xo src/**/*.*",
-    "postinstall": "node build/postinstall.js",
-    "test": "npm run xo && mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
+		"postinstall": "node build/postinstall.js",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch",
-    "babel": "babel src --out-file www/js/bundle.js --watch",
-    "live-server": "live-server --port=3004 --ignore=node_modules"
+		"lint": "xo src/**/*.*",
+		"build": "npm run lint && babel src --out-file www/js/bundle.js",
+    "build:watch": "npm run build -- --watch",
+    "live-server": "npm run build && live-server --port=3004 --ignore=node_modules"
   },
   "keywords": [],
   "author": "",
