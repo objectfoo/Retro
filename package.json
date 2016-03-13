@@ -9,7 +9,7 @@
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch",
 		"lint": "xo src/**/*.*",
-		"build": "npm run lint && babel src --out-file www/js/bundle.js",
+		"build": "babel src --out-file www/js/bundle.js",
     "build:watch": "npm run build -- --watch",
     "live-server": "npm run build && live-server --port=3004 --ignore=node_modules"
   },

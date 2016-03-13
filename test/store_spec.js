@@ -27,6 +27,18 @@ describe('store', () => {
 		});
 	});
 
+	describe('Vote', () => {
+		it('should not allow a vote less than 0', () => {
+			store.dispatch(actions.addItem({id: 'bad', text: 'test', vote: 3}));
+			store.dispatch(actions.decrementVote({idx: 0}));
+			store.dispatch(actions.decrementVote({idx: 0}));
+			store.dispatch(actions.decrementVote({idx: 0}));
+			const state = store.getState();
+
+			expect(state.bad[0].vote).to.equal(0);
+		});
+	});
+
 	describe('Action - addItem', () => {
 		it('should add an item to a list', () => {
 			store.dispatch(actions.addItem({
@@ -105,18 +117,6 @@ describe('store', () => {
 			const state = store.getState();
 
 			expect(state.bad[0].vote).to.equal(2);
-		});
-
-		describe('Vote', () => {
-			it('should not allow a vote less than 0', () => {
-				store.dispatch(actions.addItem({id: 'bad', text: 'test', vote: 3}));
-				store.dispatch(actions.decrementVote({idx: 0}));
-				store.dispatch(actions.decrementVote({idx: 0}));
-				store.dispatch(actions.decrementVote({idx: 0}));
-				const state = store.getState();
-
-				expect(state.bad[0].vote).to.equal(0);
-			});
 		});
 	});
 
