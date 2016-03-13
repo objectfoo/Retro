@@ -6,7 +6,6 @@ module.exports = React.createClass({
 	propTypes: {
 		store: React.PropTypes.object.isRequired
 	},
-
 	render: function () {
 		return (
 			<div>

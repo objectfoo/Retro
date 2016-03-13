@@ -19040,7 +19040,6 @@ module.exports = React.createClass({
 	propTypes: {
 		store: React.PropTypes.object.isRequired
 	},
-
 	render: function render() {
 		return React.createElement(
 			'div',
