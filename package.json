@@ -6,12 +6,12 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "node build/postinstall.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
-    "test:watch": "npm run test -- --watch",
     "lint": "xo src/**/*.*",
+    "live-server": "npm run build && live-server --port=3004 --ignore=node_modules",
     "build": "babel src --out-file www/js/bundle.js",
     "build:watch": "npm run build -- --watch",
-    "live-server": "npm run build && live-server --port=3004 --ignore=node_modules"
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
+    "test:watch": "npm run test -- --watch"
   },
   "keywords": [],
   "author": "",
