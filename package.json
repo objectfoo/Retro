@@ -6,8 +6,10 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "node build/postinstall.js",
+    "watchify": "watchify src/index.js -t babelify -o www/js/bundle.js",
+    "live-server": "live-server --port=3004 --ignore=node_modules,src",
     "lint": "xo src/**/*.*",
-    "live-server": "npm run build && live-server --port=3004 --ignore=node_modules",
+
     "build": "babel src --out-file www/js/bundle.js",
     "build:watch": "npm run build -- --watch",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
@@ -22,6 +24,7 @@
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
+    "babelify": "^7.2.0",
     "chai": "^3.5.0",
     "cp-file": "^3.1.0",
     "eslint": "^2.4.0",
@@ -33,6 +36,7 @@
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^0.14.7",
     "rimraf-then": "^1.0.0",
+    "watchify": "^3.7.0",
     "xo": "^0.13.0"
   },
   "dependencies": {
