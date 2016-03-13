@@ -1,19 +1,20 @@
-(function(global) {
-	global.Retrospective = global.Retrospective || {};
+(function (global) {
+	const Retrospective = global.Retrospective = global.Retrospective || {};
 
 	Retrospective.List = React.createClass({
 		displayName: 'List',
+
 		propTypes: {
 			items: React.PropTypes.array.isRequired
 		},
 
-		render: function() {
-			var Item = this.props.isVoting ? VotingRetrospectiveItem : RetrospectiveItem;
-
-			return(
+		render: function () {
+			console.log(this.props.isVoting);
+			const Item = this.props.isVoting ? VotingRetrospectiveItem : RetrospectiveItem;
+			return (
 				<ul className="pure-menu-list retrospective-list">
 					{this.props.items.map((item, idx) =>
-						<Item key={'list-' + idx} text={item} />
+						<Item key={`list-${idx}`} text={item} />
 					)}
 				</ul>
 			);
@@ -37,11 +38,10 @@
 		text: React.PropTypes.string.isRequired
 	};
 
-
 	function VotingRetrospectiveItem(props) {
 		return (
 			<li className="retrospective-item retrospective-item--voting">
-				{/*TODO render input or text depending on editing state*/}
+				{/* TODO render input or text depending on editing state*/}
 				<div className="retrospective-item__vote-input">
 					<input autoComplete="off" type="text" />
 				</div>
@@ -62,4 +62,4 @@
 	if (typeof exports !== 'undefined') {
 		module.exports = Retrospective.List;
 	}
-})(typeof global !== 'undefined' ? global : window);
+})(typeof global === 'undefined' ? window : global);

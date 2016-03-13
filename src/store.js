@@ -1,15 +1,15 @@
-(function(global) {
-	global.Retrospective = global.Retrospective || {};
+(function (global) {
+	const Retrospective = global.Retrospective = global.Retrospective || {};
 
 	// Initial State
-	var initialState = {
+	const initialState = {
 		isSorted: false,
 		good: [],
 		bad: [],
 		next: []
 	};
 
-	var state = initialState;
+	let state = initialState;
 
 	// Action Types
 	Retrospective.types = {
@@ -36,12 +36,11 @@
 			};
 		},
 
-		setItemText: function(data) {
+		setItemText: function (data) {
 			return {
 				type: Retrospective.types.SET_ITEM_TEXT,
 				data: data
 			};
-			console.log('asdf', data);
 		},
 
 		incrementVote: function incrementVote(data) {
@@ -58,41 +57,33 @@
 		}
 	};
 
-
 	// Store
 	Retrospective.store = {
-		getState: function() { return state; },
-		dispatch: function(action) {
+		getState: function () {
+			return state;
+		},
+
+		dispatch: function (action) {
 			state = reduce(state, action);
 		}
 	};
 
 	// Reducer
 	function reduce(state, action) {
-
 		switch (action.type) {
 			case Retrospective.types.RESET:
 				return reset();
-			break;
-
 			case Retrospective.types.ADD_ITEM:
 				return addItem(state, action.data);
-			break;
-
 			case Retrospective.types.SET_ITEM_TEXT:
 				return setItemText(state, action.data);
-			break;
-
 			case Retrospective.types.INCREMENT_VOTE:
 				return incrementVote(state, action.data);
-			break;
-
 			default:
 				console.log('warning unknown action', action.type);
+				return state;
 		}
-
 		// emit new state message
-		return state;
 	}
 
 	// state transforms
@@ -103,7 +94,7 @@
 	// 	console.log('transform::sortList()', data);
 	// }
 	function reset() {
-		var newState = Object.assign({}, initialState);
+		const newState = Object.assign({}, initialState);
 		return newState;
 	}
 
@@ -113,20 +104,20 @@
 	}
 
 	function setItemText(state, data) {
-		var list = data.id;
-		var newText = data.text;
-		var idx = data.idx;
-		var newState = Object.assign({}, state);
+		const list = data.id;
+		const newText = data.text;
+		const idx = data.idx;
+		const newState = Object.assign({}, state);
 
 		newState[list][idx].text = newText;
 		return newState;
 	}
 
 	function addItem(state, data) {
-		var text = data.text;
-		var list = data.id;
+		const text = data.text;
+		const list = data.id;
 
-		var newState = Object.assign({}, state);
+		const newState = Object.assign({}, state);
 
 		newState[list] = newState[list].concat({
 			text: text
@@ -143,4 +134,4 @@
 		};
 		module.exports = Retrospective;
 	}
-})(typeof global !== 'undefined' ? global : window);
+})(typeof global === 'undefined' ? window : global);

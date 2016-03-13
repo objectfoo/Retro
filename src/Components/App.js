@@ -1,17 +1,17 @@
-(function(global) {
-	global.Retrospective = global.Retrospective || {};
-	var items = ['item 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'item 2'];
+(function (global) {
+	const Retrospective = global.Retrospective = global.Retrospective || {};
+	const items = ['item 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'item 2'];
 
 	Retrospective.App = React.createClass({
-		getInitialState: function() {
+		getInitialState: function () {
 			return this.props.store.getState();
 		},
 
-		render: function() {
-			var List = Retrospective.List;
-			var date = new Date().toJSON().replace(/T.+$/, '');
+		render: function () {
+			const List = Retrospective.List;
+			const date = new Date().toJSON().replace(/T.+$/, '');
 
-			return(
+			return (
 				<div>
 					<header>
 						<h1 className="page-header">Retrospective <span className="page-sub-header">ReactJs version</span></h1>
@@ -56,4 +56,4 @@
 	if (typeof exports !== 'undefined') {
 		module.exports = Retrospective.App;
 	}
-})(typeof global !== 'undefined' ? global : window);
+})(typeof global === 'undefined' ? window : global);

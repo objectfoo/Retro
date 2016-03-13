@@ -5,8 +5,9 @@
   "description": "Retrospective rewrite experiment 4",
   "main": "index.js",
   "scripts": {
+		"xo": "xo src/**/*.*",
     "postinstall": "node build/postinstall.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
+    "test": "npm run xo && mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch",
     "babel": "babel src --out-file www/js/bundle.js --watch",
     "live-server": "live-server --port=3004 --ignore=node_modules"
@@ -22,6 +23,9 @@
     "babel-preset-react": "^6.5.0",
     "chai": "^3.5.0",
     "cp-file": "^3.1.0",
+    "eslint": "^2.4.0",
+    "eslint-config-xo-react": "^0.5.0",
+    "eslint-plugin-react": "^4.2.1",
     "jsdom": "^8.1.0",
     "live-server": "^0.9.2",
     "mocha": "^2.4.5",
@@ -30,6 +34,21 @@
   },
   "dependencies": {
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "xo": "^0.13.0"
+  },
+  "xo": {
+		"globals": ["React", "window", "it", "should", "describe"],
+    "esnext": true,
+		"plugins": [],
+		"rules": {
+			"babel/object-shorthand": [0],
+			"no-unused-vars": [0]
+		},
+		"envs": {
+			"browser": true,
+			"node": true,
+			"mocha": true
+		}
   }
 }

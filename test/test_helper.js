@@ -3,7 +3,6 @@ import chai from 'chai';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
 const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
 const win = doc.defaultView;
 
@@ -23,7 +22,7 @@ global.ReactDOM = ReactDOM;
 // App requires React
 global.App = require('../src/Components/App').App;
 
-Object.keys(window).forEach((key) => {
+Object.keys(window).forEach(key => {
 	if (!(key in global)) {
 		global[key] = window[key];
 	}

@@ -1,17 +1,17 @@
 import {expect} from 'chai';
+const actions = global.actions;
 
-describe('store', function() {
-	var store = global.store;
+describe('store', () => {
+	const store = global.store;
 
-
-	describe('getState()', function() {
-		it('should return state', function() {
-			var state = global.store.getState();
-
+	describe('getState()', () => {
+		it('should return state', () => {
+			const state = global.store.getState();
+			console.log(state);
 			expect(state).to.be.an.instanceof(Object);
 
 			expect(state).to.have.property('isSorted');
-			expect(state.isSorted).to.be.false;
+			expect(state.isSorted).to.equal(false);
 
 			expect(state).to.have.property('good');
 			expect(state.good).to.be.a('Array');
@@ -24,24 +24,21 @@ describe('store', function() {
 		});
 	});
 
-
-	describe('Action - addItem', function() {
-
-		it('should add an item to a list',function() {
+	describe('Action - addItem', () => {
+		it('should add an item to a list', () => {
 			store.dispatch(actions.addItem({
 				id: 'good',
 				text: 'test item 1'
 			}));
-			var good = store.getState().good;
+			const good = store.getState().good;
 			expect(good.length).to.equal(1);
 			expect(good[0].text).to.equal('test item 1');
 		});
 	});
 
-
-	describe('Action - setItemText', function() {
-		it('should update text of existing item', function() {
-			var bad;
+	describe('Action - setItemText', () => {
+		it('should update text of existing item', () => {
+			let bad;
 			// add new item
 			store.dispatch(actions.addItem({
 				id: 'bad',
@@ -65,10 +62,8 @@ describe('store', function() {
 		});
 	});
 
-
-	describe('Action - reset', function() {
-
-		it('should reset state to inital state',function() {
+	describe('Action - reset', () => {
+		it('should reset state to inital state', () => {
 			store.dispatch(actions.addItem({
 				id: 'bad',
 				text: 'test item 2'
@@ -80,7 +75,7 @@ describe('store', function() {
 			}));
 			store.dispatch(actions.reset());
 
-			var state = store.getState();
+			const state = store.getState();
 
 			expect(state.isSorted).to.equal(false);
 			expect(state.good.length).to.equal(0);
@@ -89,26 +84,21 @@ describe('store', function() {
 		});
 	});
 
-
-	describe.skip('Action - sort', function() {
-		it('should have a test', function() {
+	describe.skip('Action - sort', () => {
+		it('should have a test', () => {
 			expect(0).to.be.ok();
 		});
 	});
 
-
-	describe.skip('Action - setVote', function() {
-		it('should have a test', function() {
+	describe.skip('Action - setVote', () => {
+		it('should have a test', () => {
 			expect(0).to.be.ok();
 		});
 	});
 
-
-	describe.skip('Action - printable', function() {
-		it('should have a test', function() {
+	describe.skip('Action - printable', () => {
+		it('should have a test', () => {
 			expect(0).to.be.ok();
 		});
 	});
-
-
 });
