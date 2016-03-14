@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
 	renderIntoDocument,
-	scryRenderedDOMComponentsWithTag,
-	scryRenderedDOMComponentsWithClass
+	scryRenderedDOMComponentsWithTag as allOfTag,
+	scryRenderedDOMComponentsWithClass as allOfClass
 } from 'react-addons-test-utils';
 import store from '../src/store';
 
@@ -14,14 +14,14 @@ describe('App', () => {
 	const component = renderIntoDocument(<App store={store} />);
 
 	it('should render div with lala content', () => {
-		const headline = scryRenderedDOMComponentsWithClass(component, 'page-header');
+		const headline = allOfClass(component, 'page-header');
 		expect(headline).to.have.deep.property(
 			'[0].textContent',
 			'Retrospective w/ReactJs');
 	});
 
 	it('should have 1 input for each of the 3 sections', () => {
-		const inputs = scryRenderedDOMComponentsWithTag(component, 'input');
+		const inputs = allOfTag(component, 'input');
 		expect(inputs).to.have.property('length', 3);
 		expect(inputs[0].placeholder).to.equal('What went well?');
 		expect(inputs[1].placeholder).to.equal('What needs improvement?');

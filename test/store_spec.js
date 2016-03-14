@@ -12,25 +12,19 @@ describe('store', () => {
 			const state = store.getState();
 			expect(state).to.be.an.instanceof(Object);
 
-			expect(state).to.have.property('good');
-			expect(state.good).to.be.an('Array');
-
-			expect(state).to.have.property('bad');
-			expect(state.bad).to.be.an('Array');
-
-			expect(state).to.have.property('next');
-			expect(state.next).to.be.an('Array');
+			expect(state).to.have.property('good').that.is.an('array');
+			expect(state).to.have.property('bad').that.is.an('array');
+			expect(state).to.have.property('next').that.is.an('array');
 		});
 	});
 
 	describe('Vote', () => {
 		it('should not allow a vote less than 0', () => {
 			store.dispatch(actions.addItem({id: 'bad', text: 'test', vote: 3}));
-
 			store.dispatch(actions.setVote({id: 'bad', idx: 0, vote: -4}));
-			const state = store.getState();
 
-			expect(state.bad[0].vote).to.equal(0);
+			const state = store.getState();
+			expect(state).to.have.deep.property('bad[0].vote', 0);
 		});
 	});
 
@@ -47,11 +41,13 @@ describe('store', () => {
 			}));
 
 			const state = store.getState();
-			expect(state.good.length).to.equal(1);
-			expect(state.good[0].text).to.equal('test item 1');
-			expect(state.bad.length).to.equal(1);
-			expect(state.bad[0].text).to.equal('test bad item 1');
-			expect(state.bad[0].vote).to.equal(4);
+			expect(state).to.have.property('good').that.is.an('array')
+				.with.deep.property('[0].text', 'test item 1');
+
+			expect(state).to.have.property('bad').that.is.an('array')
+				.with.deep.property('[0].text', 'test bad item 1');
+
+			expect(state).to.have.deep.property('bad[0].vote', 4);
 		});
 	});
 
