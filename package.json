@@ -6,10 +6,10 @@
   "main": "index.js",
   "scripts": {
     "old-postinstall": "node build/postinstall.js",
-    "watchify": "watchify src/index.js -v -t babelify -o dist/js/bundle.js",
-    "live-server": "live-server --port=3004 --ignore=node_modules,src",
-    "lint": "xo --ignore=build/** --ignore=.git",
     "build": "browserify src/index.js -t babelify -o dist/js/bundle.js",
+    "lint": "xo --ignore=build/** --ignore=.git",
+    "live-server": "live-server --port=3004 --ignore=node_modules,src",
+    "watchify": "watchify src/index.js -v -t babelify -o dist/js/bundle.js",
     "build:watch": "npm run build -- --watch",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch"
@@ -44,6 +44,7 @@
     "xo": "^0.13.0"
   },
   "dependencies": {
+    "lodash": "^4.6.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7"
   },

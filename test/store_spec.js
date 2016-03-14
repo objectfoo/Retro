@@ -1,17 +1,14 @@
 import {expect} from 'chai';
-const actions = global.actions;
+import {actions, store} from '../src/store.js';
 
 describe('store', () => {
-	const store = global.store;
-
 	beforeEach(() => {
 		store.dispatch(actions.reset());
 	});
 
-	describe('getState()', () => {
+	describe('store.getState()', () => {
 		it('should return state', () => {
-			const state = global.store.getState();
-
+			const state = store.getState();
 			expect(state).to.be.an.instanceof(Object);
 
 			expect(state).to.have.property('isPrintable', false);
@@ -45,10 +42,18 @@ describe('store', () => {
 				id: 'good',
 				text: 'test item 1'
 			}));
-			const good = store.getState().good;
+			store.dispatch(actions.addItem({
+				id: 'bad',
+				text: 'test bad item 1',
+				vote: 4
+			}));
 
-			expect(good.length).to.equal(1);
-			expect(good[0].text).to.equal('test item 1');
+			const state = store.getState();
+			expect(state.good.length).to.equal(1);
+			expect(state.good[0].text).to.equal('test item 1');
+			expect(state.bad.length).to.equal(1);
+			expect(state.bad[0].text).to.equal('test bad item 1');
+			expect(state.bad[0].vote).to.equal(4);
 		});
 	});
 
@@ -75,6 +80,7 @@ describe('store', () => {
 		it('should reset state to inital state', () => {
 			store.dispatch(actions.addItem({id: 'bad', text: 'test item 2'}));
 			store.dispatch(actions.addItem({id: 'next', text: 'test item 3', vote: 0}));
+
 			store.dispatch(actions.reset());
 
 			const state = store.getState();
@@ -104,8 +110,8 @@ describe('store', () => {
 		it('should increment vote of a bad item', () => {
 			store.dispatch(actions.addItem({id: 'bad', text: 'test', vote: 3}));
 			store.dispatch(actions.incrementVote({idx: 0}));
-			const state = store.getState();
 
+			const state = store.getState();
 			expect(state.bad[0].vote).to.equal(4);
 		});
 	});
@@ -120,9 +126,12 @@ describe('store', () => {
 		});
 	});
 
-	describe.skip('Action - printable', () => {
+	describe('Action - printable', () => {
 		it('should have a test', () => {
-			expect(0).to.be.ok();
+			store.dispatch(actions.printable());
+			const state = store.getState();
+
+			expect(state).to.have.property('isPrintable', true);
 		});
 	});
 });
