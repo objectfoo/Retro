@@ -1,6 +1,8 @@
 'use strict';
 const React = require('react');
 import List from './List';
+import {actions} from '../store';
+import {testData} from '../data';
 
 module.exports = React.createClass({
 	displayName: 'App',
@@ -9,8 +11,11 @@ module.exports = React.createClass({
 	},
 
 	render: function () {
+		this.props.store.dispatch(actions.reset(testData()));
 		const state = this.props.store.getState();
 		const good = state.good;
+		const bad = state.bad;
+		const next = state.next;
 		const date = (new Date()).toJSON().replace(/T.*$/, '');
 
 		return (
@@ -32,7 +37,7 @@ module.exports = React.createClass({
 					<h2 className="visible-aria-only">What needs improvement?</h2>
 					<div className="pure-form">
 						<input className="pure-input-1 input-no-border-radius" autoComplete="off" type="text" placeholder="What needs improvement?" />
-						{/* <List items={voteItems} isVoting={true} />*/}
+						<List items={bad} isVoting={true} />
 					</div>
 				</section>
 
@@ -40,7 +45,7 @@ module.exports = React.createClass({
 					<h2 className="visible-aria-only">What do we do next time?</h2>
 					<div className="pure-form">
 						<input className="pure-input-1 input-no-border-radius" autoComplete="off" type="text" placeholder="What do we do next time?" />
-						{/* <List items={items} /> */}
+						<List items={next} />
 					</div>
 				</section>
 
