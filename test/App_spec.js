@@ -27,4 +27,6 @@ describe('App', () => {
 		expect(inputs[1].placeholder).to.equal('What needs improvement?');
 		expect(inputs[2].placeholder).to.equal('What do we do next time?');
 	});
+
+	it.skip('should test printable view', () => {});
 });

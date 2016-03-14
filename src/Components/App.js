@@ -1,4 +1,5 @@
 'use strict';
+
 const React = require('react');
 import List from './List';
 import {actions} from '../store';
@@ -9,8 +10,18 @@ module.exports = React.createClass({
 	propTypes: {
 		store: React.PropTypes.object.isRequired
 	},
-
+	getInitialState() {
+		return {
+			isPrintable: false
+		};
+	},
+	setPrintableTrue: function (x) {
+		this.setState({
+			isPrintable: true
+		});
+	},
 	render: function () {
+		// TODO(ak) remove this test code
 		this.props.store.dispatch(actions.reset(testData()));
 		const state = this.props.store.getState();
 		const good = state.good;

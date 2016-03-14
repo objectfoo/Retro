@@ -19051,8 +19051,19 @@ module.exports = React.createClass({
 	propTypes: {
 		store: React.PropTypes.object.isRequired
 	},
+	getInitialState: function getInitialState() {
+		return {
+			isPrintable: false
+		};
+	},
 
+	setPrintableTrue: function setPrintableTrue(x) {
+		this.setState({
+			isPrintable: true
+		});
+	},
 	render: function render() {
+		// TODO(ak) remove this test code
 		this.props.store.dispatch(_store.actions.reset((0, _data.testData)()));
 		var state = this.props.store.getState();
 		var good = state.good;
@@ -19318,7 +19329,6 @@ var state = (0, _data2.default)();
 // action types
 // *****************************************************************************
 var types = {
-	PRINTABLE: 'PRINTABLE',
 	SORT: 'SORT',
 	ADD_ITEM: 'ADD_ITEM',
 	SET_ITEM_TEXT: 'SET_ITEM_TEXT',
@@ -19330,9 +19340,6 @@ var types = {
 // action creators
 // *****************************************************************************
 var actions = {
-	printable: function printable() {
-		return { type: types.PRINTABLE };
-	},
 	sort: function sort() {
 		return { type: types.SORT };
 	},
@@ -19363,8 +19370,6 @@ function getState() {
 // *****************************************************************************
 function dispatch(action) {
 	switch (action.type) {
-		case types.PRINTABLE:
-			return printable();
 		case types.SORT:
 			return sortList();
 		case types.SET_ITEM_TEXT:
@@ -19384,11 +19389,6 @@ function dispatch(action) {
 
 // transforms
 // *****************************************************************************
-function printable() {
-	state.isPrintable = true;
-	return state;
-}
-
 function sortList(data) {
 	var arr = state.bad.slice(0);
 	arr.sort(function (a, b) {

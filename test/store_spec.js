@@ -12,8 +12,6 @@ describe('store', () => {
 			const state = store.getState();
 			expect(state).to.be.an.instanceof(Object);
 
-			expect(state).to.have.property('isPrintable', false);
-
 			expect(state).to.have.property('good');
 			expect(state.good).to.be.an('Array');
 
@@ -84,7 +82,6 @@ describe('store', () => {
 			store.dispatch(actions.reset());
 
 			const state = store.getState();
-			expect(state).to.have.property('isPrintable', false);
 			expect(state).to.have.deep.property('good.length', 0);
 			expect(state).to.have.deep.property('bad.length', 0);
 			expect(state).to.have.deep.property('next.length', 0);
@@ -137,15 +134,6 @@ describe('store', () => {
 
 			const state = store.getState();
 			expect(state.bad[0].vote).to.equal(11);
-		});
-	});
-
-	describe('Action - printable', () => {
-		it('should have a test', () => {
-			store.dispatch(actions.printable());
-
-			const state = store.getState();
-			expect(state).to.have.property('isPrintable', true);
 		});
 	});
 });

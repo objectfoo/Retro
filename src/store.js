@@ -9,7 +9,6 @@ let state = initialData();
 // action types
 // *****************************************************************************
 const types = {
-	PRINTABLE: 'PRINTABLE',
 	SORT: 'SORT',
 	ADD_ITEM: 'ADD_ITEM',
 	SET_ITEM_TEXT: 'SET_ITEM_TEXT',
@@ -21,9 +20,6 @@ const types = {
 // action creators
 // *****************************************************************************
 const actions = {
-	printable: function () {
-		return {type: types.PRINTABLE};
-	},
 	sort: function () {
 		return {type: types.SORT};
 	},
@@ -54,8 +50,6 @@ function getState() {
 // *****************************************************************************
 function dispatch(action) {
 	switch (action.type) {
-		case types.PRINTABLE:
-			return printable();
 		case types.SORT:
 			return sortList();
 		case types.SET_ITEM_TEXT:
@@ -75,11 +69,6 @@ function dispatch(action) {
 
 // transforms
 // *****************************************************************************
-function printable() {
-	state.isPrintable = true;
-	return state;
-}
-
 function sortList(data) {
 	const arr = state.bad.slice(0);
 	arr.sort((a, b) => {
