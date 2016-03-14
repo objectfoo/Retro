@@ -2,6 +2,9 @@
 
 import {cloneDeep} from 'lodash';
 
+// global state
+let state = initialData();
+
 // initial data
 function initialData() {
 	return {
@@ -11,9 +14,6 @@ function initialData() {
 		next: []
 	};
 }
-// global state
-/* eslint-disable prefer-const*/
-let state = initialData();
 
 // action types
 const types = {
@@ -84,7 +84,7 @@ function printable() {
 }
 
 function sortList(data) {
-	let arr = state.bad.slice(0);
+	const arr = state.bad.slice(0);
 
 	arr.sort((a, b) => {
 		return a.vote - b.vote;
@@ -101,14 +101,14 @@ function setItemText(payload) {
 }
 
 function incrementVote(payload) {
-	let item = state.bad[payload.idx];
+	const item = state.bad[payload.idx];
 	item.vote += 1;
 
 	return state;
 }
 
 function decrementVote(payload) {
-	let item = state.bad[payload.idx];
+	const item = state.bad[payload.idx];
 	item.vote = Math.max(item.vote - 1, 0);
 
 	return state;
