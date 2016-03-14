@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "old-postinstall": "node build/postinstall.js",
-    "build": "browserify src/index.js -t babelify -o dist/js/bundle.js",
+    "build": "browserify src/index.js -t babelify -g [ envify --NODE_ENV=production ] -g uglifyify -o dist/js/bundle.js",
     "lint": "xo --ignore=build/** --ignore=.git",
     "live-server": "live-server --port=3004 --ignore=node_modules,src",
     "watchify": "watchify src/index.js -v -t babelify -o dist/js/bundle.js",
@@ -40,6 +40,7 @@
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^0.14.7",
     "rimraf-then": "^1.0.0",
+    "uglifyify": "^3.0.1",
     "watchify": "^3.7.0",
     "xo": "^0.13.0"
   },
