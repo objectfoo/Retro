@@ -1,12 +1,16 @@
 'use strict';
 const React = require('react');
+import List from './List';
 
 module.exports = React.createClass({
 	displayName: 'App',
 	propTypes: {
 		store: React.PropTypes.object.isRequired
 	},
+
 	render: function () {
+		const state = this.props.store.getState();
+		const good = state.good;
 		const date = (new Date()).toJSON().replace(/T.*$/, '');
 
 		return (
@@ -20,7 +24,7 @@ module.exports = React.createClass({
 					<h2 className="visible-aria-only">What went well?</h2>
 					<div className="pure-form">
 						<input className="pure-input-1 input-no-border-radius" autoComplete="off" type="text" placeholder="What went well?" />
-						{/* <List items={items} />*/}
+						<List items={good} />
 					</div>
 				</section>
 

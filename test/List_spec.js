@@ -1,9 +1,11 @@
-const expect = require('chai').expect;
-const React = require('react');
-const ReactDOM = require('react-dom');
-const ReactTestUtils = require('react-addons-test-utils');
-const renderIntoDocument = ReactTestUtils.renderIntoDocument;
-const scryRenderedDOMComponentsWithTag = ReactTestUtils.scryRenderedDOMComponentsWithTag;
+import {expect} from 'chai';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {
+	renderIntoDocument,
+	scryRenderedDOMComponentsWithTag
+} from 'react-addons-test-utils';
+import {store} from '../src/store';
 
 // const List = require('../src/Components/List');
 // require('../src/Components/RetrospectiveItem');

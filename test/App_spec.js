@@ -1,16 +1,18 @@
-const expect = require('chai').expect;
-const React = require('react');
-const ReactDOM = require('react-dom');
-const ReactTestUtils = require('react-addons-test-utils');
-const renderIntoDocument = ReactTestUtils.renderIntoDocument;
-const scryRenderedDOMComponentsWithTag = ReactTestUtils.scryRenderedDOMComponentsWithTag;
-const scryRenderedDOMComponentsWithClass = ReactTestUtils.scryRenderedDOMComponentsWithClass;
+import {expect} from 'chai';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {
+	renderIntoDocument,
+	scryRenderedDOMComponentsWithTag,
+	scryRenderedDOMComponentsWithClass
+} from 'react-addons-test-utils';
+import {store} from '../src/store';
 
 const App = require('../src/Components/App');
 const initialData = {text: 'lala'};
 
 describe('App', () => {
-	const component = renderIntoDocument(<App />);
+	const component = renderIntoDocument(<App store={store} />);
 
 	it('should render div with lala content', () => {
 		const headline = scryRenderedDOMComponentsWithClass(component, 'page-header');

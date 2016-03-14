@@ -19033,14 +19033,24 @@ process.umask = function() { return 0; };
 },{}],159:[function(require,module,exports){
 'use strict';
 
+var _List = require('./List');
+
+var _List2 = _interopRequireDefault(_List);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var React = require('react');
+
 
 module.exports = React.createClass({
 	displayName: 'App',
 	propTypes: {
 		store: React.PropTypes.object.isRequired
 	},
+
 	render: function render() {
+		var state = this.props.store.getState();
+		var good = state.good;
 		var date = new Date().toJSON().replace(/T.*$/, '');
 
 		return React.createElement(
@@ -19081,7 +19091,8 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'pure-form' },
-					React.createElement('input', { className: 'pure-input-1 input-no-border-radius', autoComplete: 'off', type: 'text', placeholder: 'What went well?' })
+					React.createElement('input', { className: 'pure-input-1 input-no-border-radius', autoComplete: 'off', type: 'text', placeholder: 'What went well?' }),
+					React.createElement(_List2.default, { items: good })
 				)
 			),
 			React.createElement(
@@ -19135,7 +19146,96 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":157}],160:[function(require,module,exports){
+},{"./List":160,"react":157}],160:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var React = require('react');
+
+var List = React.createClass({
+	displayName: 'List',
+
+	render: function render() {
+		var items = this.props.items;
+
+		if (items.length === 0) {
+			return null;
+		}
+
+		return React.createElement(
+			'ul',
+			{ className: 'pure-menu-list retrospective-list' },
+			items.map(function (item, idx) {
+				return React.createElement(
+					'li',
+					null,
+					item.text
+				);
+			})
+		);
+		// return (
+		// 	<ul className="pure-menu-list retrospective-list">
+		// 		{this.props.items.map((item, idx) => {
+		// 			console.log('asdf', item);
+		// 			// let props = {key: `list-${idx}`};
+		// 			// if (item.vote === undefined) {
+		// 			// 	props.text = item;
+		// 			// } else {
+		// 			// 	props.item = item;
+		// 			// 	props.isVoting = isVoting;
+		// 			// }
+		// 			return <li>{item.text}</li>;
+		// 		})}
+		// 	</ul>
+		// );
+	}
+});
+
+exports.default = List;
+
+//
+//
+// (function (global) {
+// 	const Retrospective = global.Retrospective = global.Retrospective || {};
+//
+// 	Retrospective.List = React.createClass({
+// 		displayName: 'List',
+//
+// 		// propTypes: {
+// 		// 	items: React.PropTypes.array.isRequired
+// 		// },
+//
+// 		render: function () {
+// 			/* eslint-disable prefer-const */
+// 			const isVoting = this.props.isVoting !== undefined;
+// 			const RetrospectiveItem = Retrospective.RetrospectiveItem;
+//
+// 			return (
+// 				<ul className="pure-menu-list retrospective-list">
+// 					{this.props.items.map((item, idx) => {
+// 						let props = {key: `list-${idx}`};
+// 						if (item.vote === undefined) {
+// 							props.text = item;
+// 						} else {
+// 							props.item = item;
+// 							props.isVoting = isVoting;
+// 						}
+//
+// 						return <RetrospectiveItem {...props} />;
+// 					})}
+// 				</ul>
+// 			);
+// 		}
+// 	});
+//
+// 	if (typeof exports !== 'undefined') {
+// 		module.exports = Retrospective.List;
+// 	}
+// })(typeof global === 'undefined' ? window : global);
+
+},{"react":157}],161:[function(require,module,exports){
 'use strict';
 
 // initial data
@@ -19400,7 +19500,7 @@ exports.store = store;
 // 	}
 // })(typeof global === 'undefined' ? window : global);
 
-},{}],161:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -19427,4 +19527,4 @@ _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: 
 hostElement.classList.remove('preload');
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./Components/App":159,"./Store":160,"react":157,"react-dom":1}]},{},[161]);
+},{"./Components/App":159,"./Store":161,"react":157,"react-dom":1}]},{},[162]);
