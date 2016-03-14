@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {actions, store} from '../src/store.js';
+import store, {actions} from '../src/store.js';
 import initialData, {testData} from '../src/data';
 
 describe('store', () => {

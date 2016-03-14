@@ -125,4 +125,4 @@ const store = {
 };
 
 // *****************************************************************************
-export {actions, store};
+export {actions, store as default};

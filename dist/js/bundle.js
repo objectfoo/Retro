@@ -19037,6 +19037,10 @@ var _List = require('./List');
 
 var _List2 = _interopRequireDefault(_List);
 
+var _store = require('../store');
+
+var _data = require('../data');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var React = require('react');
@@ -19049,8 +19053,11 @@ module.exports = React.createClass({
 	},
 
 	render: function render() {
+		this.props.store.dispatch(_store.actions.reset((0, _data.testData)()));
 		var state = this.props.store.getState();
 		var good = state.good;
+		var bad = state.bad;
+		var next = state.next;
 		var date = new Date().toJSON().replace(/T.*$/, '');
 
 		return React.createElement(
@@ -19106,7 +19113,8 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'pure-form' },
-					React.createElement('input', { className: 'pure-input-1 input-no-border-radius', autoComplete: 'off', type: 'text', placeholder: 'What needs improvement?' })
+					React.createElement('input', { className: 'pure-input-1 input-no-border-radius', autoComplete: 'off', type: 'text', placeholder: 'What needs improvement?' }),
+					React.createElement(_List2.default, { items: bad, isVoting: true })
 				)
 			),
 			React.createElement(
@@ -19120,7 +19128,8 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'pure-form' },
-					React.createElement('input', { className: 'pure-input-1 input-no-border-radius', autoComplete: 'off', type: 'text', placeholder: 'What do we do next time?' })
+					React.createElement('input', { className: 'pure-input-1 input-no-border-radius', autoComplete: 'off', type: 'text', placeholder: 'What do we do next time?' }),
+					React.createElement(_List2.default, { items: next })
 				)
 			),
 			React.createElement(
@@ -19146,99 +19155,50 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./List":160,"react":157}],160:[function(require,module,exports){
+},{"../data":161,"../store":163,"./List":160,"react":157}],160:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-var React = require('react');
+exports.default = undefined;
 
-var List = React.createClass({
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var List = _react2.default.createClass({
 	displayName: 'List',
 
 	render: function render() {
-		var items = this.props.items;
-
+		var items = this.props.items || [];
 		if (items.length === 0) {
 			return null;
 		}
-
-		return React.createElement(
+		return _react2.default.createElement(
 			'ul',
 			{ className: 'pure-menu-list retrospective-list' },
 			items.map(function (item, idx) {
-				return React.createElement(
+				return _react2.default.createElement(
 					'li',
-					null,
-					item.text
+					{ className: 'pure-menu-item retrospective-item', key: idx },
+					_react2.default.createElement(
+						'div',
+						{ className: 'retrospective-item__text' },
+						item.text
+					)
 				);
 			})
 		);
-		// return (
-		// 	<ul className="pure-menu-list retrospective-list">
-		// 		{this.props.items.map((item, idx) => {
-		// 			console.log('asdf', item);
-		// 			// let props = {key: `list-${idx}`};
-		// 			// if (item.vote === undefined) {
-		// 			// 	props.text = item;
-		// 			// } else {
-		// 			// 	props.item = item;
-		// 			// 	props.isVoting = isVoting;
-		// 			// }
-		// 			return <li>{item.text}</li>;
-		// 		})}
-		// 	</ul>
-		// );
 	}
 });
 
 exports.default = List;
 
-//
-//
-// (function (global) {
-// 	const Retrospective = global.Retrospective = global.Retrospective || {};
-//
-// 	Retrospective.List = React.createClass({
-// 		displayName: 'List',
-//
-// 		// propTypes: {
-// 		// 	items: React.PropTypes.array.isRequired
-// 		// },
-//
-// 		render: function () {
-// 			/* eslint-disable prefer-const */
-// 			const isVoting = this.props.isVoting !== undefined;
-// 			const RetrospectiveItem = Retrospective.RetrospectiveItem;
-//
-// 			return (
-// 				<ul className="pure-menu-list retrospective-list">
-// 					{this.props.items.map((item, idx) => {
-// 						let props = {key: `list-${idx}`};
-// 						if (item.vote === undefined) {
-// 							props.text = item;
-// 						} else {
-// 							props.item = item;
-// 							props.isVoting = isVoting;
-// 						}
-//
-// 						return <RetrospectiveItem {...props} />;
-// 					})}
-// 				</ul>
-// 			);
-// 		}
-// 	});
-//
-// 	if (typeof exports !== 'undefined') {
-// 		module.exports = Retrospective.List;
-// 	}
-// })(typeof global === 'undefined' ? window : global);
-
 },{"react":157}],161:[function(require,module,exports){
 'use strict';
-
-// initial data
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -19251,254 +19211,27 @@ function initialData() {
 		next: []
 	};
 }
-// global stateObject
-/* eslint-disable prefer-const*/
-var stateObject = initialData();
 
-// action types
-var types = {
-	SORT: 'SORT',
-	ADD_ITEM: 'ADD_ITEM',
-	SET_ITEM_TEXT: 'SET_ITEM_TEXT',
-	INCREMENT_VOTE: 'INCREMENT_VOTE',
-	DECREMENT_VOTE: 'DECREMENT_VOTE',
-	RESET: 'RESET'
-};
+function testData() {
+	var d = initialData();
 
-// action creators
-var actions = {
-	sort: function sort() {
-		return { type: types.SORT };
-	},
-	addItem: function addItem(payload) {
-		return { type: types.ADD_ITEM, payload: payload };
-	},
-	setItemText: function setItemText(payload) {
-		return { type: types.SET_ITEM_TEXT, payload: payload };
-	},
-	incrementVote: function incrementVote(payload) {
-		return { type: types.INCREMENT_VOTE, payload: payload };
-	},
-	decrementVote: function decrementVote(payload) {
-		return { type: types.DECREMENT_VOTE, payload: payload };
-	},
-	reset: function reset(payload) {
-		return { type: types.RESET, payload: payload === undefined ? null : payload };
-	}
-};
+	d.bad = [{ text: 'bad item 1', vote: 0 }, { text: 'bad item 2', vote: 0 }];
 
-// getState
-function getState() {
-	return stateObject;
+	d.good = [{ text: 'good item 1' }, { text: 'good item 2' }];
+
+	d.next = [{ text: 'next item 1' }, { text: 'next item 2' }];
+
+	return d;
 }
 
-// dispatcher
-function dispatch(action) {
-	switch (action.type) {
-		case types.DECREMENT_VOTE:
-			return decrementVote(stateObject, action.payload);
-		case types.ADD_ITEM:
-			return addItem(stateObject, action.payload);
-		case types.RESET:
-			return reset(action.payload);
-		default:
-			return stateObject;
-	}
-}
+exports.default = initialData;
+exports.testData = testData;
 
-function decrementVote(stateObject, payload) {
-	console.log(payload);
-	return stateObject;
-}
-
-function reset() {
-	stateObject = initialData();
-	return stateObject;
-}
-
-function addItem(stateObject, payload) {
-	var newState = Object.assign({}, stateObject);
-
-	newState[payload.id].push({
-		text: payload.text || null,
-		vote: payload.vote === undefined ? null : payload.vote
-	});
-
-	return newState;
-}
-
-var store = {
-	dispatch: dispatch,
-	getState: getState
-};
-
-exports.actions = actions;
-exports.store = store;
-
-// (function (global) {
-// 	const Retrospective = global.Retrospective = global.Retrospective || {};
-//
-// 	// Initial State
-// 	const initialState = {
-// 		isPrintable: false,
-// 		good: [],
-// 		bad: [],
-// 		next: []
-// 	};
-//
-// 	let stateObject = initialState;
-//
-// 	// Action Types
-// 	Retrospective.types = {
-// 		SORT: 'SORT',
-// 		ADD_ITEM: 'ADD_ITEM',
-// 		INCREMENT_VOTE: 'INCREMENT_VOTE',
-// 		DECREMENT_VOTE: 'DECREMENT_VOTE',
-// 		RESET: 'RESET',
-// 		SET_ITEM_TEXT: 'SET_ITEM_TEXT'
-// 	};
-//
-// 	// Action creators
-// 	Retrospective.actions = {
-// 		sort: function sort(data) {
-// 			return {
-// 				type: Retrospective.types.SORT,
-// 				data: data
-// 			};
-// 		},
-//
-// 		addItem: function addItem(data) {
-// 			return {
-// 				type: Retrospective.types.ADD_ITEM,
-// 				data: data
-// 			};
-// 		},
-//
-// 		setItemText: function (data) {
-// 			return {
-// 				type: Retrospective.types.SET_ITEM_TEXT,
-// 				data: data
-// 			};
-// 		},
-//
-// 		incrementVote: function incrementVote(data) {
-// 			return {
-// 				type: Retrospective.types.INCREMENT_VOTE,
-// 				data: data
-// 			};
-// 		},
-//
-// 		decrementVote: function incrementVote(data) {
-// 			return {
-// 				type: Retrospective.types.DECREMENT_VOTE,
-// 				data: data
-// 			};
-// 		},
-//
-// 		reset: function reset(data) {
-// 			return {
-// 				type: Retrospective.types.RESET
-// 			};
-// 		}
-// 	};
-//
-// 	// Store
-// 	Retrospective.store = {
-// 		getState: function () {
-// 			return stateObject;
-// 		},
-//
-// 		dispatch: function (action) {
-// 			stateObject = reduce(stateObject, action);
-// 		}
-// 	};
-//
-// 	// Reducer
-// 	function reduce(stateObject, action) {
-// 		switch (action.type) {
-// 			case Retrospective.types.RESET:
-// 				return reset();
-// 			case Retrospective.types.ADD_ITEM:
-// 				return addItem(stateObject, action.data);
-// 			case Retrospective.types.SET_ITEM_TEXT:
-// 				return setItemText(stateObject, action.data);
-// 			case Retrospective.types.INCREMENT_VOTE:
-// 				return incrementVote(stateObject, action.data);
-// 			case Retrospective.types.DECREMENT_VOTE:
-// 				return decrementVote(stateObject, action.data);
-// 			case Retrospective.types.SORT:
-// 				return sortList(stateObject, action.data);
-// 			default:
-// 				console.log('warning unknown action', action.type);
-// 				return stateObject;
-// 		}
-// 		// emit new stateObject message
-// 	}
-//
-// 	// stateObject transforms
-// 	function sortList(stateObject, data) {
-// 		const which = data.id;
-// 		const newState = Object.assign({}, stateObject);
-// 		newState[which].sort((a, b) => {
-// 			return a.vote - b.vote;
-// 		});
-//
-// 		return newState;
-// 	}
-// 	function reset() {
-// 		return Object.assign({}, initialState);
-// 	}
-//
-// 	function incrementVote(stateObject, data) {
-// 		const newState = Object.assign({}, stateObject);
-//
-// 		newState.bad[data.idx].vote += 1;
-//
-// 		return newState;
-// 	}
-//
-// 	function decrementVote(stateObject, data) {
-// 		const newState = Object.assign({}, stateObject);
-// 		const item = newState.bad[data.idx];
-//
-// 		item.vote = Math.max(0, item.vote - 1);
-//
-// 		return newState;
-// 	}
-//
-// 	function setItemText(stateObject, data) {
-// 		const list = data.id;
-// 		const newText = data.text;
-// 		const idx = data.idx;
-// 		const newState = Object.assign({}, stateObject);
-//
-// 		newState[list][idx].text = newText;
-// 		return newState;
-// 	}
-//
-// 	function addItem(stateObject, data) {
-// 		const list = data.id;
-// 		const newState = Object.assign({}, stateObject);
-// 		const newItem = {text: data.text};
-//
-// 		if (data.vote !== undefined) {
-// 			newItem.vote = data.vote;
-// 		}
-//
-// 		newState[list] = newState[list].concat(newItem);
-//
-// 		return newState;
-// 	}
-//
-// 	if (typeof module !== 'undefined') {
-// 		module.exports = {
-// 			store: Retrospective.store,
-// 			types: Retrospective.types,
-// 			actions: Retrospective.actions
-// 		};
-// 		module.exports = Retrospective;
-// 	}
-// })(typeof global === 'undefined' ? window : global);
+// 	const items = ['item 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'item 2'];
+// 	const voteItems = [
+// 		{text: 'asdf', vote: 0},
+// 		{text: 'asdf asdf asd fasd', vote: 1}
+// 	];
 
 },{}],162:[function(require,module,exports){
 (function (global){
@@ -19516,15 +19249,157 @@ var _App = require('./Components/App');
 
 var _App2 = _interopRequireDefault(_App);
 
-var _Store = require('./Store');
+var _store = require('./store');
+
+var _store2 = _interopRequireDefault(_store);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var document = global.document;
 var hostElement = document.getElementById('app');
 
-_reactDom2.default.render(_react2.default.createElement(_App2.default, { store: _Store.store }), hostElement);
+_reactDom2.default.render(_react2.default.createElement(_App2.default, { store: _store2.default }), hostElement);
 hostElement.classList.remove('preload');
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./Components/App":159,"./Store":161,"react":157,"react-dom":1}]},{},[162]);
+},{"./Components/App":159,"./store":163,"react":157,"react-dom":1}],163:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = exports.actions = undefined;
+
+var _data = require('./data');
+
+var _data2 = _interopRequireDefault(_data);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// global state
+// *****************************************************************************
+var state = (0, _data2.default)();
+
+// action types
+// *****************************************************************************
+var types = {
+	PRINTABLE: 'PRINTABLE',
+	SORT: 'SORT',
+	ADD_ITEM: 'ADD_ITEM',
+	SET_ITEM_TEXT: 'SET_ITEM_TEXT',
+	INCREMENT_VOTE: 'INCREMENT_VOTE',
+	SET_VOTE: 'SET_VOTE',
+	RESET: 'RESET'
+};
+
+// action creators
+// *****************************************************************************
+var actions = {
+	printable: function printable() {
+		return { type: types.PRINTABLE };
+	},
+	sort: function sort() {
+		return { type: types.SORT };
+	},
+	addItem: function addItem(payload) {
+		return { type: types.ADD_ITEM, payload: payload };
+	},
+	setItemText: function setItemText(payload) {
+		return { type: types.SET_ITEM_TEXT, payload: payload };
+	},
+	incrementVote: function incrementVote(payload) {
+		return { type: types.INCREMENT_VOTE, payload: payload };
+	},
+	setVote: function setVote(payload) {
+		return { type: types.SET_VOTE, payload: payload };
+	},
+	reset: function reset(payload) {
+		return { type: types.RESET, payload: payload === undefined ? null : payload };
+	}
+};
+
+// getState
+// *****************************************************************************
+function getState() {
+	return state;
+}
+
+// dispatcher
+// *****************************************************************************
+function dispatch(action) {
+	switch (action.type) {
+		case types.PRINTABLE:
+			return printable();
+		case types.SORT:
+			return sortList();
+		case types.SET_ITEM_TEXT:
+			return setItemText(action.payload);
+		case types.INCREMENT_VOTE:
+			return incrementVote(action.payload);
+		case types.SET_VOTE:
+			return setVote(action.payload);
+		case types.ADD_ITEM:
+			return addItem(action.payload);
+		case types.RESET:
+			return reset(action.payload);
+		default:
+			return state;
+	}
+}
+
+// transforms
+// *****************************************************************************
+function printable() {
+	state.isPrintable = true;
+	return state;
+}
+
+function sortList(data) {
+	var arr = state.bad.slice(0);
+	arr.sort(function (a, b) {
+		return a.vote - b.vote;
+	});
+	state.bad = arr;
+	return state;
+}
+
+function setItemText(payload) {
+	state[payload.id][payload.idx].text = payload.text;
+	return state;
+}
+
+function incrementVote(payload) {
+	var item = state.bad[payload.idx];
+	item.vote += 1;
+	return state;
+}
+
+function setVote(payload) {
+	state[payload.id][payload.idx].vote = Math.max(payload.vote, 0);
+	return state;
+}
+
+function reset(data) {
+	state = data === null ? (0, _data2.default)() : data;
+	return state;
+}
+
+function addItem(payload) {
+	state[payload.id] = state[payload.id].concat({
+		text: payload.text || null,
+		vote: payload.vote === undefined ? null : payload.vote
+	});
+	return state;
+}
+
+// *****************************************************************************
+var store = {
+	dispatch: dispatch,
+	getState: getState
+};
+
+// *****************************************************************************
+exports.actions = actions;
+exports.default = store;
+
+},{"./data":161}]},{},[162]);

@@ -6,10 +6,9 @@ import {
 	scryRenderedDOMComponentsWithTag,
 	scryRenderedDOMComponentsWithClass
 } from 'react-addons-test-utils';
-import {store} from '../src/store';
+import store from '../src/store';
 
 const App = require('../src/Components/App');
-const initialData = {text: 'lala'};
 
 describe('App', () => {
 	const component = renderIntoDocument(<App store={store} />);
