@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import {actions, store} from '../src/store.js';
+import initialData, {testData} from '../src/data';
 
 describe('store', () => {
 	beforeEach(() => {
@@ -90,13 +91,27 @@ describe('store', () => {
 		});
 	});
 
+	describe('Action - reset with data', () => {
+		it('should reset state a designated state', () => {
+			store.dispatch(actions.addItem({id: 'bad', text: 'test item 2', vote: 1}));
+
+			store.dispatch(actions.reset(testData()));
+
+			const state = store.getState();
+
+			expect(state).to.have.deep.property('bad.length', 2);
+			expect(state).to.have.deep.property('bad[1].text', 'bad item 2');
+			expect(state).to.have.deep.property('bad[1].vote', 0);
+		});
+	});
+
 	describe('Action - sort', () => {
 		it('should should sort bad items by vote descending', () => {
 			store.dispatch(actions.addItem({id: 'bad', text: 'item 2', vote: 3}));
 			store.dispatch(actions.addItem({id: 'bad', text: 'item 3', vote: 5}));
 			store.dispatch(actions.addItem({id: 'bad', text: 'item 1', vote: 0}));
 
-			store.dispatch(actions.sort({id: 'bad'}));
+			store.dispatch(actions.sort());
 
 			const bad = store.getState().bad;
 			expect(bad[0]).to.have.property('vote', 0);

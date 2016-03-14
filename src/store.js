@@ -1,6 +1,6 @@
 'use strict';
 
-import {initialData/* , testData as initialData */} from './data';
+import initialData, {testData} from './data';
 
 // global state
 // *****************************************************************************
@@ -67,7 +67,7 @@ function dispatch(action) {
 		case types.ADD_ITEM:
 			return addItem(action.payload);
 		case types.RESET:
-			return reset();
+			return reset(action.payload);
 		default:
 			return state;
 	}
@@ -105,8 +105,8 @@ function setVote(payload) {
 	return state;
 }
 
-function reset() {
-	state = initialData();
+function reset(data) {
+	state = data === null ? initialData() : data;
 	return state;
 }
 
