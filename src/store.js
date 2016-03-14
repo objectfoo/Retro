@@ -1,19 +1,13 @@
 'use strict';
 
+import {initialData/* , testData as initialData */} from './data';
+
 // global state
+// *****************************************************************************
 let state = initialData();
 
-// initial data
-function initialData() {
-	return {
-		isPrintable: false,
-		good: [],
-		bad: [],
-		next: []
-	};
-}
-
 // action types
+// *****************************************************************************
 const types = {
 	PRINTABLE: 'PRINTABLE',
 	SORT: 'SORT',
@@ -25,6 +19,7 @@ const types = {
 };
 
 // action creators
+// *****************************************************************************
 const actions = {
 	printable: function () {
 		return {type: types.PRINTABLE};
@@ -50,11 +45,13 @@ const actions = {
 };
 
 // getState
+// *****************************************************************************
 function getState() {
 	return state;
 }
 
 // dispatcher
+// *****************************************************************************
 function dispatch(action) {
 	switch (action.type) {
 		case types.PRINTABLE:
@@ -76,6 +73,8 @@ function dispatch(action) {
 	}
 }
 
+// transforms
+// *****************************************************************************
 function printable() {
 	state.isPrintable = true;
 	return state;
@@ -119,9 +118,11 @@ function addItem(payload) {
 	return state;
 }
 
+// *****************************************************************************
 const store = {
 	dispatch: dispatch,
 	getState: getState
 };
 
+// *****************************************************************************
 export {actions, store};

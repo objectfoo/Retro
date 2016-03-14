@@ -19041,6 +19041,8 @@ module.exports = React.createClass({
 		store: React.PropTypes.object.isRequired
 	},
 	render: function render() {
+		var date = new Date().toJSON().replace(/T.*$/, '');
+
 		return React.createElement(
 			'div',
 			null,
@@ -19055,6 +19057,16 @@ module.exports = React.createClass({
 						'span',
 						{ className: 'page-sub-header' },
 						'w/ReactJs'
+					)
+				),
+				React.createElement(
+					'p',
+					{ className: 'page-header__date' },
+					'Date: ',
+					React.createElement(
+						'time',
+						null,
+						date
 					)
 				)
 			),

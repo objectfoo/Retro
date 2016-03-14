@@ -7,11 +7,13 @@ module.exports = React.createClass({
 		store: React.PropTypes.object.isRequired
 	},
 	render: function () {
+		const date = (new Date()).toJSON().replace(/T.*$/, '');
+
 		return (
 			<div>
 				<header>
 					<h1 className="page-header">Retrospective <span className="page-sub-header">w/ReactJs</span></h1>
-					{/* <p className="page-header__date">Date: <time>{date}</time></p>*/}
+					<p className="page-header__date">Date: <time>{date}</time></p>
 				</header>
 
 				<section>
