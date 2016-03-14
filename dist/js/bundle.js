@@ -19155,7 +19155,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../data":161,"../store":163,"./List":160,"react":157}],160:[function(require,module,exports){
+},{"../data":162,"../store":164,"./List":160,"react":157}],160:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19167,6 +19167,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _ListItems = require('./ListItems');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var List = _react2.default.createClass({
@@ -19174,6 +19176,8 @@ var List = _react2.default.createClass({
 
 	render: function render() {
 		var items = this.props.items || [];
+		var isVoting = Boolean(this.props.isVoting);
+
 		if (items.length === 0) {
 			return null;
 		}
@@ -19181,14 +19185,11 @@ var List = _react2.default.createClass({
 			'ul',
 			{ className: 'pure-menu-list retrospective-list' },
 			items.map(function (item, idx) {
+				var Item = isVoting ? _ListItems.ItemVoting : _ListItems.ItemPlain;
 				return _react2.default.createElement(
 					'li',
 					{ className: 'pure-menu-item retrospective-item', key: idx },
-					_react2.default.createElement(
-						'div',
-						{ className: 'retrospective-item__text' },
-						item.text
-					)
+					_react2.default.createElement(Item, { text: item.text, vote: item.vote })
 				);
 			})
 		);
@@ -19197,7 +19198,41 @@ var List = _react2.default.createClass({
 
 exports.default = List;
 
-},{"react":157}],161:[function(require,module,exports){
+},{"./ListItems":161,"react":157}],161:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ItemVoting = exports.ItemPlain = undefined;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ItemPlain(props) {
+	return _react2.default.createElement(
+		'div',
+		{ className: 'retrospective-item__text' },
+		props.text
+	);
+}
+
+function ItemVoting(props) {
+	return _react2.default.createElement(
+		'div',
+		{ className: 'retrospective-item__text' },
+		'Voting - ',
+		props.text
+	);
+}
+
+exports.ItemPlain = ItemPlain;
+exports.ItemVoting = ItemVoting;
+
+},{"react":157}],162:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19233,7 +19268,7 @@ exports.testData = testData;
 // 		{text: 'asdf asdf asd fasd', vote: 1}
 // 	];
 
-},{}],162:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -19262,7 +19297,7 @@ _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: 
 hostElement.classList.remove('preload');
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./Components/App":159,"./store":163,"react":157,"react-dom":1}],163:[function(require,module,exports){
+},{"./Components/App":159,"./store":164,"react":157,"react-dom":1}],164:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19402,4 +19437,4 @@ var store = {
 exports.actions = actions;
 exports.default = store;
 
-},{"./data":161}]},{},[162]);
+},{"./data":162}]},{},[163]);
