@@ -1,7 +1,5 @@
 'use strict';
 
-import {cloneDeep} from 'lodash';
-
 // global state
 let state = initialData();
 
@@ -22,7 +20,7 @@ const types = {
 	ADD_ITEM: 'ADD_ITEM',
 	SET_ITEM_TEXT: 'SET_ITEM_TEXT',
 	INCREMENT_VOTE: 'INCREMENT_VOTE',
-	DECREMENT_VOTE: 'DECREMENT_VOTE',
+	SET_VOTE: 'SET_VOTE',
 	RESET: 'RESET'
 };
 
@@ -43,8 +41,8 @@ const actions = {
 	incrementVote: function (payload) {
 		return {type: types.INCREMENT_VOTE, payload: payload};
 	},
-	decrementVote: function (payload) {
-		return {type: types.DECREMENT_VOTE, payload: payload};
+	setVote: function (payload) {
+		return {type: types.SET_VOTE, payload: payload};
 	},
 	reset: function (payload) {
 		return {type: types.RESET, payload: payload === undefined ? null : payload};
@@ -67,12 +65,12 @@ function dispatch(action) {
 			return setItemText(action.payload);
 		case types.INCREMENT_VOTE:
 			return incrementVote(action.payload);
-		case types.DECREMENT_VOTE:
-			return decrementVote(action.payload);
+		case types.SET_VOTE:
+			return setVote(action.payload);
 		case types.ADD_ITEM:
 			return addItem(action.payload);
 		case types.RESET:
-			return reset(action.payload);
+			return reset();
 		default:
 			return state;
 	}
@@ -85,13 +83,10 @@ function printable() {
 
 function sortList(data) {
 	const arr = state.bad.slice(0);
-
 	arr.sort((a, b) => {
 		return a.vote - b.vote;
 	});
-
 	state.bad = arr;
-
 	return state;
 }
 
@@ -103,14 +98,11 @@ function setItemText(payload) {
 function incrementVote(payload) {
 	const item = state.bad[payload.idx];
 	item.vote += 1;
-
 	return state;
 }
 
-function decrementVote(payload) {
-	const item = state.bad[payload.idx];
-	item.vote = Math.max(item.vote - 1, 0);
-
+function setVote(payload) {
+	state[payload.id][payload.idx].vote = Math.max(payload.vote, 0);
 	return state;
 }
 
@@ -124,7 +116,6 @@ function addItem(payload) {
 		text: payload.text || null,
 		vote: payload.vote === undefined ? null : payload.vote
 	});
-
 	return state;
 }
 

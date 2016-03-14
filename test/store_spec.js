@@ -27,9 +27,8 @@ describe('store', () => {
 	describe('Vote', () => {
 		it('should not allow a vote less than 0', () => {
 			store.dispatch(actions.addItem({id: 'bad', text: 'test', vote: 3}));
-			store.dispatch(actions.decrementVote({idx: 0}));
-			store.dispatch(actions.decrementVote({idx: 0}));
-			store.dispatch(actions.decrementVote({idx: 0}));
+
+			store.dispatch(actions.setVote({id: 'bad', idx: 0, vote: -4}));
 			const state = store.getState();
 
 			expect(state.bad[0].vote).to.equal(0);
@@ -79,8 +78,8 @@ describe('store', () => {
 	describe('Action - reset', () => {
 		it('should reset state to inital state', () => {
 			store.dispatch(actions.addItem({id: 'bad', text: 'test item 2'}));
-			store.dispatch(actions.addItem({id: 'next', text: 'test item 3', vote: 0}));
-
+			store.dispatch(
+				actions.addItem({id: 'next', text: 'test item 3', vote: 0}));
 			store.dispatch(actions.reset());
 
 			const state = store.getState();
@@ -98,8 +97,8 @@ describe('store', () => {
 			store.dispatch(actions.addItem({id: 'bad', text: 'item 1', vote: 0}));
 
 			store.dispatch(actions.sort({id: 'bad'}));
-			const bad = store.getState().bad;
 
+			const bad = store.getState().bad;
 			expect(bad[0]).to.have.property('vote', 0);
 			expect(bad[1]).to.have.property('vote', 3);
 			expect(bad[2]).to.have.property('vote', 5);
@@ -116,21 +115,21 @@ describe('store', () => {
 		});
 	});
 
-	describe('Action - decrementVote', () => {
+	describe('Action - setVote', () => {
 		it('should increment vote of a bad item', () => {
 			store.dispatch(actions.addItem({id: 'bad', text: 'test', vote: 3}));
-			store.dispatch(actions.decrementVote({idx: 0}));
-			const state = store.getState();
+			store.dispatch(actions.setVote({id: 'bad', idx: 0, vote: 11}));
 
-			expect(state.bad[0].vote).to.equal(2);
+			const state = store.getState();
+			expect(state.bad[0].vote).to.equal(11);
 		});
 	});
 
 	describe('Action - printable', () => {
 		it('should have a test', () => {
 			store.dispatch(actions.printable());
-			const state = store.getState();
 
+			const state = store.getState();
 			expect(state).to.have.property('isPrintable', true);
 		});
 	});
