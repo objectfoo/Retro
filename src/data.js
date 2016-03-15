@@ -13,13 +13,13 @@ function testData() {
 	const d = initialData();
 
 	d.bad = [
-		{text: 'bad item 1', vote: 0},
+		{text: 'bad item 1 Instantly break out into full speed gallop across the house for no reason. Chase imaginary bugs stand in front of the computer screen, fall over dead (not really but gets sypathy), has closed eyes but still sees you or bathe private parts with tongue then lick owner\'s face. ', vote: 0},
 		{text: 'bad item 2', vote: 0}
 	];
 
 	d.good = [
 		{text: 'good item 1'},
-		{text: 'good item 2'}
+		{text: 'good item 2 Meowing non stop for food i am the best, meowwww lay on arms while you\'re using the keyboard, for sit by the fire, chase dog then run away. Lick plastic bags. '}
 	];
 
 	d.next = [
