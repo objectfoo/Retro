@@ -1,6 +1,7 @@
 'use strict';
 
 const React = require('react');
+import ListSection from './ListSection';
 import List from './List';
 import {actions} from '../store';
 import {testData} from '../data';
@@ -32,33 +33,23 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<header>
-					<h1 className="page-header">Retrospective <span className="page-sub-header">w/ReactJs</span></h1>
+					<h1 className="page-header">
+						Retrospective <span className="page-sub-header">w/ReactJs</span>
+					</h1>
 					<p className="page-header__date">Date: <time>{date}</time></p>
 				</header>
 
-				<section>
-					<h2 className="visible-aria-only">What went well?</h2>
-					<div className="pure-form">
-						<input className="pure-input-1 input-no-border-radius" autoComplete="off" type="text" placeholder="What went well?" />
-						<List items={good} />
-					</div>
-				</section>
+				<ListSection title="What went well?">
+					<List items={good} />
+				</ListSection>
 
-				<section>
-					<h2 className="visible-aria-only">What needs improvement?</h2>
-					<div className="pure-form">
-						<input className="pure-input-1 input-no-border-radius" autoComplete="off" type="text" placeholder="What needs improvement?" />
-						<List items={bad} isVoting={true} />
-					</div>
-				</section>
+				<ListSection title="What needs improvement?">
+					<List items={bad} isVoting={true} />
+				</ListSection>
 
-				<section>
-					<h2 className="visible-aria-only">What do we do next time?</h2>
-					<div className="pure-form">
-						<input className="pure-input-1 input-no-border-radius" autoComplete="off" type="text" placeholder="What do we do next time?" />
-						<List items={next} />
-					</div>
-				</section>
+				<ListSection title="What do we do next time?">
+					<List items={next} />
+				</ListSection>
 
 				<footer className="page-footer">
 					<button className="pure-button button-default" type="button">Sort</button>

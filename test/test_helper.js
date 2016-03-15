@@ -1,3 +1,5 @@
+'use strict';
+
 import jsdom from 'jsdom';
 import chai from 'chai';
 import React from 'react';
