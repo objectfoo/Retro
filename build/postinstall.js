@@ -1,7 +1,7 @@
 const path = require('path');
 const cpFile = require('cp-file');
 const rimraf = require('rimraf-then');
-const destination = 'www/vendor';
+const destination = 'dist/vendor';
 
 console.log('*************** posinstall ***************');
 

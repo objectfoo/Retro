@@ -1,37 +1,40 @@
-(function (global) {
-	const Retrospective = global.Retrospective = global.Retrospective || {};
+'use strict';
 
-	Retrospective.List = React.createClass({
-		displayName: 'List',
+import React, {Component} from 'react';
 
-		// propTypes: {
-		// 	items: React.PropTypes.array.isRequired
-		// },
+class List extends React.Component {
+	render() {
+		const items = this.props.items;
+		const isVoting = Boolean(this.props.isVoting);
 
-		render: function () {
-			/* eslint-disable prefer-const */
-			const isVoting = this.props.isVoting !== undefined;
-			const RetrospectiveItem = Retrospective.RetrospectiveItem;
-
-			return (
-				<ul className="pure-menu-list retrospective-list">
-					{this.props.items.map((item, idx) => {
-						let props = {key: `list-${idx}`};
-						if (item.vote === undefined) {
-							props.text = item;
-						} else {
-							props.item = item;
-							props.isVoting = isVoting;
-						}
-
-						return <RetrospectiveItem {...props} />;
-					})}
-				</ul>
-			);
+		if (items === undefined || items.length === 0) {
+			return null;
 		}
-	});
 
-	if (typeof exports !== 'undefined') {
-		module.exports = Retrospective.List;
+		return (
+			<ul className="pure-menu-list retrospective-list">
+				{items.map((item, idx) => {
+					// const Item = isVoting ? ItemVoting : ItemPlain;
+					const Message = isVoting ? 'Voting' : 'Plain';
+					return (
+						<Item key={idx}>
+							{`${Message} - ${item.text}`}
+						</Item>
+					);
+				})}
+			</ul>
+		);
 	}
-})(typeof global === 'undefined' ? window : global);
+}
+
+function Item(props) {
+	return (
+		<li className="pure-menu-item retrospective-item">
+			<div className="retrospective-item__text">
+				{props.children}
+			</div>
+		</li>
+	);
+}
+
+export {List as default};

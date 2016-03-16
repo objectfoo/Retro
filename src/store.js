@@ -1,164 +1,117 @@
-(function (global) {
-	const Retrospective = global.Retrospective = global.Retrospective || {};
+'use strict';
 
-	// Initial State
-	const initialState = {
-		isPrintable: false,
-		good: [],
-		bad: [],
-		next: []
-	};
+import initialData, {testData} from './data';
 
-	let state = initialState;
+// global state
+// *****************************************************************************
+let state = initialData();
 
-	// Action Types
-	Retrospective.types = {
-		SORT: 'SORT',
-		ADD_ITEM: 'ADD_ITEM',
-		INCREMENT_VOTE: 'INCREMENT_VOTE',
-		DECREMENT_VOTE: 'DECREMENT_VOTE',
-		RESET: 'RESET',
-		SET_ITEM_TEXT: 'SET_ITEM_TEXT'
-	};
+// action types
+// *****************************************************************************
+const types = {
+	SORT: 'SORT',
+	ADD_ITEM: 'ADD_ITEM',
+	SET_ITEM_TEXT: 'SET_ITEM_TEXT',
+	INCREMENT_VOTE: 'INCREMENT_VOTE',
+	SET_VOTE: 'SET_VOTE',
+	RESET: 'RESET'
+};
 
-	// Action creators
-	Retrospective.actions = {
-		sort: function sort(data) {
-			return {
-				type: Retrospective.types.SORT,
-				data: data
-			};
-		},
+// action creators
+// *****************************************************************************
+const actions = {
+	sort: function () {
+		return {type: types.SORT};
+	},
+	addItem: function (payload) {
+		return {type: types.ADD_ITEM, payload: payload};
+	},
+	setItemText: function (payload) {
+		return {type: types.SET_ITEM_TEXT, payload: payload};
+	},
+	incrementVote: function (payload) {
+		return {type: types.INCREMENT_VOTE, payload: payload};
+	},
+	setVote: function (payload) {
+		return {type: types.SET_VOTE, payload: payload};
+	},
+	reset: function (payload) {
+		return {type: types.RESET, payload: payload === undefined ? null : payload};
+	}
+};
 
-		addItem: function addItem(data) {
-			return {
-				type: Retrospective.types.ADD_ITEM,
-				data: data
-			};
-		},
+// getState
+// *****************************************************************************
+function getState() {
+	return state;
+}
 
-		setItemText: function (data) {
-			return {
-				type: Retrospective.types.SET_ITEM_TEXT,
-				data: data
-			};
-		},
-
-		incrementVote: function incrementVote(data) {
-			return {
-				type: Retrospective.types.INCREMENT_VOTE,
-				data: data
-			};
-		},
-
-		decrementVote: function incrementVote(data) {
-			return {
-				type: Retrospective.types.DECREMENT_VOTE,
-				data: data
-			};
-		},
-
-		reset: function reset(data) {
-			return {
-				type: Retrospective.types.RESET
-			};
-		}
-	};
-
-	// Store
-	Retrospective.store = {
-		getState: function () {
+// dispatcher
+// *****************************************************************************
+function dispatch(action) {
+	switch (action.type) {
+		case types.SORT:
+			return sortList();
+		case types.SET_ITEM_TEXT:
+			return setItemText(action.payload);
+		case types.INCREMENT_VOTE:
+			return incrementVote(action.payload);
+		case types.SET_VOTE:
+			return setVote(action.payload);
+		case types.ADD_ITEM:
+			return addItem(action.payload);
+		case types.RESET:
+			return reset(action.payload);
+		default:
 			return state;
-		},
-
-		dispatch: function (action) {
-			state = reduce(state, action);
-		}
-	};
-
-	// Reducer
-	function reduce(state, action) {
-		switch (action.type) {
-			case Retrospective.types.RESET:
-				return reset();
-			case Retrospective.types.ADD_ITEM:
-				return addItem(state, action.data);
-			case Retrospective.types.SET_ITEM_TEXT:
-				return setItemText(state, action.data);
-			case Retrospective.types.INCREMENT_VOTE:
-				return incrementVote(state, action.data);
-			case Retrospective.types.DECREMENT_VOTE:
-				return decrementVote(state, action.data);
-			case Retrospective.types.SORT:
-				return sortList(state, action.data);
-			default:
-				console.log('warning unknown action', action.type);
-				return state;
-		}
-		// emit new state message
 	}
+}
 
-	// state transforms
-	function sortList(state, data) {
-		const which = data.id;
-		const newState = Object.assign({}, state);
-		newState[which].sort((a, b) => {
-			return a.vote - b.vote;
-		});
+// transforms
+// *****************************************************************************
+function sortList(data) {
+	const arr = state.bad.slice(0);
+	arr.sort((a, b) => {
+		return a.vote - b.vote;
+	});
+	state.bad = arr;
+	return state;
+}
 
-		return newState;
-	}
-	function reset() {
-		return Object.assign({}, initialState);
-	}
+function setItemText(payload) {
+	state[payload.id][payload.idx].text = payload.text;
+	return state;
+}
 
-	function incrementVote(state, data) {
-		const newState = Object.assign({}, state);
+function incrementVote(payload) {
+	const item = state.bad[payload.idx];
+	item.vote += 1;
+	return state;
+}
 
-		newState.bad[data.idx].vote += 1;
+function setVote(payload) {
+	state[payload.id][payload.idx].vote = Math.max(payload.vote, 0);
+	return state;
+}
 
-		return newState;
-	}
+function reset(data) {
+	state = data === null ? initialData() : data;
+	return state;
+}
 
-	function decrementVote(state, data) {
-		const newState = Object.assign({}, state);
-		const item = newState.bad[data.idx];
+function addItem(payload) {
+	state[payload.id] = state[payload.id].concat({
+		text: payload.text || null,
+		vote: payload.vote === undefined ? null : payload.vote
+	});
+	return state;
+}
 
-		item.vote = Math.max(0, item.vote - 1);
+// *****************************************************************************
+const store = {
+	dispatch: dispatch,
+	getState: getState
+};
 
-		return newState;
-	}
-
-	function setItemText(state, data) {
-		const list = data.id;
-		const newText = data.text;
-		const idx = data.idx;
-		const newState = Object.assign({}, state);
-
-		newState[list][idx].text = newText;
-		return newState;
-	}
-
-	function addItem(state, data) {
-		const list = data.id;
-		const newState = Object.assign({}, state);
-		const newItem = {text: data.text};
-
-		if (data.vote !== undefined) {
-			newItem.vote = data.vote;
-		}
-
-		newState[list] = newState[list].concat(newItem);
-
-		return newState;
-	}
-
-	if (typeof module !== 'undefined') {
-		module.exports = {
-			store: Retrospective.store,
-			types: Retrospective.types,
-			actions: Retrospective.actions
-		};
-		module.exports = Retrospective;
-	}
-})(typeof global === 'undefined' ? window : global);
+// *****************************************************************************
+export {actions, store as default};

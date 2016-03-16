@@ -1,20 +1,12 @@
-(function (g) {
-	const document = g.document;
-	const Retrospective = g.Retrospective = g.Retrospective || {};
-	const ReactDOM = g.ReactDOM;
+'use strict';
 
-	// need to wait until DOMContentLoaded because we are not using a module system
-	// e.g. all the global modules need to be defined before we use them
-	document.addEventListener('DOMContentLoaded', () => {
-		const Retrospective = g.Retrospective;
-		const store = Retrospective.store;
-		const hostElement = document.getElementById('app');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './Components/App';
+import store from './store';
 
-		ReactDOM.render(<Retrospective.App store={store} />, hostElement);
-		hostElement.classList.remove('preload');
-	});
+const document = global.document;
+const hostElement = document.getElementById('app');
 
-	if (typeof exports !== 'undefined') {
-		exports.Retrospective = Retrospective;
-	}
-})(typeof global === 'undefined' ? window : global);
+ReactDOM.render(<App store={store}/>, hostElement);
+hostElement.classList.remove('preload');

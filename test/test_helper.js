@@ -1,3 +1,5 @@
+'use strict';
+
 import jsdom from 'jsdom';
 import chai from 'chai';
 import React from 'react';
@@ -9,18 +11,6 @@ const win = doc.defaultView;
 // setup test environment to look like browser
 global.document = doc;
 global.window = win;
-
-// wire exported module to global context
-const store = require('../src/store');
-global.types = store.types;
-global.actions = store.actions;
-global.store = store.store;
-
-global.React = React;
-global.ReactDOM = ReactDOM;
-
-// App requires React
-global.App = require('../src/Components/App').App;
 
 Object.keys(window).forEach(key => {
 	if (!(key in global)) {
