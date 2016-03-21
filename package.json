@@ -7,7 +7,6 @@
   "scripts": {
 		"lint": "xo --ignore=build/** --ignore=.git",
     "build": "browserify src/index.js -t babelify -g [ envify --NODE_ENV=production ] -g uglifyify -o dist/js/bundle.js",
-    "build:watch": "npm run build -- --watch",
 		"test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch",
     "live-server": "live-server --port=3004 --ignore=node_modules,src",
