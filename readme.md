@@ -1,16 +1,34 @@
-# Retro
+# React starter
 
-## npm scripts
+Quickie react starter.
 
-**build** transpile all es6 src into es5 `bundle.js`   
-**lint** lint all files using xo   
-**test** run unit tests   
+gulp, browserify, eslint, Mocha, chai, auto reload with live-server.
+Loads React and ReactDOM as browser scripts to keep them out of the bundle.
 
-**live-server** call build and run auto-reloading dev server   
+## Important
+There is an html file has at `src/index.html` that has a hardcoded reference to react, this needs to be updated in sync with what get's installed with npm.
 
-**test:watch**  watch files and unit test on change   
-**build:watch** watch all files transpile on change   
+To get the version installed:
 
-## not used
+```bash
+npm ls react
+> react@15.3.1
+```
+Then update any references in `src/index.html`.
 
-**old-postinstall** cp vendor assets from node_module to  `www/browser`   
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react.js"></script>
+```
+
+
+## Commands
+
+```bash
+"scripts": {
+  "build": "gulp build",
+  "watch": "gulp watchify",
+  "live-server": "live-server --port=3004 --ignore=node_modules,src --open=/dist/",
+  "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive",
+  "test:watch": "npm run test -- --watch"
+}
+```
