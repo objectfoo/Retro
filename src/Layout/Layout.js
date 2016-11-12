@@ -17,6 +17,7 @@ export default class Layout extends React.Component {
 
 	render() {
 		const {setView} = this.context.actions
+		const {editing} = this.props
 
 		return(
 			<div id='app'>
@@ -31,8 +32,7 @@ export default class Layout extends React.Component {
 					<div className='bd'>
 						{this.listDefinitions.map((definition) => {
 							const list = this.props[definition.id];
-
-							return <List {...definition} list={list} />
+								return <List {...definition} list={list} editing={editing} />
 						}, this)}
 					</div>
 					<div className='footer'>
