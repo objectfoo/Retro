@@ -1,5 +1,11 @@
 'use strict'
 
+/*
+enables focus ring on keydown
+disables focus ring on mouse/touch
+*/
+
+
 export default class FocusStyleToggle extends React.Component {
 	constructor(props) {
 		super(props)

@@ -22,22 +22,23 @@ const specials = [DELETE, BACKSPACE, TAB, ESCAPE, DECIMAL, PERIOD]
 
 const prevenNonNumericInput = (e) => {
 	const code = e.keyCode
-	const ctrlKey = e.ctrlKey
+	// const ctrlKey = e.ctrlKey
 	const shiftKey = e.shiftKey
-	const metaKey = e.metaKey
+	const metaKey = e.metaKey || e.ctrlKey
 
 	if (specials.indexOf(code) !== -1 ||
-			((code == a && ctrlKey === true) || code == a && metaKey === true) ||
-			((code == c && ctrlKey === true) || (code == c && metaKey === true)) ||
-			((code == x && ctrlKey === true) || (code == x && metaKey === true)) ||
-			((code == v && ctrlKey === true) || (code == v && metaKey === true)) ||
+			(code == a && metaKey === true) ||
+			(code == c && metaKey === true) ||
+			(code == x && metaKey === true) ||
+			(code == v && metaKey === true) ||
 			(code >= HOME && code <= RIGHT) ||
 			((shiftKey && (code >= ZERO && code <= NINE)) || (code >= NUMPAD_ZERO && code <= NUMPAD_NINE)) ||
 			((code >= ZERO && code <= NINE) || (code >= NUMPAD_ZERO && code <= NUMPAD_NINE))
 		) {
 		return
-		// return true
+	} else {
+		e.preventDefault()
 	}
-	e.preventDefault()
 }
+
 export {prevenNonNumericInput as default}

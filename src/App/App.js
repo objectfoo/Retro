@@ -1,40 +1,86 @@
 'use strict'
 
-import {GOOD, BAD, NEXT, Layout, DEFAULT_VIEW} from '../Layout'
-const defaultState = {
-	[GOOD]: [],
-	[BAD]: [],
-	[NEXT]: [],
-	view: DEFAULT_VIEW
-}
+import {BAD, Layout} from '../Layout'
+import {defaultState} from './index'
+import assign from 'lodash/assign'
 
 export default class App extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = Object.assign({}, defaultState)
+		let savedState = null;
+		try {
+			savedState = JSON.parse(localStorage.getItem('data'))
+
+		} catch(e) {}
+
+		this.state = assign({}, defaultState, savedState)
 		this.addItem = this.addItem.bind(this)
 		this.setVoteValue = this.setVoteValue.bind(this)
+		this.setEditing = this.setEditing.bind(this)
+		this.updateMessage = this.updateMessage.bind(this)
+		this.increment = this.increment.bind(this)
 	}
 
 	getChildContext() {
 		return {
 			actions: {
 				addItem: this.addItem,
-				setVoteValue: this.setVoteValue
+				setEditing: this.setEditing,
+				setVoteValue: this.setVoteValue,
+				updateMessage: this.updateMessage,
+				increment: this.increment
 			}
 		}
 	}
 
-	setVoteValue(index, value) {
-		const newList = this.state[BAD].map((item, _index) => {
-			if (index === _index) {
-				return Object.assign({}, item, {value: value})
-			} else {
-				return item
-			}
+	persist() {
+		window.requestAnimationFrame(() => {
+			localStorage.setItem('data', JSON.stringify(this.state))
 		})
+	}
 
-		this.setState({[BAD]: newList})
+	updateMessage({value, id, idx}) {
+		const mergeState = {}
+		const nextList = this.state[id].slice(0)
+
+		nextList[idx].text = value
+
+		this.setState((prevState, props) => {
+			return assign({}, prevState, {
+				editing: null,
+				[id]: nextList
+			})
+		}, this.persist)
+	}
+
+	setEditing(data) {
+		if (data === null) {
+			this.setState({editing: null}, this.persist)
+		}
+		else {
+			this.setState((prevState) => {
+				return assign({}, prevState	, {
+					editing: {
+						id: data.id,
+						idx: data.idx
+					}
+				})
+			}, this.persist);
+		}
+	}
+
+	setVoteValue(idx, value) {
+		const nextList = this.state[BAD].slice(0)
+
+		nextList[idx].value = value
+
+		this.setState((prevState) => {
+			return assign({}, prevState, {[BAD]: nextList})
+		}, this.persist);
+	}
+
+	increment(idx) {
+		this.setVoteValue(idx, this.state[BAD][idx].value + 1)
 	}
 
 	addItem({id, text, value}) {
@@ -46,7 +92,9 @@ export default class App extends React.Component {
 		}
 
 		newList.push(newItem)
-		this.setState({[id]: newList})
+		this.setState((prevState) => {
+			return assign({}, prevState, {[id]: newList})
+		}, this.persist)
 	}
 
 	render() {
