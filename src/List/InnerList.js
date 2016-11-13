@@ -62,7 +62,7 @@ export default class InnerList extends React.Component {
 		if (list.length === 0) {
 			return null
 		} else {
-		return <ul>
+		return <ul className='inner-list'>
 			{list.map((item, idx) => {
 				return <li key={`${this.props.id.toLowerCase()}-${idx}`}>
 					{this.renderIncrementButton(idx)}

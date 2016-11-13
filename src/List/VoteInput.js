@@ -35,7 +35,7 @@ export default class VoteInput extends React.Component {
 			e.preventDefault()
 		} else if (code === DOWN) {
 			value = value - 1
-			this.props.setVoteValue(value <= 0 ? '' : value)
+			this.props.setVoteValue(value <= 0 ? 0 : value)
 			e.preventDefault()
 		}
 	}
@@ -47,6 +47,7 @@ export default class VoteInput extends React.Component {
 		else {
 			return <form action='#' onSubmit={this.onSubmit}>
 				<input ref='vote'
+					className='message-vote text-center'
 					value={this.props.value}
 					onKeyDown={this.onKeyDown}
 					onChange={this.onChange}

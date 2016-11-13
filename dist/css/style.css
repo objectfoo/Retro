@@ -11,11 +11,14 @@ body, html, main, #app {
 	height: 100% ;
 }
 
-p {
+p,
+.vert {
 	margin: 1rem 0;
 }
 
 #app {
+	margin: 0 auto;
+	max-width: 850px;
 	box-sizing: border-box;
 	padding: 0 1rem;
 }
@@ -34,7 +37,26 @@ body {
 	max-width: 100%;
 }
 
+.message-content {
+	width: 100%;
+	padding: .5rem;
+	box-sizing: border-box;
+	font-size: 1rem;
+}
+
+.message-content--inline {
+	border-width: 0;
+}
+
+.message-vote {
+	padding: .5rem;
+	box-sizing: border-box;
+	font-size: 1rem;
+	width: 3rem;
+}
+
 button {
+	margin: 1rem 0;
 	appearance: none;
 	padding: 1em 2em;
 	text-transform: uppercase;
@@ -65,5 +87,19 @@ button + button {
 
 .list-title {
 	margin: 0;
-	border-bottom: 1px solid #E0E0E0;
+	padding: .5rem 0;
+}
+
+.inner-list {
+	padding-left: 0;
+	list-style-type: none;
+	margin: 1rem 0;
+	border-color: #eee;
+	border-style: solid;
+	border-width: 1px 1px 0 1px;
+}
+
+.inner-list li {
+	padding: 0;
+	border-bottom: 1px solid #eee;
 }

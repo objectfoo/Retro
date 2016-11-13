@@ -1696,7 +1696,7 @@ var FocusStyleToggle = function (_React$Component) {
 
 		var _this = _possibleConstructorReturn(this, (FocusStyleToggle.__proto__ || Object.getPrototypeOf(FocusStyleToggle)).call(this, props));
 
-		_this.style = props.style || 'a,button{outline: 0}';
+		_this.style = props.style || 'a,button,.message-content{outline: 0}';
 		_this.state = { isOutlineDisabled: true };
 		_this.onKey = _this.onKey.bind(_this);
 		_this.onMouse = _this.onMouse.bind(_this);
@@ -1705,8 +1705,13 @@ var FocusStyleToggle = function (_React$Component) {
 
 	_createClass(FocusStyleToggle, [{
 		key: 'onKey',
-		value: function onKey() {
-			this.setState({ isOutlineDisabled: false });
+		value: function onKey(e) {
+			// TODO move 9 into constants somewhere
+			if (e.keyCode === 9) {
+				this.setState({ isOutlineDisabled: false });
+			} else {
+				this.setState({ isOutlineDisabled: true });
+			}
 		}
 	}, {
 		key: 'onMouse',
@@ -2113,7 +2118,7 @@ var InnerList = function (_React$Component) {
 			} else {
 				return React.createElement(
 					'ul',
-					null,
+					{ className: 'inner-list' },
 					list.map(function (item, idx) {
 						return React.createElement(
 							'li',
@@ -2198,7 +2203,7 @@ var List = function (_React$Component) {
 		value: function render() {
 			return React.createElement(
 				'div',
-				null,
+				{ className: 'vert' },
 				React.createElement(
 					'h2',
 					{ className: 'list-title' },
@@ -2207,7 +2212,7 @@ var List = function (_React$Component) {
 				React.createElement(
 					'form',
 					{ action: '#', onSubmit: this.onSubmit },
-					React.createElement('input', { ref: 'input', type: 'text' })
+					React.createElement('input', { ref: 'input', className: 'message-content', type: 'text' })
 				),
 				React.createElement(_index.InnerList, this.props)
 			);
@@ -2296,6 +2301,7 @@ var MessageInput = function (_React$Component) {
 				React.createElement('input', {
 					ref: 'input',
 					type: 'text',
+					className: 'message-content message-content--inline',
 					defaultValue: this.props.defaultValue,
 					onBlur: this.onBlur,
 					onKeyDown: this.onKeyDown })
@@ -2350,7 +2356,7 @@ var MessageView = function (_React$Component) {
 		value: function render() {
 			return React.createElement(
 				'div',
-				{ onDoubleClick: this.onDoubleClick },
+				{ className: 'message-content', onDoubleClick: this.onDoubleClick },
 				this.props.text
 			);
 		}
@@ -2481,7 +2487,7 @@ var VoteInput = function (_React$Component) {
 				e.preventDefault();
 			} else if (code === _preventNonNumericInput.DOWN) {
 				value = value - 1;
-				this.props.setVoteValue(value <= 0 ? '' : value);
+				this.props.setVoteValue(value <= 0 ? 0 : value);
 				e.preventDefault();
 			}
 		}
@@ -2495,6 +2501,7 @@ var VoteInput = function (_React$Component) {
 					'form',
 					{ action: '#', onSubmit: this.onSubmit },
 					React.createElement('input', { ref: 'vote',
+						className: 'message-vote text-center',
 						value: this.props.value,
 						onKeyDown: this.onKeyDown,
 						onChange: this.onChange

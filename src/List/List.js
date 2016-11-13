@@ -29,10 +29,10 @@ export default class List extends React.Component {
 	}
 
 	render() {
-		return <div>
+		return <div className='vert'>
 			<h2 className='list-title'>{this.props.title}</h2>
 			<form action='#' onSubmit={this.onSubmit}>
-				<input ref='input' type='text' />
+				<input ref='input' className='message-content' type='text' />
 			</form>
 			<InnerList {...this.props} />
 		</div>

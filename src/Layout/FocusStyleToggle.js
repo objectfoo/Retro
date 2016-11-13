@@ -9,14 +9,19 @@ disables focus ring on mouse/touch
 export default class FocusStyleToggle extends React.Component {
 	constructor(props) {
 		super(props)
-		this.style = props.style || 'a,button{outline: 0}'
+		this.style = props.style || 'a,button,.message-content{outline: 0}'
 		this.state = {isOutlineDisabled: true}
 		this.onKey = this.onKey.bind(this)
 		this.onMouse = this.onMouse.bind(this)
 	}
 
-	onKey() {
-		this.setState({isOutlineDisabled: false})
+	onKey(e) {
+		// TODO move 9 into constants somewhere
+		if (e.keyCode === 9) {
+			this.setState({isOutlineDisabled: false})
+		} else {
+			this.setState({isOutlineDisabled: true})
+		}
 	}
 
 	onMouse() {

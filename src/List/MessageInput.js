@@ -44,6 +44,7 @@ export default class MessageInput extends React.Component {
 			<input
 				ref='input'
 				type='text'
+				className='message-content message-content--inline'
 				defaultValue={this.props.defaultValue}
 				onBlur={this.onBlur}
 				onKeyDown={this.onKeyDown} />

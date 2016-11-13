@@ -11,7 +11,7 @@ export default class MessageView extends React.Component {
 	}
 
 	render() {
-		return <div onDoubleClick={this.onDoubleClick}>
+		return <div className='message-content' onDoubleClick={this.onDoubleClick}>
 			{this.props.text}
 		</div>
 	}
