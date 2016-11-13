@@ -1,19 +1,19 @@
 'use strict'
 
-import {GOOD, BAD, NEXT, Layout, DEFAULT_VIEW} from '../Layout'
+import {BAD, Layout} from '../Layout'
+import {defaultState} from './index'
 import assign from 'lodash/assign'
-const defaultState = {
-	[GOOD]: [],
-	[BAD]: [],
-	[NEXT]: [],
-	view: DEFAULT_VIEW,
-	editing: null
-}
 
 export default class App extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = assign({}, defaultState)
+		let savedState = null;
+		try {
+			savedState = JSON.parse(localStorage.getItem('data'))
+
+		} catch(e) {}
+
+		this.state = assign({}, defaultState, savedState)
 		this.addItem = this.addItem.bind(this)
 		this.setVoteValue = this.setVoteValue.bind(this)
 		this.setEditing = this.setEditing.bind(this)
@@ -33,40 +33,54 @@ export default class App extends React.Component {
 		}
 	}
 
+	persist() {
+		window.requestAnimationFrame(() => {
+			localStorage.setItem('data', JSON.stringify(this.state))
+		})
+	}
+
 	updateMessage({value, id, idx}) {
 		const mergeState = {}
+		const nextList = this.state[id].slice(0)
 
-		mergeState[id] = this.state[id].slice(0)
-		mergeState[id][idx].text = value
-		mergeState.editing = null
+		nextList[idx].text = value
 
-		this.setState(assign({}, this.state, mergeState))
+		this.setState((prevState, props) => {
+			return assign({}, prevState, {
+				editing: null,
+				[id]: nextList
+			})
+		}, this.persist)
 	}
 
 	setEditing(data) {
-		if (data !== null) {
-			this.setState({
-				editing: {
-					id: data.id,
-					idx: data.idx
-				}
-			});
+		if (data === null) {
+			this.setState({editing: null}, this.persist)
 		}
 		else {
-			this.setState({editing: null})
+			this.setState((prevState) => {
+				return assign({}, prevState	, {
+					editing: {
+						id: data.id,
+						idx: data.idx
+					}
+				})
+			}, this.persist);
 		}
 	}
 
-	setVoteValue(index, value) {
-		const newList = this.state[BAD].map((item, _index) => {
-			if (index === _index) {
-				return assign({}, item, {value: value})
-			} else {
-				return item
-			}
-		})
+	setVoteValue(idx, value) {
+		const nextList = this.state[BAD].slice(0)
 
-		this.setState({[BAD]: newList})
+		nextList[idx].value = value
+
+		this.setState((prevState) => {
+			return assign({}, prevState, {[BAD]: nextList})
+		}, this.persist);
+	}
+
+	increment(idx) {
+		this.setVoteValue(idx, this.state[BAD][idx].value + 1)
 	}
 
 	addItem({id, text, value}) {
@@ -78,21 +92,9 @@ export default class App extends React.Component {
 		}
 
 		newList.push(newItem)
-		this.setState({[id]: newList})
-	}
-
-	increment(idx) {
-		const nextList = this.state[BAD].map((item, _idx) => {
-			if (_idx === idx) {
-				item = assign({}, item, {value: item.value + 1})
-			}
-
-			return item;
-		})
-
-		this.setState({
-			[BAD]: nextList
-		})
+		this.setState((prevState) => {
+			return assign({}, prevState, {[id]: newList})
+		}, this.persist)
 	}
 
 	render() {
