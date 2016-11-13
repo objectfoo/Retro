@@ -1,3 +1,2665 @@
-!function e(t,n,r){function o(u,a){if(!n[u]){if(!t[u]){var c="function"==typeof require&&require;if(!a&&c)return c(u,!0);if(i)return i(u,!0);var s=new Error("Cannot find module '"+u+"'");throw s.code="MODULE_NOT_FOUND",s}var l=n[u]={exports:{}};t[u][0].call(l.exports,function(e){var n=t[u][1][e];return o(n?n:e)},l,l.exports,e,t,n,r)}return n[u].exports}for(var i="function"==typeof require&&require,u=0;u<r.length;u++)o(r[u]);return o}({1:[function(e,t,n){var r=e("./_root"),o=r.Symbol;t.exports=o},{"./_root":32}],2:[function(e,t,n){function r(e,t,n){switch(n.length){case 0:return e.call(t);case 1:return e.call(t,n[0]);case 2:return e.call(t,n[0],n[1]);case 3:return e.call(t,n[0],n[1],n[2])}return e.apply(t,n)}t.exports=r},{}],3:[function(e,t,n){function r(e,t){var n=u(e),r=!n&&i(e),l=!n&&!r&&a(e),p=!n&&!r&&!l&&s(e),b=n||r||l||p,d=b?o(e.length,String):[],y=d.length;for(var v in e)!t&&!f.call(e,v)||b&&("length"==v||l&&("offset"==v||"parent"==v)||p&&("buffer"==v||"byteLength"==v||"byteOffset"==v)||c(v,y))||d.push(v);return d}var o=e("./_baseTimes"),i=e("./isArguments"),u=e("./isArray"),a=e("./isBuffer"),c=e("./_isIndex"),s=e("./isTypedArray"),l=Object.prototype,f=l.hasOwnProperty;t.exports=r},{"./_baseTimes":13,"./_isIndex":23,"./isArguments":40,"./isArray":41,"./isBuffer":43,"./isTypedArray":48}],4:[function(e,t,n){function r(e,t,n){var r=e[t];a.call(e,t)&&i(r,n)&&(void 0!==n||t in e)||o(e,t,n)}var o=e("./_baseAssignValue"),i=e("./eq"),u=Object.prototype,a=u.hasOwnProperty;t.exports=r},{"./_baseAssignValue":5,"./eq":38}],5:[function(e,t,n){function r(e,t,n){"__proto__"==t&&o?o(e,t,{configurable:!0,enumerable:!0,value:n,writable:!0}):e[t]=n}var o=e("./_defineProperty");t.exports=r},{"./_defineProperty":18}],6:[function(e,t,n){function r(e){return null==e?void 0===e?c:a:(e=Object(e),s&&s in e?i(e):u(e))}var o=e("./_Symbol"),i=e("./_getRawTag"),u=e("./_objectToString"),a="[object Null]",c="[object Undefined]",s=o?o.toStringTag:void 0;t.exports=r},{"./_Symbol":1,"./_getRawTag":21,"./_objectToString":29}],7:[function(e,t,n){function r(e){return i(e)&&o(e)==u}var o=e("./_baseGetTag"),i=e("./isObjectLike"),u="[object Arguments]";t.exports=r},{"./_baseGetTag":6,"./isObjectLike":47}],8:[function(e,t,n){function r(e){if(!u(e)||i(e))return!1;var t=o(e)?d:s;return t.test(a(e))}var o=e("./isFunction"),i=e("./_isMasked"),u=e("./isObject"),a=e("./_toSource"),c=/[\\^$.*+?()[\]{}|]/g,s=/^\[object .+?Constructor\]$/,l=Function.prototype,f=Object.prototype,p=l.toString,b=f.hasOwnProperty,d=RegExp("^"+p.call(b).replace(c,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$");t.exports=r},{"./_isMasked":25,"./_toSource":35,"./isFunction":44,"./isObject":46}],9:[function(e,t,n){function r(e){return u(e)&&i(e.length)&&!!M[o(e)]}var o=e("./_baseGetTag"),i=e("./isLength"),u=e("./isObjectLike"),a="[object Arguments]",c="[object Array]",s="[object Boolean]",l="[object Date]",f="[object Error]",p="[object Function]",b="[object Map]",d="[object Number]",y="[object Object]",v="[object RegExp]",h="[object Set]",_="[object String]",g="[object WeakMap]",m="[object ArrayBuffer]",O="[object DataView]",j="[object Float32Array]",w="[object Float64Array]",E="[object Int8Array]",x="[object Int16Array]",P="[object Int32Array]",T="[object Uint8Array]",k="[object Uint8ClampedArray]",R="[object Uint16Array]",S="[object Uint32Array]",M={};M[j]=M[w]=M[E]=M[x]=M[P]=M[T]=M[k]=M[R]=M[S]=!0,M[a]=M[c]=M[m]=M[s]=M[O]=M[l]=M[f]=M[p]=M[b]=M[d]=M[y]=M[v]=M[h]=M[_]=M[g]=!1,t.exports=r},{"./_baseGetTag":6,"./isLength":45,"./isObjectLike":47}],10:[function(e,t,n){function r(e){if(!o(e))return i(e);var t=[];for(var n in Object(e))a.call(e,n)&&"constructor"!=n&&t.push(n);return t}var o=e("./_isPrototype"),i=e("./_nativeKeys"),u=Object.prototype,a=u.hasOwnProperty;t.exports=r},{"./_isPrototype":26,"./_nativeKeys":27}],11:[function(e,t,n){function r(e,t){return u(i(e,t,o),e+"")}var o=e("./identity"),i=e("./_overRest"),u=e("./_setToString");t.exports=r},{"./_overRest":31,"./_setToString":33,"./identity":39}],12:[function(e,t,n){var r=e("./constant"),o=e("./_defineProperty"),i=e("./identity"),u=o?function(e,t){return o(e,"toString",{configurable:!0,enumerable:!1,value:r(t),writable:!0})}:i;t.exports=u},{"./_defineProperty":18,"./constant":37,"./identity":39}],13:[function(e,t,n){function r(e,t){for(var n=-1,r=Array(e);++n<e;)r[n]=t(n);return r}t.exports=r},{}],14:[function(e,t,n){function r(e){return function(t){return e(t)}}t.exports=r},{}],15:[function(e,t,n){function r(e,t,n,r){var u=!n;n||(n={});for(var a=-1,c=t.length;++a<c;){var s=t[a],l=r?r(n[s],e[s],s,n,e):void 0;void 0===l&&(l=e[s]),u?i(n,s,l):o(n,s,l)}return n}var o=e("./_assignValue"),i=e("./_baseAssignValue");t.exports=r},{"./_assignValue":4,"./_baseAssignValue":5}],16:[function(e,t,n){var r=e("./_root"),o=r["__core-js_shared__"];t.exports=o},{"./_root":32}],17:[function(e,t,n){function r(e){return o(function(t,n){var r=-1,o=n.length,u=o>1?n[o-1]:void 0,a=o>2?n[2]:void 0;for(u=e.length>3&&"function"==typeof u?(o--,u):void 0,a&&i(n[0],n[1],a)&&(u=o<3?void 0:u,o=1),t=Object(t);++r<o;){var c=n[r];c&&e(t,c,r,u)}return t})}var o=e("./_baseRest"),i=e("./_isIterateeCall");t.exports=r},{"./_baseRest":11,"./_isIterateeCall":24}],18:[function(e,t,n){var r=e("./_getNative"),o=function(){try{var e=r(Object,"defineProperty");return e({},"",{}),e}catch(e){}}();t.exports=o},{"./_getNative":20}],19:[function(e,t,n){(function(e){var n="object"==typeof e&&e&&e.Object===Object&&e;t.exports=n}).call(this,"undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{}],20:[function(e,t,n){function r(e,t){var n=i(e,t);return o(n)?n:void 0}var o=e("./_baseIsNative"),i=e("./_getValue");t.exports=r},{"./_baseIsNative":8,"./_getValue":22}],21:[function(e,t,n){function r(e){var t=u.call(e,c),n=e[c];try{e[c]=void 0;var r=!0}catch(e){}var o=a.call(e);return r&&(t?e[c]=n:delete e[c]),o}var o=e("./_Symbol"),i=Object.prototype,u=i.hasOwnProperty,a=i.toString,c=o?o.toStringTag:void 0;t.exports=r},{"./_Symbol":1}],22:[function(e,t,n){function r(e,t){return null==e?void 0:e[t]}t.exports=r},{}],23:[function(e,t,n){function r(e,t){return t=null==t?o:t,!!t&&("number"==typeof e||i.test(e))&&e>-1&&e%1==0&&e<t}var o=9007199254740991,i=/^(?:0|[1-9]\d*)$/;t.exports=r},{}],24:[function(e,t,n){function r(e,t,n){if(!a(n))return!1;var r=typeof t;return!!("number"==r?i(n)&&u(t,n.length):"string"==r&&t in n)&&o(n[t],e)}var o=e("./eq"),i=e("./isArrayLike"),u=e("./_isIndex"),a=e("./isObject");t.exports=r},{"./_isIndex":23,"./eq":38,"./isArrayLike":42,"./isObject":46}],25:[function(e,t,n){function r(e){return!!i&&i in e}var o=e("./_coreJsData"),i=function(){var e=/[^.]+$/.exec(o&&o.keys&&o.keys.IE_PROTO||"");return e?"Symbol(src)_1."+e:""}();t.exports=r},{"./_coreJsData":16}],26:[function(e,t,n){function r(e){var t=e&&e.constructor,n="function"==typeof t&&t.prototype||o;return e===n}var o=Object.prototype;t.exports=r},{}],27:[function(e,t,n){var r=e("./_overArg"),o=r(Object.keys,Object);t.exports=o},{"./_overArg":30}],28:[function(e,t,n){var r=e("./_freeGlobal"),o="object"==typeof n&&n&&!n.nodeType&&n,i=o&&"object"==typeof t&&t&&!t.nodeType&&t,u=i&&i.exports===o,a=u&&r.process,c=function(){try{return a&&a.binding("util")}catch(e){}}();t.exports=c},{"./_freeGlobal":19}],29:[function(e,t,n){function r(e){return i.call(e)}var o=Object.prototype,i=o.toString;t.exports=r},{}],30:[function(e,t,n){function r(e,t){return function(n){return e(t(n))}}t.exports=r},{}],31:[function(e,t,n){function r(e,t,n){return t=i(void 0===t?e.length-1:t,0),function(){for(var r=arguments,u=-1,a=i(r.length-t,0),c=Array(a);++u<a;)c[u]=r[t+u];u=-1;for(var s=Array(t+1);++u<t;)s[u]=r[u];return s[t]=n(c),o(e,this,s)}}var o=e("./_apply"),i=Math.max;t.exports=r},{"./_apply":2}],32:[function(e,t,n){var r=e("./_freeGlobal"),o="object"==typeof self&&self&&self.Object===Object&&self,i=r||o||Function("return this")();t.exports=i},{"./_freeGlobal":19}],33:[function(e,t,n){var r=e("./_baseSetToString"),o=e("./_shortOut"),i=o(r);t.exports=i},{"./_baseSetToString":12,"./_shortOut":34}],34:[function(e,t,n){function r(e){var t=0,n=0;return function(){var r=u(),a=i-(r-n);if(n=r,a>0){if(++t>=o)return arguments[0]}else t=0;return e.apply(void 0,arguments)}}var o=800,i=16,u=Date.now;t.exports=r},{}],35:[function(e,t,n){function r(e){if(null!=e){try{return i.call(e)}catch(e){}try{return e+""}catch(e){}}return""}var o=Function.prototype,i=o.toString;t.exports=r},{}],36:[function(e,t,n){var r=e("./_assignValue"),o=e("./_copyObject"),i=e("./_createAssigner"),u=e("./isArrayLike"),a=e("./_isPrototype"),c=e("./keys"),s=Object.prototype,l=s.hasOwnProperty,f=i(function(e,t){if(a(t)||u(t))return void o(t,c(t),e);for(var n in t)l.call(t,n)&&r(e,n,t[n])});t.exports=f},{"./_assignValue":4,"./_copyObject":15,"./_createAssigner":17,"./_isPrototype":26,"./isArrayLike":42,"./keys":49}],37:[function(e,t,n){function r(e){return function(){return e}}t.exports=r},{}],38:[function(e,t,n){function r(e,t){return e===t||e!==e&&t!==t}t.exports=r},{}],39:[function(e,t,n){function r(e){return e}t.exports=r},{}],40:[function(e,t,n){var r=e("./_baseIsArguments"),o=e("./isObjectLike"),i=Object.prototype,u=i.hasOwnProperty,a=i.propertyIsEnumerable,c=r(function(){return arguments}())?r:function(e){return o(e)&&u.call(e,"callee")&&!a.call(e,"callee")};t.exports=c},{"./_baseIsArguments":7,"./isObjectLike":47}],41:[function(e,t,n){var r=Array.isArray;t.exports=r},{}],42:[function(e,t,n){function r(e){return null!=e&&i(e.length)&&!o(e)}var o=e("./isFunction"),i=e("./isLength");t.exports=r},{"./isFunction":44,"./isLength":45}],43:[function(e,t,n){var r=e("./_root"),o=e("./stubFalse"),i="object"==typeof n&&n&&!n.nodeType&&n,u=i&&"object"==typeof t&&t&&!t.nodeType&&t,a=u&&u.exports===i,c=a?r.Buffer:void 0,s=c?c.isBuffer:void 0,l=s||o;t.exports=l},{"./_root":32,"./stubFalse":50}],44:[function(e,t,n){function r(e){if(!i(e))return!1;var t=o(e);return t==a||t==c||t==u||t==s}var o=e("./_baseGetTag"),i=e("./isObject"),u="[object AsyncFunction]",a="[object Function]",c="[object GeneratorFunction]",s="[object Proxy]";t.exports=r},{"./_baseGetTag":6,"./isObject":46}],45:[function(e,t,n){function r(e){return"number"==typeof e&&e>-1&&e%1==0&&e<=o}var o=9007199254740991;t.exports=r},{}],46:[function(e,t,n){function r(e){var t=typeof e;return null!=e&&("object"==t||"function"==t)}t.exports=r},{}],47:[function(e,t,n){function r(e){return null!=e&&"object"==typeof e}t.exports=r},{}],48:[function(e,t,n){var r=e("./_baseIsTypedArray"),o=e("./_baseUnary"),i=e("./_nodeUtil"),u=i&&i.isTypedArray,a=u?o(u):r;t.exports=a},{"./_baseIsTypedArray":9,"./_baseUnary":14,"./_nodeUtil":28}],49:[function(e,t,n){function r(e){return u(e)?o(e):i(e)}var o=e("./_arrayLikeKeys"),i=e("./_baseKeys"),u=e("./isArrayLike");t.exports=r},{"./_arrayLikeKeys":3,"./_baseKeys":10,"./isArrayLike":42}],50:[function(e,t,n){function r(){return!1}t.exports=r},{}],51:[function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function o(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function u(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var c=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),s=e("../Layout"),l=e("./index"),f=e("lodash/assign"),p=r(f),b=function(e){function t(e){i(this,t);var n=u(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e)),r=null;try{r=JSON.parse(localStorage.getItem("data"))}catch(e){}return n.state=(0,p.default)({},l.defaultState,r),n.addItem=n.addItem.bind(n),n.setVoteValue=n.setVoteValue.bind(n),n.setEditing=n.setEditing.bind(n),n.updateMessage=n.updateMessage.bind(n),n.increment=n.increment.bind(n),n}return a(t,e),c(t,[{key:"getChildContext",value:function(){return{actions:{addItem:this.addItem,setEditing:this.setEditing,setVoteValue:this.setVoteValue,updateMessage:this.updateMessage,increment:this.increment}}}},{key:"persist",value:function(){var e=this;window.requestAnimationFrame(function(){localStorage.setItem("data",JSON.stringify(e.state))})}},{key:"updateMessage",value:function(e){var t=e.value,n=e.id,r=e.idx,i=this.state[n].slice(0);i[r].text=t,this.setState(function(e,t){return(0,p.default)({},e,o({editing:null},n,i))},this.persist)}},{key:"setEditing",value:function(e){null===e?this.setState({editing:null},this.persist):this.setState(function(t){return(0,p.default)({},t,{editing:{id:e.id,idx:e.idx}})},this.persist)}},{key:"setVoteValue",value:function(e,t){var n=this.state[s.BAD].slice(0);n[e].value=t,this.setState(function(e){return(0,p.default)({},e,o({},s.BAD,n))},this.persist)}},{key:"increment",value:function(e){this.setVoteValue(e,this.state[s.BAD][e].value+1)}},{key:"addItem",value:function(e){var t=e.id,n=e.text,r=e.value,i=this.state[t].slice(0),u={text:n};void 0!==r&&(u.value=r),i.push(u),this.setState(function(e){return(0,p.default)({},e,o({},t,i))},this.persist)}},{key:"render",value:function(){return React.createElement(s.Layout,this.state)}}]),t}(React.Component);n.default=b,b.displayName="App",b.childContextTypes={actions:React.PropTypes.object}},{"../Layout":57,"./index":53,"lodash/assign":36}],52:[function(e,t,n){"use strict";function r(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}Object.defineProperty(n,"__esModule",{value:!0}),n.defaultState=void 0;var o,i=e("../Layout");n.defaultState=(o={},r(o,i.GOOD,[]),r(o,i.BAD,[]),r(o,i.NEXT,[]),r(o,"view",i.DEFAULT_VIEW),r(o,"editing",null),o)},{"../Layout":57}],53:[function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(n,"__esModule",{value:!0});var o=e("./App");Object.defineProperty(n,"App",{enumerable:!0,get:function(){return r(o).default}});var i=e("./defaultState");Object.defineProperty(n,"defaultState",{enumerable:!0,get:function(){return i.defaultState}})},{"./App":51,"./defaultState":52}],54:[function(e,t,n){(function(e){"use strict";function t(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function r(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var i=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),u=function(n){function u(e){t(this,u);var n=r(this,(u.__proto__||Object.getPrototypeOf(u)).call(this,e));return n.style=e.style||"a,button{outline: 0}",n.state={isOutlineDisabled:!0},n.onKey=n.onKey.bind(n),n.onMouse=n.onMouse.bind(n),n}return o(u,n),i(u,[{key:"onKey",value:function(){this.setState({isOutlineDisabled:!1})}},{key:"onMouse",value:function(){this.setState({isOutlineDisabled:!0})}},{key:"componentDidMount",value:function(){var t=e,n=t.document,r=void 0===n?null:n;r&&(r.addEventListener("mousedown",this.onMouse,!0),r.addEventListener("touchstart",this.onMouse,!0),r.addEventListener("keydown",this.onKey,!0))}},{key:"componentWillUnmount",value:function(){var t=e,n=t.document,r=void 0===n?null:n;r&&(r.removeEventListener("mousedown",this.onMouse,!0),r.removeEventListener("touchstart",this.onMouse,!0),r.removeEventListener("keydown",this.onKey,!0))}},{key:"render",value:function(){return this.state.isOutlineDisabled?React.createElement("style",null,this.style):null}}]),u}(React.Component);n.default=u}).call(this,"undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{}],55:[function(e,t,n){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function i(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var u=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},a=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),c=e("./index"),s=e("../List"),l=function(e){function t(e){r(this,t);var n=o(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e)),i=[c.GOOD,c.BAD,c.NEXT];return n.listDefinitions=i.map(function(e){return{id:e,title:(0,c.mapIdToTitle)(e),key:e+"-list"}}),n}return i(t,e),a(t,[{key:"render",value:function(){var e=this,t=(this.context.actions.setView,this.props.editing);return React.createElement("div",{id:"app"},React.createElement(c.FocusStyleToggle,null),React.createElement("div",{className:"main-col"},React.createElement("div",{className:"header"},React.createElement("h1",{className:"text-center"},"Retrospective"),React.createElement("p",null,React.createElement("button",{onClick:function(){}},"clear"))),React.createElement("div",{className:"bd"},this.listDefinitions.map(function(n){var r=e.props[n.id];return React.createElement(s.List,u({},n,{list:r,editing:t}))},this)),React.createElement("div",{className:"footer"},React.createElement("button",{onClick:function(){}},"sort"),React.createElement("button",{onClick:function(){}},"printable"))))}}]),t}(React.Component);n.default=l,l.contextTypes={actions:React.PropTypes.object.isRequired}},{"../List":67,"./index":57}],56:[function(e,t,n){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var r=(n.GOOD="GOOD",n.BAD="BAD",n.NEXT="NEXT",n.ENTRY="ENTRY");n.PRINT="PRINT",n.DEFAULT_VIEW=r},{}],57:[function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(n,"__esModule",{value:!0});var o=e("./Layout");Object.defineProperty(n,"Layout",{enumerable:!0,get:function(){return r(o).default}});var i=e("./FocusStyleToggle");Object.defineProperty(n,"FocusStyleToggle",{enumerable:!0,get:function(){return r(i).default}});var u=e("./lib/mapIdToTitle");Object.defineProperty(n,"mapIdToTitle",{enumerable:!0,get:function(){return r(u).default}});var a=e("./constants");Object.keys(a).forEach(function(e){"default"!==e&&"__esModule"!==e&&Object.defineProperty(n,e,{enumerable:!0,get:function(){return a[e]}})})},{"./FocusStyleToggle":54,"./Layout":55,"./constants":56,"./lib/mapIdToTitle":58}],58:[function(e,t,n){"use strict";Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;var r=(e("../index"),{GOOD:"Good",BAD:"Bad",NEXT:"Next"}),o=function(e){return r[e]||""};n.default=o},{"../index":57}],59:[function(e,t,n){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function i(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var u=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),a=function(e){function t(e){return r(this,t),o(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e))}return i(t,e),u(t,[{key:"render",value:function(){return React.createElement("button",{onClick:this.props.onIncrement,className:"increment-vote-button"},"+")}}]),t}(React.Component);n.default=a},{}],60:[function(e,t,n){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function i(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var u=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),a=e("../Layout"),c=e("./index"),s=function(e){function t(e){r(this,t);var n=o(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.setVoteValue=n.setVoteValue.bind(n),n.createUpdateMessageHandler=n.createUpdateMessageHandler.bind(n),n.isEditing=n.isEditing.bind(n),n.createSetEditingHandler=n.createSetEditingHandler.bind(n),n}return i(t,e),u(t,[{key:"setVoteValue",value:function(e){var t=this;return function(n){return t.context.actions.setVoteValue(e,n)}}},{key:"createUpdateMessageHandler",value:function(e){var t=this,n=this.props.id;return function(r){t.context.actions.updateMessage({value:r,idx:e,id:n})}}},{key:"isEditing",value:function(e){return!!this.props.editing&&this.props.editing.id===this.props.id&&this.props.editing.idx===e}},{key:"createSetEditingHandler",value:function(e){var t=this,n=this.props.id;return function(r){t.context.actions.setEditing(r===!0?null:{id:n,idx:e})}}},{key:"createIncrementHandler",value:function(e){var t=this;return function(){t.context.actions.increment(e)}}},{key:"renderIncrementButton",value:function(e){return this.props.id!==a.BAD?null:React.createElement(c.IncrementButton,{onIncrement:this.createIncrementHandler(e)})}},{key:"render",value:function(){var e=this,t=this.props,n=t.list;t.id;return 0===n.length?null:React.createElement("ul",null,n.map(function(t,n){return React.createElement("li",{key:e.props.id.toLowerCase()+"-"+n},e.renderIncrementButton(n),React.createElement(c.VoteInput,{value:t.value,setVoteValue:e.setVoteValue(n)}),React.createElement(c.MessageWrapper,{text:t.text,isEditing:e.isEditing(n),setEditing:e.createSetEditingHandler(n),updateMessage:e.createUpdateMessageHandler(n)}))}))}}]),t}(React.Component);n.default=s,s.contextTypes={actions:React.PropTypes.object}},{"../Layout":57,"./index":67}],61:[function(e,t,n){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function i(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var u=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),a=e("../Layout"),c=e("./index"),s=function(e){function t(e){r(this,t);var n=o(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.onSubmit=n.onSubmit.bind(n),n}return i(t,e),u(t,[{key:"onSubmit",value:function(e){var t=this.refs.input.value;if(e.preventDefault(),0!==t.length){var n={id:this.props.id,text:t};this.props.id===a.BAD&&(n.value=0),this.refs.input.value="",this.context.actions.addItem(n)}}},{key:"render",value:function(){return React.createElement("div",null,React.createElement("h2",{className:"list-title"},this.props.title),React.createElement("form",{action:"#",onSubmit:this.onSubmit},React.createElement("input",{ref:"input",type:"text"})),React.createElement(c.InnerList,this.props))}}]),t}(React.Component);n.default=s,s.contextTypes={actions:React.PropTypes.object}},{"../Layout":57,"./index":67}],62:[function(e,t,n){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function i(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var u=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),a=e("./index"),c=function(e){function t(e){r(this,t);var n=o(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.onKeyDown=n.onKeyDown.bind(n),n.onSubmit=n.onSubmit.bind(n),n.onBlur=n.onBlur.bind(n),n.updateMessage=n.updateMessage.bind(n),n}return i(t,e),u(t,[{key:"componentDidMount",value:function(){this.refs.input&&this.refs.input.focus()}},{key:"updateMessage",value:function(){this.refs.input&&this.refs.input.value.length>0&&this.props.updateMessage(this.refs.input.value)}},{key:"onSubmit",value:function(e){e.preventDefault(),this.updateMessage()}},{key:"onBlur",value:function(){this.updateMessage()}},{key:"onKeyDown",value:function(e){e.which===a.ESC&&this.props.setEditing(!0)}},{key:"render",value:function(){return React.createElement("form",{action:"#",onSubmit:this.onSubmit},React.createElement("input",{ref:"input",type:"text",defaultValue:this.props.defaultValue,onBlur:this.onBlur,onKeyDown:this.onKeyDown}))}}]),t}(React.Component);n.default=c,c.propTypes={updateMessage:React.PropTypes.func.isRequired}},{"./index":67}],63:[function(e,t,n){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function i(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var u=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),a=function(e){function t(e){r(this,t);var n=o(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.onDoubleClick=n.onDoubleClick.bind(n),n}return i(t,e),u(t,[{key:"onDoubleClick",value:function(){this.props.setEditing()}},{key:"render",value:function(){return React.createElement("div",{onDoubleClick:this.onDoubleClick},this.props.text)}}]),t}(React.Component);n.default=a,a.propTypes={text:React.PropTypes.string}},{}],64:[function(e,t,n){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function i(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var u=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),a=e("./index"),c=function(e){function t(e){return r(this,t),o(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e))}return i(t,e),u(t,[{key:"render",value:function(){var e=this.props,t=e.isEditing,n=e.text;return t?React.createElement(a.MessageInput,{defaultValue:n,setEditing:this.props.setEditing,updateMessage:this.props.updateMessage}):React.createElement(a.MessageView,{text:n,setEditing:this.props.setEditing})}}]),t}(React.Component);n.default=c},{"./index":67}],65:[function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function u(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var a=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),c=e("./lib/preventNonNumericInput"),s=r(c),l=function(e){function t(e){o(this,t);var n=i(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.onSubmit=n.onSubmit.bind(n),n.onChange=n.onChange.bind(n),n.onKeyDown=n.onKeyDown.bind(n),n}return u(t,e),a(t,[{key:"onSubmit",value:function(e){e.preventDefault(),this.props.setVoteValue(this.refs.vote.value)}},{key:"onChange",value:function(e){var t=this.refs.vote.value.replace(/[^\d]/g,"");this.props.setVoteValue(t)}},{key:"onKeyDown",value:function(e){var t=e.keyCode,n=parseInt(this.refs.vote.value,10);isNaN(n)&&(n=0),
-(0,s.default)(e),t===c.UP?(n+=1,this.props.setVoteValue(n),e.preventDefault()):t===c.DOWN&&(n-=1,this.props.setVoteValue(n<=0?"":n),e.preventDefault())}},{key:"render",value:function(){return void 0===this.props.value?null:React.createElement("form",{action:"#",onSubmit:this.onSubmit},React.createElement("input",{ref:"vote",value:this.props.value,onKeyDown:this.onKeyDown,onChange:this.onChange}))}}]),t}(React.Component);n.default=l,l.contextTypes={actions:React.PropTypes.object}},{"./lib/preventNonNumericInput":68}],66:[function(e,t,n){"use strict";Object.defineProperty(n,"__esModule",{value:!0});n.ESC=27},{}],67:[function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(n,"__esModule",{value:!0});var o=e("./List");Object.defineProperty(n,"List",{enumerable:!0,get:function(){return r(o).default}});var i=e("./InnerList");Object.defineProperty(n,"InnerList",{enumerable:!0,get:function(){return r(i).default}});var u=e("./VoteInput");Object.defineProperty(n,"VoteInput",{enumerable:!0,get:function(){return r(u).default}});var a=e("./MessageWrapper");Object.defineProperty(n,"MessageWrapper",{enumerable:!0,get:function(){return r(a).default}});var c=e("./MessageInput");Object.defineProperty(n,"MessageInput",{enumerable:!0,get:function(){return r(c).default}});var s=e("./MessageView");Object.defineProperty(n,"MessageView",{enumerable:!0,get:function(){return r(s).default}});var l=e("./IncrementButton");Object.defineProperty(n,"IncrementButton",{enumerable:!0,get:function(){return r(l).default}});var f=e("./constants");Object.keys(f).forEach(function(e){"default"!==e&&"__esModule"!==e&&Object.defineProperty(n,e,{enumerable:!0,get:function(){return f[e]}})})},{"./IncrementButton":59,"./InnerList":60,"./List":61,"./MessageInput":62,"./MessageView":63,"./MessageWrapper":64,"./VoteInput":65,"./constants":66}],68:[function(e,t,n){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var r=n.DELETE=46,o=n.BACKSPACE=8,i=n.TAB=9,u=n.ESCAPE=27,a=n.DECIMAL=110,c=n.PERIOD=190,s=n.a=65,l=n.c=67,f=n.x=88,p=n.v=86,b=n.HOME=35,d=(n.UP=38,n.RIGHT=39),y=(n.DOWN=40,n.ZERO=48),v=n.NINE=57,h=n.NUMPAD_ZERO=96,_=n.NUMPAD_NINE=105,g=[r,o,i,u,a,c],m=function(e){var t=e.keyCode,n=e.shiftKey,r=e.metaKey||e.ctrlKey;g.indexOf(t)!==-1||t==s&&r===!0||t==l&&r===!0||t==f&&r===!0||t==p&&r===!0||t>=b&&t<=d||n&&t>=y&&t<=v||t>=h&&t<=_||t>=y&&t<=v||t>=h&&t<=_||e.preventDefault()};n.default=m},{}],69:[function(e,t,n){(function(t){"use strict";var n=e("./App"),r=t.ReactDOM;r.render(React.createElement(n.App,null),document.getElementsByTagName("main")[0])}).call(this,"undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{"./App":53}]},{},[69]);
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var root = require('./_root');
+
+/** Built-in value references. */
+var Symbol = root.Symbol;
+
+module.exports = Symbol;
+
+},{"./_root":32}],2:[function(require,module,exports){
+/**
+ * A faster alternative to `Function#apply`, this function invokes `func`
+ * with the `this` binding of `thisArg` and the arguments of `args`.
+ *
+ * @private
+ * @param {Function} func The function to invoke.
+ * @param {*} thisArg The `this` binding of `func`.
+ * @param {Array} args The arguments to invoke `func` with.
+ * @returns {*} Returns the result of `func`.
+ */
+function apply(func, thisArg, args) {
+  switch (args.length) {
+    case 0: return func.call(thisArg);
+    case 1: return func.call(thisArg, args[0]);
+    case 2: return func.call(thisArg, args[0], args[1]);
+    case 3: return func.call(thisArg, args[0], args[1], args[2]);
+  }
+  return func.apply(thisArg, args);
+}
+
+module.exports = apply;
+
+},{}],3:[function(require,module,exports){
+var baseTimes = require('./_baseTimes'),
+    isArguments = require('./isArguments'),
+    isArray = require('./isArray'),
+    isBuffer = require('./isBuffer'),
+    isIndex = require('./_isIndex'),
+    isTypedArray = require('./isTypedArray');
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Creates an array of the enumerable property names of the array-like `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @param {boolean} inherited Specify returning inherited property names.
+ * @returns {Array} Returns the array of property names.
+ */
+function arrayLikeKeys(value, inherited) {
+  var isArr = isArray(value),
+      isArg = !isArr && isArguments(value),
+      isBuff = !isArr && !isArg && isBuffer(value),
+      isType = !isArr && !isArg && !isBuff && isTypedArray(value),
+      skipIndexes = isArr || isArg || isBuff || isType,
+      result = skipIndexes ? baseTimes(value.length, String) : [],
+      length = result.length;
+
+  for (var key in value) {
+    if ((inherited || hasOwnProperty.call(value, key)) &&
+        !(skipIndexes && (
+           // Safari 9 has enumerable `arguments.length` in strict mode.
+           key == 'length' ||
+           // Node.js 0.10 has enumerable non-index properties on buffers.
+           (isBuff && (key == 'offset' || key == 'parent')) ||
+           // PhantomJS 2 has enumerable non-index properties on typed arrays.
+           (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
+           // Skip index properties.
+           isIndex(key, length)
+        ))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = arrayLikeKeys;
+
+},{"./_baseTimes":13,"./_isIndex":23,"./isArguments":40,"./isArray":41,"./isBuffer":43,"./isTypedArray":48}],4:[function(require,module,exports){
+var baseAssignValue = require('./_baseAssignValue'),
+    eq = require('./eq');
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Assigns `value` to `key` of `object` if the existing value is not equivalent
+ * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * for equality comparisons.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {string} key The key of the property to assign.
+ * @param {*} value The value to assign.
+ */
+function assignValue(object, key, value) {
+  var objValue = object[key];
+  if (!(hasOwnProperty.call(object, key) && eq(objValue, value)) ||
+      (value === undefined && !(key in object))) {
+    baseAssignValue(object, key, value);
+  }
+}
+
+module.exports = assignValue;
+
+},{"./_baseAssignValue":5,"./eq":38}],5:[function(require,module,exports){
+var defineProperty = require('./_defineProperty');
+
+/**
+ * The base implementation of `assignValue` and `assignMergeValue` without
+ * value checks.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {string} key The key of the property to assign.
+ * @param {*} value The value to assign.
+ */
+function baseAssignValue(object, key, value) {
+  if (key == '__proto__' && defineProperty) {
+    defineProperty(object, key, {
+      'configurable': true,
+      'enumerable': true,
+      'value': value,
+      'writable': true
+    });
+  } else {
+    object[key] = value;
+  }
+}
+
+module.exports = baseAssignValue;
+
+},{"./_defineProperty":18}],6:[function(require,module,exports){
+var Symbol = require('./_Symbol'),
+    getRawTag = require('./_getRawTag'),
+    objectToString = require('./_objectToString');
+
+/** `Object#toString` result references. */
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  value = Object(value);
+  return (symToStringTag && symToStringTag in value)
+    ? getRawTag(value)
+    : objectToString(value);
+}
+
+module.exports = baseGetTag;
+
+},{"./_Symbol":1,"./_getRawTag":21,"./_objectToString":29}],7:[function(require,module,exports){
+var baseGetTag = require('./_baseGetTag'),
+    isObjectLike = require('./isObjectLike');
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]';
+
+/**
+ * The base implementation of `_.isArguments`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ */
+function baseIsArguments(value) {
+  return isObjectLike(value) && baseGetTag(value) == argsTag;
+}
+
+module.exports = baseIsArguments;
+
+},{"./_baseGetTag":6,"./isObjectLike":47}],8:[function(require,module,exports){
+var isFunction = require('./isFunction'),
+    isMasked = require('./_isMasked'),
+    isObject = require('./isObject'),
+    toSource = require('./_toSource');
+
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
+/** Used to detect host constructors (Safari). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' +
+  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+  var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+
+module.exports = baseIsNative;
+
+},{"./_isMasked":25,"./_toSource":35,"./isFunction":44,"./isObject":46}],9:[function(require,module,exports){
+var baseGetTag = require('./_baseGetTag'),
+    isLength = require('./isLength'),
+    isObjectLike = require('./isObjectLike');
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    objectTag = '[object Object]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    weakMapTag = '[object WeakMap]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+
+/** Used to identify `toStringTag` values of typed arrays. */
+var typedArrayTags = {};
+typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
+typedArrayTags[int8Tag] = typedArrayTags[int16Tag] =
+typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] =
+typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] =
+typedArrayTags[uint32Tag] = true;
+typedArrayTags[argsTag] = typedArrayTags[arrayTag] =
+typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] =
+typedArrayTags[dataViewTag] = typedArrayTags[dateTag] =
+typedArrayTags[errorTag] = typedArrayTags[funcTag] =
+typedArrayTags[mapTag] = typedArrayTags[numberTag] =
+typedArrayTags[objectTag] = typedArrayTags[regexpTag] =
+typedArrayTags[setTag] = typedArrayTags[stringTag] =
+typedArrayTags[weakMapTag] = false;
+
+/**
+ * The base implementation of `_.isTypedArray` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ */
+function baseIsTypedArray(value) {
+  return isObjectLike(value) &&
+    isLength(value.length) && !!typedArrayTags[baseGetTag(value)];
+}
+
+module.exports = baseIsTypedArray;
+
+},{"./_baseGetTag":6,"./isLength":45,"./isObjectLike":47}],10:[function(require,module,exports){
+var isPrototype = require('./_isPrototype'),
+    nativeKeys = require('./_nativeKeys');
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function baseKeys(object) {
+  if (!isPrototype(object)) {
+    return nativeKeys(object);
+  }
+  var result = [];
+  for (var key in Object(object)) {
+    if (hasOwnProperty.call(object, key) && key != 'constructor') {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = baseKeys;
+
+},{"./_isPrototype":26,"./_nativeKeys":27}],11:[function(require,module,exports){
+var identity = require('./identity'),
+    overRest = require('./_overRest'),
+    setToString = require('./_setToString');
+
+/**
+ * The base implementation of `_.rest` which doesn't validate or coerce arguments.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @returns {Function} Returns the new function.
+ */
+function baseRest(func, start) {
+  return setToString(overRest(func, start, identity), func + '');
+}
+
+module.exports = baseRest;
+
+},{"./_overRest":31,"./_setToString":33,"./identity":39}],12:[function(require,module,exports){
+var constant = require('./constant'),
+    defineProperty = require('./_defineProperty'),
+    identity = require('./identity');
+
+/**
+ * The base implementation of `setToString` without support for hot loop shorting.
+ *
+ * @private
+ * @param {Function} func The function to modify.
+ * @param {Function} string The `toString` result.
+ * @returns {Function} Returns `func`.
+ */
+var baseSetToString = !defineProperty ? identity : function(func, string) {
+  return defineProperty(func, 'toString', {
+    'configurable': true,
+    'enumerable': false,
+    'value': constant(string),
+    'writable': true
+  });
+};
+
+module.exports = baseSetToString;
+
+},{"./_defineProperty":18,"./constant":37,"./identity":39}],13:[function(require,module,exports){
+/**
+ * The base implementation of `_.times` without support for iteratee shorthands
+ * or max array length checks.
+ *
+ * @private
+ * @param {number} n The number of times to invoke `iteratee`.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the array of results.
+ */
+function baseTimes(n, iteratee) {
+  var index = -1,
+      result = Array(n);
+
+  while (++index < n) {
+    result[index] = iteratee(index);
+  }
+  return result;
+}
+
+module.exports = baseTimes;
+
+},{}],14:[function(require,module,exports){
+/**
+ * The base implementation of `_.unary` without support for storing metadata.
+ *
+ * @private
+ * @param {Function} func The function to cap arguments for.
+ * @returns {Function} Returns the new capped function.
+ */
+function baseUnary(func) {
+  return function(value) {
+    return func(value);
+  };
+}
+
+module.exports = baseUnary;
+
+},{}],15:[function(require,module,exports){
+var assignValue = require('./_assignValue'),
+    baseAssignValue = require('./_baseAssignValue');
+
+/**
+ * Copies properties of `source` to `object`.
+ *
+ * @private
+ * @param {Object} source The object to copy properties from.
+ * @param {Array} props The property identifiers to copy.
+ * @param {Object} [object={}] The object to copy properties to.
+ * @param {Function} [customizer] The function to customize copied values.
+ * @returns {Object} Returns `object`.
+ */
+function copyObject(source, props, object, customizer) {
+  var isNew = !object;
+  object || (object = {});
+
+  var index = -1,
+      length = props.length;
+
+  while (++index < length) {
+    var key = props[index];
+
+    var newValue = customizer
+      ? customizer(object[key], source[key], key, object, source)
+      : undefined;
+
+    if (newValue === undefined) {
+      newValue = source[key];
+    }
+    if (isNew) {
+      baseAssignValue(object, key, newValue);
+    } else {
+      assignValue(object, key, newValue);
+    }
+  }
+  return object;
+}
+
+module.exports = copyObject;
+
+},{"./_assignValue":4,"./_baseAssignValue":5}],16:[function(require,module,exports){
+var root = require('./_root');
+
+/** Used to detect overreaching core-js shims. */
+var coreJsData = root['__core-js_shared__'];
+
+module.exports = coreJsData;
+
+},{"./_root":32}],17:[function(require,module,exports){
+var baseRest = require('./_baseRest'),
+    isIterateeCall = require('./_isIterateeCall');
+
+/**
+ * Creates a function like `_.assign`.
+ *
+ * @private
+ * @param {Function} assigner The function to assign values.
+ * @returns {Function} Returns the new assigner function.
+ */
+function createAssigner(assigner) {
+  return baseRest(function(object, sources) {
+    var index = -1,
+        length = sources.length,
+        customizer = length > 1 ? sources[length - 1] : undefined,
+        guard = length > 2 ? sources[2] : undefined;
+
+    customizer = (assigner.length > 3 && typeof customizer == 'function')
+      ? (length--, customizer)
+      : undefined;
+
+    if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+      customizer = length < 3 ? undefined : customizer;
+      length = 1;
+    }
+    object = Object(object);
+    while (++index < length) {
+      var source = sources[index];
+      if (source) {
+        assigner(object, source, index, customizer);
+      }
+    }
+    return object;
+  });
+}
+
+module.exports = createAssigner;
+
+},{"./_baseRest":11,"./_isIterateeCall":24}],18:[function(require,module,exports){
+var getNative = require('./_getNative');
+
+var defineProperty = (function() {
+  try {
+    var func = getNative(Object, 'defineProperty');
+    func({}, '', {});
+    return func;
+  } catch (e) {}
+}());
+
+module.exports = defineProperty;
+
+},{"./_getNative":20}],19:[function(require,module,exports){
+(function (global){
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+module.exports = freeGlobal;
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+
+},{}],20:[function(require,module,exports){
+var baseIsNative = require('./_baseIsNative'),
+    getValue = require('./_getValue');
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+
+module.exports = getNative;
+
+},{"./_baseIsNative":8,"./_getValue":22}],21:[function(require,module,exports){
+var Symbol = require('./_Symbol');
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+  return result;
+}
+
+module.exports = getRawTag;
+
+},{"./_Symbol":1}],22:[function(require,module,exports){
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+
+module.exports = getValue;
+
+},{}],23:[function(require,module,exports){
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/** Used to detect unsigned integer values. */
+var reIsUint = /^(?:0|[1-9]\d*)$/;
+
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+function isIndex(value, length) {
+  length = length == null ? MAX_SAFE_INTEGER : length;
+  return !!length &&
+    (typeof value == 'number' || reIsUint.test(value)) &&
+    (value > -1 && value % 1 == 0 && value < length);
+}
+
+module.exports = isIndex;
+
+},{}],24:[function(require,module,exports){
+var eq = require('./eq'),
+    isArrayLike = require('./isArrayLike'),
+    isIndex = require('./_isIndex'),
+    isObject = require('./isObject');
+
+/**
+ * Checks if the given arguments are from an iteratee call.
+ *
+ * @private
+ * @param {*} value The potential iteratee value argument.
+ * @param {*} index The potential iteratee index or key argument.
+ * @param {*} object The potential iteratee object argument.
+ * @returns {boolean} Returns `true` if the arguments are from an iteratee call,
+ *  else `false`.
+ */
+function isIterateeCall(value, index, object) {
+  if (!isObject(object)) {
+    return false;
+  }
+  var type = typeof index;
+  if (type == 'number'
+        ? (isArrayLike(object) && isIndex(index, object.length))
+        : (type == 'string' && index in object)
+      ) {
+    return eq(object[index], value);
+  }
+  return false;
+}
+
+module.exports = isIterateeCall;
+
+},{"./_isIndex":23,"./eq":38,"./isArrayLike":42,"./isObject":46}],25:[function(require,module,exports){
+var coreJsData = require('./_coreJsData');
+
+/** Used to detect methods masquerading as native. */
+var maskSrcKey = (function() {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? ('Symbol(src)_1.' + uid) : '';
+}());
+
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+function isMasked(func) {
+  return !!maskSrcKey && (maskSrcKey in func);
+}
+
+module.exports = isMasked;
+
+},{"./_coreJsData":16}],26:[function(require,module,exports){
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Checks if `value` is likely a prototype object.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+ */
+function isPrototype(value) {
+  var Ctor = value && value.constructor,
+      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto;
+
+  return value === proto;
+}
+
+module.exports = isPrototype;
+
+},{}],27:[function(require,module,exports){
+var overArg = require('./_overArg');
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeKeys = overArg(Object.keys, Object);
+
+module.exports = nativeKeys;
+
+},{"./_overArg":30}],28:[function(require,module,exports){
+var freeGlobal = require('./_freeGlobal');
+
+/** Detect free variable `exports`. */
+var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/** Detect free variable `process` from Node.js. */
+var freeProcess = moduleExports && freeGlobal.process;
+
+/** Used to access faster Node.js helpers. */
+var nodeUtil = (function() {
+  try {
+    return freeProcess && freeProcess.binding('util');
+  } catch (e) {}
+}());
+
+module.exports = nodeUtil;
+
+},{"./_freeGlobal":19}],29:[function(require,module,exports){
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+module.exports = objectToString;
+
+},{}],30:[function(require,module,exports){
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+function overArg(func, transform) {
+  return function(arg) {
+    return func(transform(arg));
+  };
+}
+
+module.exports = overArg;
+
+},{}],31:[function(require,module,exports){
+var apply = require('./_apply');
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * A specialized version of `baseRest` which transforms the rest array.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @param {Function} transform The rest array transform.
+ * @returns {Function} Returns the new function.
+ */
+function overRest(func, start, transform) {
+  start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
+  return function() {
+    var args = arguments,
+        index = -1,
+        length = nativeMax(args.length - start, 0),
+        array = Array(length);
+
+    while (++index < length) {
+      array[index] = args[start + index];
+    }
+    index = -1;
+    var otherArgs = Array(start + 1);
+    while (++index < start) {
+      otherArgs[index] = args[index];
+    }
+    otherArgs[start] = transform(array);
+    return apply(func, this, otherArgs);
+  };
+}
+
+module.exports = overRest;
+
+},{"./_apply":2}],32:[function(require,module,exports){
+var freeGlobal = require('./_freeGlobal');
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+module.exports = root;
+
+},{"./_freeGlobal":19}],33:[function(require,module,exports){
+var baseSetToString = require('./_baseSetToString'),
+    shortOut = require('./_shortOut');
+
+/**
+ * Sets the `toString` method of `func` to return `string`.
+ *
+ * @private
+ * @param {Function} func The function to modify.
+ * @param {Function} string The `toString` result.
+ * @returns {Function} Returns `func`.
+ */
+var setToString = shortOut(baseSetToString);
+
+module.exports = setToString;
+
+},{"./_baseSetToString":12,"./_shortOut":34}],34:[function(require,module,exports){
+/** Used to detect hot functions by number of calls within a span of milliseconds. */
+var HOT_COUNT = 800,
+    HOT_SPAN = 16;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeNow = Date.now;
+
+/**
+ * Creates a function that'll short out and invoke `identity` instead
+ * of `func` when it's called `HOT_COUNT` or more times in `HOT_SPAN`
+ * milliseconds.
+ *
+ * @private
+ * @param {Function} func The function to restrict.
+ * @returns {Function} Returns the new shortable function.
+ */
+function shortOut(func) {
+  var count = 0,
+      lastCalled = 0;
+
+  return function() {
+    var stamp = nativeNow(),
+        remaining = HOT_SPAN - (stamp - lastCalled);
+
+    lastCalled = stamp;
+    if (remaining > 0) {
+      if (++count >= HOT_COUNT) {
+        return arguments[0];
+      }
+    } else {
+      count = 0;
+    }
+    return func.apply(undefined, arguments);
+  };
+}
+
+module.exports = shortOut;
+
+},{}],35:[function(require,module,exports){
+/** Used for built-in method references. */
+var funcProto = Function.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to convert.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+
+module.exports = toSource;
+
+},{}],36:[function(require,module,exports){
+var assignValue = require('./_assignValue'),
+    copyObject = require('./_copyObject'),
+    createAssigner = require('./_createAssigner'),
+    isArrayLike = require('./isArrayLike'),
+    isPrototype = require('./_isPrototype'),
+    keys = require('./keys');
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Assigns own enumerable string keyed properties of source objects to the
+ * destination object. Source objects are applied from left to right.
+ * Subsequent sources overwrite property assignments of previous sources.
+ *
+ * **Note:** This method mutates `object` and is loosely based on
+ * [`Object.assign`](https://mdn.io/Object/assign).
+ *
+ * @static
+ * @memberOf _
+ * @since 0.10.0
+ * @category Object
+ * @param {Object} object The destination object.
+ * @param {...Object} [sources] The source objects.
+ * @returns {Object} Returns `object`.
+ * @see _.assignIn
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ * }
+ *
+ * function Bar() {
+ *   this.c = 3;
+ * }
+ *
+ * Foo.prototype.b = 2;
+ * Bar.prototype.d = 4;
+ *
+ * _.assign({ 'a': 0 }, new Foo, new Bar);
+ * // => { 'a': 1, 'c': 3 }
+ */
+var assign = createAssigner(function(object, source) {
+  if (isPrototype(source) || isArrayLike(source)) {
+    copyObject(source, keys(source), object);
+    return;
+  }
+  for (var key in source) {
+    if (hasOwnProperty.call(source, key)) {
+      assignValue(object, key, source[key]);
+    }
+  }
+});
+
+module.exports = assign;
+
+},{"./_assignValue":4,"./_copyObject":15,"./_createAssigner":17,"./_isPrototype":26,"./isArrayLike":42,"./keys":49}],37:[function(require,module,exports){
+/**
+ * Creates a function that returns `value`.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Util
+ * @param {*} value The value to return from the new function.
+ * @returns {Function} Returns the new constant function.
+ * @example
+ *
+ * var objects = _.times(2, _.constant({ 'a': 1 }));
+ *
+ * console.log(objects);
+ * // => [{ 'a': 1 }, { 'a': 1 }]
+ *
+ * console.log(objects[0] === objects[1]);
+ * // => true
+ */
+function constant(value) {
+  return function() {
+    return value;
+  };
+}
+
+module.exports = constant;
+
+},{}],38:[function(require,module,exports){
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+function eq(value, other) {
+  return value === other || (value !== value && other !== other);
+}
+
+module.exports = eq;
+
+},{}],39:[function(require,module,exports){
+/**
+ * This method returns the first argument it receives.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ *
+ * console.log(_.identity(object) === object);
+ * // => true
+ */
+function identity(value) {
+  return value;
+}
+
+module.exports = identity;
+
+},{}],40:[function(require,module,exports){
+var baseIsArguments = require('./_baseIsArguments'),
+    isObjectLike = require('./isObjectLike');
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Built-in value references. */
+var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+
+/**
+ * Checks if `value` is likely an `arguments` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArguments(function() { return arguments; }());
+ * // => true
+ *
+ * _.isArguments([1, 2, 3]);
+ * // => false
+ */
+var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsArguments : function(value) {
+  return isObjectLike(value) && hasOwnProperty.call(value, 'callee') &&
+    !propertyIsEnumerable.call(value, 'callee');
+};
+
+module.exports = isArguments;
+
+},{"./_baseIsArguments":7,"./isObjectLike":47}],41:[function(require,module,exports){
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+
+module.exports = isArray;
+
+},{}],42:[function(require,module,exports){
+var isFunction = require('./isFunction'),
+    isLength = require('./isLength');
+
+/**
+ * Checks if `value` is array-like. A value is considered array-like if it's
+ * not a function and has a `value.length` that's an integer greater than or
+ * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ * @example
+ *
+ * _.isArrayLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLike(document.body.children);
+ * // => true
+ *
+ * _.isArrayLike('abc');
+ * // => true
+ *
+ * _.isArrayLike(_.noop);
+ * // => false
+ */
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
+}
+
+module.exports = isArrayLike;
+
+},{"./isFunction":44,"./isLength":45}],43:[function(require,module,exports){
+var root = require('./_root'),
+    stubFalse = require('./stubFalse');
+
+/** Detect free variable `exports`. */
+var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/** Built-in value references. */
+var Buffer = moduleExports ? root.Buffer : undefined;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
+
+/**
+ * Checks if `value` is a buffer.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.3.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
+ * @example
+ *
+ * _.isBuffer(new Buffer(2));
+ * // => true
+ *
+ * _.isBuffer(new Uint8Array(2));
+ * // => false
+ */
+var isBuffer = nativeIsBuffer || stubFalse;
+
+module.exports = isBuffer;
+
+},{"./_root":32,"./stubFalse":50}],44:[function(require,module,exports){
+var baseGetTag = require('./_baseGetTag'),
+    isObject = require('./isObject');
+
+/** `Object#toString` result references. */
+var asyncTag = '[object AsyncFunction]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    proxyTag = '[object Proxy]';
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  if (!isObject(value)) {
+    return false;
+  }
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 9 which returns 'object' for typed arrays and other constructors.
+  var tag = baseGetTag(value);
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+}
+
+module.exports = isFunction;
+
+},{"./_baseGetTag":6,"./isObject":46}],45:[function(require,module,exports){
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @example
+ *
+ * _.isLength(3);
+ * // => true
+ *
+ * _.isLength(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isLength(Infinity);
+ * // => false
+ *
+ * _.isLength('3');
+ * // => false
+ */
+function isLength(value) {
+  return typeof value == 'number' &&
+    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+module.exports = isLength;
+
+},{}],46:[function(require,module,exports){
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
+
+module.exports = isObject;
+
+},{}],47:[function(require,module,exports){
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+module.exports = isObjectLike;
+
+},{}],48:[function(require,module,exports){
+var baseIsTypedArray = require('./_baseIsTypedArray'),
+    baseUnary = require('./_baseUnary'),
+    nodeUtil = require('./_nodeUtil');
+
+/* Node.js helper references. */
+var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
+
+/**
+ * Checks if `value` is classified as a typed array.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ * @example
+ *
+ * _.isTypedArray(new Uint8Array);
+ * // => true
+ *
+ * _.isTypedArray([]);
+ * // => false
+ */
+var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
+
+module.exports = isTypedArray;
+
+},{"./_baseIsTypedArray":9,"./_baseUnary":14,"./_nodeUtil":28}],49:[function(require,module,exports){
+var arrayLikeKeys = require('./_arrayLikeKeys'),
+    baseKeys = require('./_baseKeys'),
+    isArrayLike = require('./isArrayLike');
+
+/**
+ * Creates an array of the own enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects. See the
+ * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+ * for more details.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keys(new Foo);
+ * // => ['a', 'b'] (iteration order is not guaranteed)
+ *
+ * _.keys('hi');
+ * // => ['0', '1']
+ */
+function keys(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+}
+
+module.exports = keys;
+
+},{"./_arrayLikeKeys":3,"./_baseKeys":10,"./isArrayLike":42}],50:[function(require,module,exports){
+/**
+ * This method returns `false`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {boolean} Returns `false`.
+ * @example
+ *
+ * _.times(2, _.stubFalse);
+ * // => [false, false]
+ */
+function stubFalse() {
+  return false;
+}
+
+module.exports = stubFalse;
+
+},{}],51:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Layout = require('../Layout');
+
+var _index = require('./index');
+
+var _assign4 = require('lodash/assign');
+
+var _assign5 = _interopRequireDefault(_assign4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var App = function (_React$Component) {
+	_inherits(App, _React$Component);
+
+	function App(props) {
+		_classCallCheck(this, App);
+
+		var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+		_this.state = _this.getDefaultState();
+		_this.addItem = _this.addItem.bind(_this);
+		_this.setVoteValue = _this.setVoteValue.bind(_this);
+		_this.setEditing = _this.setEditing.bind(_this);
+		_this.updateMessage = _this.updateMessage.bind(_this);
+		_this.increment = _this.increment.bind(_this);
+		_this.persist = _this.persist.bind(_this);
+		_this.clearStorage = _this.clearStorage.bind(_this);
+		return _this;
+	}
+
+	_createClass(App, [{
+		key: 'getDefaultState',
+		value: function getDefaultState(reset) {
+			var savedState = null;
+
+			if (reset) {
+				return (0, _assign5.default)({}, _index.defaultState);
+			} else {
+				try {
+					savedState = JSON.parse(localStorage.getItem(_index.DATAKEY));
+				} catch (e) {}
+
+				return (0, _assign5.default)({}, _index.defaultState, savedState);
+			}
+		}
+	}, {
+		key: 'getChildContext',
+		value: function getChildContext() {
+			return {
+				actions: {
+					addItem: this.addItem,
+					setEditing: this.setEditing,
+					setVoteValue: this.setVoteValue,
+					updateMessage: this.updateMessage,
+					increment: this.increment,
+					clearStorage: this.clearStorage
+				}
+			};
+		}
+	}, {
+		key: 'persist',
+		value: function persist() {
+			var _this2 = this;
+
+			window.requestAnimationFrame(function () {
+				localStorage.setItem(_index.DATAKEY, JSON.stringify(_this2.state));
+			});
+		}
+	}, {
+		key: 'updateMessage',
+		value: function updateMessage(_ref) {
+			var value = _ref.value,
+			    id = _ref.id,
+			    idx = _ref.idx;
+
+			var mergeState = {};
+			var nextList = this.state[id].slice(0);
+
+			nextList[idx].text = value;
+
+			this.setState(function (prevState, props) {
+				return (0, _assign5.default)({}, prevState, _defineProperty({
+					editing: null
+				}, id, nextList));
+			}, this.persist);
+		}
+	}, {
+		key: 'setEditing',
+		value: function setEditing(data) {
+			if (data === null) {
+				this.setState({ editing: null }, this.persist);
+			} else {
+				this.setState(function (prevState) {
+					return (0, _assign5.default)({}, prevState, {
+						editing: {
+							id: data.id,
+							idx: data.idx
+						}
+					});
+				}, this.persist);
+			}
+		}
+	}, {
+		key: 'setVoteValue',
+		value: function setVoteValue(idx, value) {
+			var nextList = this.state[_Layout.BAD].slice(0);
+
+			nextList[idx].value = value;
+
+			this.setState(function (prevState) {
+				return (0, _assign5.default)({}, prevState, _defineProperty({}, _Layout.BAD, nextList));
+			}, this.persist);
+		}
+	}, {
+		key: 'increment',
+		value: function increment(idx) {
+			this.setVoteValue(idx, this.state[_Layout.BAD][idx].value + 1);
+		}
+	}, {
+		key: 'addItem',
+		value: function addItem(_ref2) {
+			var id = _ref2.id,
+			    text = _ref2.text,
+			    value = _ref2.value;
+
+			var newList = this.state[id].slice(0);
+			var newItem = { text: text };
+
+			if (value !== undefined) {
+				newItem.value = value;
+			}
+
+			newList.push(newItem);
+			this.setState(function (prevState) {
+				return (0, _assign5.default)({}, prevState, _defineProperty({}, id, newList));
+			}, this.persist);
+		}
+	}, {
+		key: 'clearStorage',
+		value: function clearStorage() {
+			this.setState(this.getDefaultState(true), this.persist);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return React.createElement(_Layout.Layout, this.state);
+		}
+	}]);
+
+	return App;
+}(React.Component);
+
+exports.default = App;
+
+
+App.displayName = 'App';
+
+App.childContextTypes = {
+	actions: React.PropTypes.object
+};
+
+},{"../Layout":58,"./index":54,"lodash/assign":36}],52:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var DATAKEY = exports.DATAKEY = 'react-retro-0';
+
+},{}],53:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.defaultState = undefined;
+
+var _defaultState;
+
+var _Layout = require('../Layout');
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var defaultState = exports.defaultState = (_defaultState = {}, _defineProperty(_defaultState, _Layout.GOOD, []), _defineProperty(_defaultState, _Layout.BAD, []), _defineProperty(_defaultState, _Layout.NEXT, []), _defineProperty(_defaultState, 'view', _Layout.DEFAULT_VIEW), _defineProperty(_defaultState, 'editing', null), _defaultState);
+
+},{"../Layout":58}],54:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _App = require('./App');
+
+Object.defineProperty(exports, 'App', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_App).default;
+  }
+});
+
+var _defaultState = require('./defaultState');
+
+Object.defineProperty(exports, 'defaultState', {
+  enumerable: true,
+  get: function get() {
+    return _defaultState.defaultState;
+  }
+});
+
+var _constants = require('./constants');
+
+Object.keys(_constants).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _constants[key];
+    }
+  });
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+},{"./App":51,"./constants":52,"./defaultState":53}],55:[function(require,module,exports){
+(function (global){
+'use strict';
+
+/*
+enables focus ring on keydown
+disables focus ring on mouse/touch
+*/
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FocusStyleToggle = function (_React$Component) {
+	_inherits(FocusStyleToggle, _React$Component);
+
+	function FocusStyleToggle(props) {
+		_classCallCheck(this, FocusStyleToggle);
+
+		var _this = _possibleConstructorReturn(this, (FocusStyleToggle.__proto__ || Object.getPrototypeOf(FocusStyleToggle)).call(this, props));
+
+		_this.style = props.style || 'a,button{outline: 0}';
+		_this.state = { isOutlineDisabled: true };
+		_this.onKey = _this.onKey.bind(_this);
+		_this.onMouse = _this.onMouse.bind(_this);
+		return _this;
+	}
+
+	_createClass(FocusStyleToggle, [{
+		key: 'onKey',
+		value: function onKey() {
+			this.setState({ isOutlineDisabled: false });
+		}
+	}, {
+		key: 'onMouse',
+		value: function onMouse() {
+			this.setState({ isOutlineDisabled: true });
+		}
+	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			var _global = global,
+			    _global$document = _global.document,
+			    bd = _global$document === undefined ? null : _global$document;
+
+
+			if (bd) {
+				bd.addEventListener('mousedown', this.onMouse, true);
+				bd.addEventListener('touchstart', this.onMouse, true);
+				bd.addEventListener('keydown', this.onKey, true);
+			}
+		}
+	}, {
+		key: 'componentWillUnmount',
+		value: function componentWillUnmount() {
+			var _global2 = global,
+			    _global2$document = _global2.document,
+			    bd = _global2$document === undefined ? null : _global2$document;
+
+
+			if (bd) {
+				bd.removeEventListener('mousedown', this.onMouse, true);
+				bd.removeEventListener('touchstart', this.onMouse, true);
+				bd.removeEventListener('keydown', this.onKey, true);
+			}
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			if (this.state.isOutlineDisabled) {
+				return React.createElement(
+					'style',
+					null,
+					this.style
+				);
+			} else {
+				return null;
+			}
+		}
+	}]);
+
+	return FocusStyleToggle;
+}(React.Component);
+
+exports.default = FocusStyleToggle;
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+
+},{}],56:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _index = require('./index');
+
+var _List = require('../List');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Layout = function (_React$Component) {
+	_inherits(Layout, _React$Component);
+
+	function Layout(props) {
+		_classCallCheck(this, Layout);
+
+		var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
+
+		var ids = [_index.GOOD, _index.BAD, _index.NEXT];
+
+		_this.listDefinitions = ids.map(function (id) {
+			return {
+				id: id,
+				title: (0, _index.mapIdToTitle)(id),
+				key: id + '-list'
+			};
+		});
+		return _this;
+	}
+
+	_createClass(Layout, [{
+		key: 'render',
+		value: function render() {
+			var _this2 = this;
+
+			var _context$actions = this.context.actions,
+			    setView = _context$actions.setView,
+			    clearStorage = _context$actions.clearStorage;
+			var editing = this.props.editing;
+
+
+			return React.createElement(
+				'div',
+				{ id: 'app' },
+				React.createElement(_index.FocusStyleToggle, null),
+				React.createElement(
+					'div',
+					{ className: 'main-col' },
+					React.createElement(
+						'div',
+						{ className: 'header' },
+						React.createElement(
+							'h1',
+							{ className: 'text-center' },
+							'Retrospective'
+						),
+						React.createElement(
+							'p',
+							null,
+							React.createElement(
+								'button',
+								{ onClick: function onClick() {
+										clearStorage();
+									} },
+								'clear'
+							)
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'bd' },
+						this.listDefinitions.map(function (definition) {
+							var list = _this2.props[definition.id];
+							return React.createElement(_List.List, _extends({}, definition, { list: list, editing: editing }));
+						}, this)
+					),
+					React.createElement(
+						'div',
+						{ className: 'footer' },
+						React.createElement(
+							'button',
+							{ onClick: function onClick() {} },
+							'sort'
+						),
+						React.createElement(
+							'button',
+							{ onClick: function onClick() {} },
+							'printable'
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return Layout;
+}(React.Component);
+
+exports.default = Layout;
+
+
+Layout.contextTypes = {
+	actions: React.PropTypes.object.isRequired
+};
+
+},{"../List":68,"./index":58}],57:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GOOD = exports.GOOD = 'GOOD';
+var BAD = exports.BAD = 'BAD';
+var NEXT = exports.NEXT = 'NEXT';
+var ENTRY = exports.ENTRY = 'ENTRY';
+var PRINT = exports.PRINT = 'PRINT';
+
+var DEFAULT_VIEW = exports.DEFAULT_VIEW = ENTRY;
+
+},{}],58:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Layout = require('./Layout');
+
+Object.defineProperty(exports, 'Layout', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Layout).default;
+  }
+});
+
+var _FocusStyleToggle = require('./FocusStyleToggle');
+
+Object.defineProperty(exports, 'FocusStyleToggle', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_FocusStyleToggle).default;
+  }
+});
+
+var _mapIdToTitle = require('./lib/mapIdToTitle');
+
+Object.defineProperty(exports, 'mapIdToTitle', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_mapIdToTitle).default;
+  }
+});
+
+var _constants = require('./constants');
+
+Object.keys(_constants).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _constants[key];
+    }
+  });
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+},{"./FocusStyleToggle":55,"./Layout":56,"./constants":57,"./lib/mapIdToTitle":59}],59:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = undefined;
+
+var _index = require('../index');
+
+var titleDictionary = {
+	GOOD: 'Good',
+	BAD: 'Bad',
+	NEXT: 'Next'
+};
+
+var mapIdToTitle = function mapIdToTitle(id) {
+	return titleDictionary[id] || '';
+};
+
+exports.default = mapIdToTitle;
+
+},{"../index":58}],60:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var IncrementButton = function (_React$Component) {
+	_inherits(IncrementButton, _React$Component);
+
+	function IncrementButton(props) {
+		_classCallCheck(this, IncrementButton);
+
+		return _possibleConstructorReturn(this, (IncrementButton.__proto__ || Object.getPrototypeOf(IncrementButton)).call(this, props));
+	}
+
+	_createClass(IncrementButton, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'button',
+				{
+					onClick: this.props.onIncrement,
+					className: 'increment-vote-button' },
+				'+'
+			);
+		}
+	}]);
+
+	return IncrementButton;
+}(React.Component);
+
+exports.default = IncrementButton;
+
+},{}],61:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Layout = require('../Layout');
+
+var _index = require('./index');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // get rid of this cross module dependency
+
+
+var InnerList = function (_React$Component) {
+	_inherits(InnerList, _React$Component);
+
+	function InnerList(props) {
+		_classCallCheck(this, InnerList);
+
+		var _this = _possibleConstructorReturn(this, (InnerList.__proto__ || Object.getPrototypeOf(InnerList)).call(this, props));
+
+		_this.setVoteValue = _this.setVoteValue.bind(_this);
+		_this.createUpdateMessageHandler = _this.createUpdateMessageHandler.bind(_this);
+		_this.isEditing = _this.isEditing.bind(_this);
+		_this.createSetEditingHandler = _this.createSetEditingHandler.bind(_this);
+		return _this;
+	}
+
+	_createClass(InnerList, [{
+		key: 'setVoteValue',
+		value: function setVoteValue(idx) {
+			var _this2 = this;
+
+			return function (value) {
+				return _this2.context.actions.setVoteValue(idx, value);
+			};
+		}
+	}, {
+		key: 'createUpdateMessageHandler',
+		value: function createUpdateMessageHandler(idx) {
+			var _this3 = this;
+
+			var id = this.props.id;
+
+
+			return function (value) {
+				_this3.context.actions.updateMessage({ value: value, idx: idx, id: id });
+			};
+		}
+	}, {
+		key: 'isEditing',
+		value: function isEditing(idx) {
+			return !!this.props.editing // !! will convert nulls to false
+			&& this.props.editing.id === this.props.id && this.props.editing.idx === idx;
+		}
+	}, {
+		key: 'createSetEditingHandler',
+		value: function createSetEditingHandler(idx) {
+			var _this4 = this;
+
+			var id = this.props.id;
+
+
+			return function (clear) {
+				_this4.context.actions.setEditing(clear === true ? null : { id: id, idx: idx });
+			};
+		}
+	}, {
+		key: 'createIncrementHandler',
+		value: function createIncrementHandler(idx) {
+			var _this5 = this;
+
+			return function () {
+				_this5.context.actions.increment(idx);
+			};
+		}
+	}, {
+		key: 'renderIncrementButton',
+		value: function renderIncrementButton(idx) {
+			if (this.props.id !== _Layout.BAD) {
+				return null;
+			}
+
+			return React.createElement(_index.IncrementButton, {
+				onIncrement: this.createIncrementHandler(idx) });
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var _this6 = this;
+
+			var _props = this.props,
+			    list = _props.list,
+			    id = _props.id;
+
+
+			if (list.length === 0) {
+				return null;
+			} else {
+				return React.createElement(
+					'ul',
+					null,
+					list.map(function (item, idx) {
+						return React.createElement(
+							'li',
+							{ key: _this6.props.id.toLowerCase() + '-' + idx },
+							_this6.renderIncrementButton(idx),
+							React.createElement(_index.VoteInput, { value: item.value, setVoteValue: _this6.setVoteValue(idx) }),
+							React.createElement(_index.MessageWrapper, {
+								text: item.text,
+								isEditing: _this6.isEditing(idx),
+								setEditing: _this6.createSetEditingHandler(idx),
+								updateMessage: _this6.createUpdateMessageHandler(idx) })
+						);
+					})
+				);
+			}
+		}
+	}]);
+
+	return InnerList;
+}(React.Component);
+
+exports.default = InnerList;
+
+
+InnerList.contextTypes = {
+	actions: React.PropTypes.object
+};
+
+},{"../Layout":58,"./index":68}],62:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Layout = require('../Layout');
+
+var _index = require('./index');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var List = function (_React$Component) {
+	_inherits(List, _React$Component);
+
+	function List(props) {
+		_classCallCheck(this, List);
+
+		var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
+
+		_this.onSubmit = _this.onSubmit.bind(_this);
+		return _this;
+	}
+
+	_createClass(List, [{
+		key: 'onSubmit',
+		value: function onSubmit(e) {
+			var value = this.refs.input.value;
+			e.preventDefault();
+
+			if (value.length === 0) {
+				return;
+			}
+			var data = {
+				id: this.props.id,
+				text: value
+			};
+
+			if (this.props.id === _Layout.BAD) {
+				data.value = 0;
+			}
+			this.refs.input.value = '';
+			this.context.actions.addItem(data);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'h2',
+					{ className: 'list-title' },
+					this.props.title
+				),
+				React.createElement(
+					'form',
+					{ action: '#', onSubmit: this.onSubmit },
+					React.createElement('input', { ref: 'input', type: 'text' })
+				),
+				React.createElement(_index.InnerList, this.props)
+			);
+		}
+	}]);
+
+	return List;
+}(React.Component);
+
+exports.default = List;
+
+List.contextTypes = {
+	actions: React.PropTypes.object
+};
+
+},{"../Layout":58,"./index":68}],63:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _index = require('./index');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MessageInput = function (_React$Component) {
+	_inherits(MessageInput, _React$Component);
+
+	function MessageInput(props) {
+		_classCallCheck(this, MessageInput);
+
+		var _this = _possibleConstructorReturn(this, (MessageInput.__proto__ || Object.getPrototypeOf(MessageInput)).call(this, props));
+
+		_this.onKeyDown = _this.onKeyDown.bind(_this);
+		_this.onSubmit = _this.onSubmit.bind(_this);
+		_this.onBlur = _this.onBlur.bind(_this);
+		_this.updateMessage = _this.updateMessage.bind(_this);
+		return _this;
+	}
+
+	_createClass(MessageInput, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			if (this.refs.input) {
+				this.refs.input.focus();
+			}
+		}
+	}, {
+		key: 'updateMessage',
+		value: function updateMessage() {
+			if (this.refs.input && this.refs.input.value.length > 0) {
+				this.props.updateMessage(this.refs.input.value);
+			}
+		}
+	}, {
+		key: 'onSubmit',
+		value: function onSubmit(e) {
+			e.preventDefault();
+			this.updateMessage();
+		}
+	}, {
+		key: 'onBlur',
+		value: function onBlur() {
+			this.updateMessage();
+		}
+	}, {
+		key: 'onKeyDown',
+		value: function onKeyDown(e) {
+			if (e.which === _index.ESC) {
+				this.props.setEditing(true);
+			}
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'form',
+				{ action: '#', onSubmit: this.onSubmit },
+				React.createElement('input', {
+					ref: 'input',
+					type: 'text',
+					defaultValue: this.props.defaultValue,
+					onBlur: this.onBlur,
+					onKeyDown: this.onKeyDown })
+			);
+		}
+	}]);
+
+	return MessageInput;
+}(React.Component);
+
+exports.default = MessageInput;
+
+
+MessageInput.propTypes = {
+	updateMessage: React.PropTypes.func.isRequired
+};
+
+},{"./index":68}],64:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MessageView = function (_React$Component) {
+	_inherits(MessageView, _React$Component);
+
+	function MessageView(props) {
+		_classCallCheck(this, MessageView);
+
+		var _this = _possibleConstructorReturn(this, (MessageView.__proto__ || Object.getPrototypeOf(MessageView)).call(this, props));
+
+		_this.onDoubleClick = _this.onDoubleClick.bind(_this);
+		return _this;
+	}
+
+	_createClass(MessageView, [{
+		key: 'onDoubleClick',
+		value: function onDoubleClick() {
+			this.props.setEditing();
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				{ onDoubleClick: this.onDoubleClick },
+				this.props.text
+			);
+		}
+	}]);
+
+	return MessageView;
+}(React.Component);
+
+exports.default = MessageView;
+
+
+MessageView.propTypes = {
+	text: React.PropTypes.string
+};
+
+},{}],65:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _index = require('./index');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MessageWrapper = function (_React$Component) {
+	_inherits(MessageWrapper, _React$Component);
+
+	function MessageWrapper(props) {
+		_classCallCheck(this, MessageWrapper);
+
+		return _possibleConstructorReturn(this, (MessageWrapper.__proto__ || Object.getPrototypeOf(MessageWrapper)).call(this, props));
+	}
+
+	_createClass(MessageWrapper, [{
+		key: 'render',
+		value: function render() {
+			var _props = this.props,
+			    isEditing = _props.isEditing,
+			    text = _props.text;
+
+
+			if (isEditing) {
+				return React.createElement(_index.MessageInput, {
+					defaultValue: text,
+					setEditing: this.props.setEditing,
+					updateMessage: this.props.updateMessage });
+			} else {
+				return React.createElement(_index.MessageView, {
+					text: text,
+					setEditing: this.props.setEditing });
+			}
+		}
+	}]);
+
+	return MessageWrapper;
+}(React.Component);
+
+exports.default = MessageWrapper;
+
+},{"./index":68}],66:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _preventNonNumericInput = require('./lib/preventNonNumericInput');
+
+var _preventNonNumericInput2 = _interopRequireDefault(_preventNonNumericInput);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var VoteInput = function (_React$Component) {
+	_inherits(VoteInput, _React$Component);
+
+	function VoteInput(props) {
+		_classCallCheck(this, VoteInput);
+
+		var _this = _possibleConstructorReturn(this, (VoteInput.__proto__ || Object.getPrototypeOf(VoteInput)).call(this, props));
+
+		_this.onSubmit = _this.onSubmit.bind(_this);
+		_this.onChange = _this.onChange.bind(_this);
+		_this.onKeyDown = _this.onKeyDown.bind(_this);
+		return _this;
+	}
+
+	_createClass(VoteInput, [{
+		key: 'onSubmit',
+		value: function onSubmit(e) {
+			e.preventDefault();
+			this.props.setVoteValue(this.refs.vote.value);
+		}
+	}, {
+		key: 'onChange',
+		value: function onChange(e) {
+			var value = this.refs.vote.value.replace(/[^\d]/g, '');
+			this.props.setVoteValue(value);
+		}
+	}, {
+		key: 'onKeyDown',
+		value: function onKeyDown(e) {
+			var code = e.keyCode;
+			var value = parseInt(this.refs.vote.value, 10);
+			if (isNaN(value)) {
+				value = 0;
+			}
+			(0, _preventNonNumericInput2.default)(e);
+
+			if (code === _preventNonNumericInput.UP) {
+				value = value + 1;
+				this.props.setVoteValue(value);
+				e.preventDefault();
+			} else if (code === _preventNonNumericInput.DOWN) {
+				value = value - 1;
+				this.props.setVoteValue(value <= 0 ? '' : value);
+				e.preventDefault();
+			}
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			if (this.props.value === undefined) {
+				return null;
+			} else {
+				return React.createElement(
+					'form',
+					{ action: '#', onSubmit: this.onSubmit },
+					React.createElement('input', { ref: 'vote',
+						value: this.props.value,
+						onKeyDown: this.onKeyDown,
+						onChange: this.onChange
+					})
+				);
+			}
+		}
+	}]);
+
+	return VoteInput;
+}(React.Component);
+
+exports.default = VoteInput;
+
+VoteInput.contextTypes = {
+	actions: React.PropTypes.object
+};
+
+},{"./lib/preventNonNumericInput":69}],67:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var ESC = exports.ESC = 27;
+
+},{}],68:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _List = require('./List');
+
+Object.defineProperty(exports, 'List', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_List).default;
+  }
+});
+
+var _InnerList = require('./InnerList');
+
+Object.defineProperty(exports, 'InnerList', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_InnerList).default;
+  }
+});
+
+var _VoteInput = require('./VoteInput');
+
+Object.defineProperty(exports, 'VoteInput', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_VoteInput).default;
+  }
+});
+
+var _MessageWrapper = require('./MessageWrapper');
+
+Object.defineProperty(exports, 'MessageWrapper', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_MessageWrapper).default;
+  }
+});
+
+var _MessageInput = require('./MessageInput');
+
+Object.defineProperty(exports, 'MessageInput', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_MessageInput).default;
+  }
+});
+
+var _MessageView = require('./MessageView');
+
+Object.defineProperty(exports, 'MessageView', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_MessageView).default;
+  }
+});
+
+var _IncrementButton = require('./IncrementButton');
+
+Object.defineProperty(exports, 'IncrementButton', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_IncrementButton).default;
+  }
+});
+
+var _constants = require('./constants');
+
+Object.keys(_constants).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _constants[key];
+    }
+  });
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+},{"./IncrementButton":60,"./InnerList":61,"./List":62,"./MessageInput":63,"./MessageView":64,"./MessageWrapper":65,"./VoteInput":66,"./constants":67}],69:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var DELETE = exports.DELETE = 46;
+var BACKSPACE = exports.BACKSPACE = 8;
+var TAB = exports.TAB = 9;
+var ESCAPE = exports.ESCAPE = 27;
+var DECIMAL = exports.DECIMAL = 110;
+var PERIOD = exports.PERIOD = 190;
+var a = exports.a = 65;
+var c = exports.c = 67;
+var x = exports.x = 88;
+var v = exports.v = 86;
+var HOME = exports.HOME = 35;
+var UP = exports.UP = 38;
+var RIGHT = exports.RIGHT = 39;
+var DOWN = exports.DOWN = 40;
+var ZERO = exports.ZERO = 48;
+var NINE = exports.NINE = 57;
+var NUMPAD_ZERO = exports.NUMPAD_ZERO = 96;
+var NUMPAD_NINE = exports.NUMPAD_NINE = 105;
+var specials = [DELETE, BACKSPACE, TAB, ESCAPE, DECIMAL, PERIOD];
+
+var prevenNonNumericInput = function prevenNonNumericInput(e) {
+	var code = e.keyCode;
+	// const ctrlKey = e.ctrlKey
+	var shiftKey = e.shiftKey;
+	var metaKey = e.metaKey || e.ctrlKey;
+
+	if (specials.indexOf(code) !== -1 || code == a && metaKey === true || code == c && metaKey === true || code == x && metaKey === true || code == v && metaKey === true || code >= HOME && code <= RIGHT || shiftKey && code >= ZERO && code <= NINE || code >= NUMPAD_ZERO && code <= NUMPAD_NINE || code >= ZERO && code <= NINE || code >= NUMPAD_ZERO && code <= NUMPAD_NINE) {
+		return;
+	} else {
+		e.preventDefault();
+	}
+};
+
+exports.default = prevenNonNumericInput;
+
+},{}],70:[function(require,module,exports){
+(function (global){
+'use strict';
+
+var _App = require('./App');
+
+var ReactDOM = global.ReactDOM;
+
+
+ReactDOM.render(React.createElement(_App.App, null), document.getElementsByTagName('main')[0]);
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+
+},{"./App":54}]},{},[70])
+
+
 //# sourceMappingURL=bundle.js.map

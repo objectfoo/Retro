@@ -16,7 +16,7 @@ export default class Layout extends React.Component {
 	}
 
 	render() {
-		const {setView} = this.context.actions
+		const {setView, clearStorage} = this.context.actions
 		const {editing} = this.props
 
 		return(
@@ -26,7 +26,7 @@ export default class Layout extends React.Component {
 					<div className='header'>
 						<h1 className='text-center'>Retrospective</h1>
 						<p>
-							<button onClick={() => {}}>clear</button>
+							<button onClick={() => {clearStorage()}}>clear</button>
 						</p>
 					</div>
 					<div className='bd'>

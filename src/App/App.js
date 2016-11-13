@@ -1,24 +1,34 @@
 'use strict'
 
 import {BAD, Layout} from '../Layout'
-import {defaultState} from './index'
+import {defaultState, DATAKEY} from './index'
 import assign from 'lodash/assign'
 
 export default class App extends React.Component {
 	constructor(props) {
 		super(props)
-		let savedState = null;
-		try {
-			savedState = JSON.parse(localStorage.getItem('data'))
-
-		} catch(e) {}
-
-		this.state = assign({}, defaultState, savedState)
+		this.state = this.getDefaultState()
 		this.addItem = this.addItem.bind(this)
 		this.setVoteValue = this.setVoteValue.bind(this)
 		this.setEditing = this.setEditing.bind(this)
 		this.updateMessage = this.updateMessage.bind(this)
 		this.increment = this.increment.bind(this)
+		this.persist = this.persist.bind(this)
+		this.clearStorage = this.clearStorage.bind(this)
+	}
+
+	getDefaultState(reset) {
+		let savedState = null;
+
+		if (reset) {
+			return assign({}, defaultState)
+		} else {
+			try {
+				savedState = JSON.parse(localStorage.getItem(DATAKEY))
+			} catch(e) {}
+
+			return assign({}, defaultState, savedState)
+		}
 	}
 
 	getChildContext() {
@@ -28,14 +38,15 @@ export default class App extends React.Component {
 				setEditing: this.setEditing,
 				setVoteValue: this.setVoteValue,
 				updateMessage: this.updateMessage,
-				increment: this.increment
+				increment: this.increment,
+				clearStorage: this.clearStorage
 			}
 		}
 	}
 
 	persist() {
 		window.requestAnimationFrame(() => {
-			localStorage.setItem('data', JSON.stringify(this.state))
+			localStorage.setItem(DATAKEY, JSON.stringify(this.state))
 		})
 	}
 
@@ -95,6 +106,10 @@ export default class App extends React.Component {
 		this.setState((prevState) => {
 			return assign({}, prevState, {[id]: newList})
 		}, this.persist)
+	}
+
+	clearStorage() {
+		this.setState(this.getDefaultState(true), this.persist)
 	}
 
 	render() {
