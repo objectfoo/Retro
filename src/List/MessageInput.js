@@ -19,7 +19,7 @@ export default class MessageInput extends React.Component {
 	}
 
 	updateMessage() {
-		if (this.refs.input && this.refs.input.value.length > 0) {
+		if (this.refs.input) {
 			this.props.updateMessage(this.refs.input.value)
 		}
 	}

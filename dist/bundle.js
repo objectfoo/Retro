@@ -1521,7 +1521,13 @@ var App = function (_React$Component) {
 			var mergeState = {};
 			var nextList = this.state[id].slice(0);
 
-			nextList[idx].text = value;
+			if (value.length === 0) {
+				nextList = nextList.filter(function (item, _idx) {
+					return idx !== _idx;
+				});
+			} else {
+				nextList[idx].text = value;
+			}
 
 			this.setState(function (prevState, props) {
 				return (0, _assign5.default)({}, prevState, _defineProperty({
@@ -1575,7 +1581,7 @@ var App = function (_React$Component) {
 				newItem.value = value;
 			}
 
-			newList.push(newItem);
+			newList.unshift(newItem);
 			this.setState(function (prevState) {
 				return (0, _assign5.default)({}, prevState, _defineProperty({}, id, newList));
 			}, this.persist);
@@ -2266,7 +2272,7 @@ var MessageInput = function (_React$Component) {
 	}, {
 		key: 'updateMessage',
 		value: function updateMessage() {
-			if (this.refs.input && this.refs.input.value.length > 0) {
+			if (this.refs.input) {
 				this.props.updateMessage(this.refs.input.value);
 			}
 		}

@@ -52,9 +52,15 @@ export default class App extends React.Component {
 
 	updateMessage({value, id, idx}) {
 		const mergeState = {}
-		const nextList = this.state[id].slice(0)
+		let nextList = this.state[id].slice(0)
 
-		nextList[idx].text = value
+		if (value.length === 0) {
+			nextList = nextList.filter((item, _idx) => {
+				return idx !== _idx;
+			})
+		} else {
+			nextList[idx].text = value
+		}
 
 		this.setState((prevState, props) => {
 			return assign({}, prevState, {
@@ -102,7 +108,7 @@ export default class App extends React.Component {
 			newItem.value = value
 		}
 
-		newList.push(newItem)
+		newList.unshift(newItem)
 		this.setState((prevState) => {
 			return assign({}, prevState, {[id]: newList})
 		}, this.persist)
