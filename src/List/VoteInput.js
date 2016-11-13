@@ -9,6 +9,7 @@ export default class VoteInput extends React.Component {
 		this.onSubmit = this.onSubmit.bind(this)
 		this.onChange = this.onChange.bind(this)
 		this.onKeyDown = this.onKeyDown.bind(this)
+		this.onBlur = this.onBlur.bind(this)
 	}
 
 	onSubmit(e) {
@@ -16,9 +17,13 @@ export default class VoteInput extends React.Component {
 		this.props.setVoteValue(this.refs.vote.value)
 	}
 
-	onChange(e) {
+	onBlur() {
+		this.onChange()
+	}
+
+	onChange() {
 		const value = this.refs.vote.value.replace(/[^\d]/g, '')
-		this.props.setVoteValue(value)
+		this.props.setVoteValue(value.length === 0 ? 0 : value)
 	}
 
 	onKeyDown(e) {
@@ -51,7 +56,8 @@ export default class VoteInput extends React.Component {
 					value={this.props.value}
 					onKeyDown={this.onKeyDown}
 					onChange={this.onChange}
-					/>
+					onBlur={this.onBlur}
+				/>
 			</form>
 		}
 	}

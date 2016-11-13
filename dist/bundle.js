@@ -1834,17 +1834,6 @@ var Layout = function (_React$Component) {
 							'h1',
 							{ className: 'text-center' },
 							'Retrospective'
-						),
-						React.createElement(
-							'p',
-							null,
-							React.createElement(
-								'button',
-								{ onClick: function onClick() {
-										clearStorage();
-									} },
-								'clear'
-							)
 						)
 					),
 					React.createElement(
@@ -1858,6 +1847,13 @@ var Layout = function (_React$Component) {
 					React.createElement(
 						'div',
 						{ className: 'footer' },
+						React.createElement(
+							'button',
+							{ onClick: function onClick() {
+									clearStorage();
+								} },
+							'clear'
+						),
 						React.createElement(
 							'button',
 							{ onClick: function onClick() {} },
@@ -2456,6 +2452,7 @@ var VoteInput = function (_React$Component) {
 		_this.onSubmit = _this.onSubmit.bind(_this);
 		_this.onChange = _this.onChange.bind(_this);
 		_this.onKeyDown = _this.onKeyDown.bind(_this);
+		_this.onBlur = _this.onBlur.bind(_this);
 		return _this;
 	}
 
@@ -2466,10 +2463,15 @@ var VoteInput = function (_React$Component) {
 			this.props.setVoteValue(this.refs.vote.value);
 		}
 	}, {
+		key: 'onBlur',
+		value: function onBlur() {
+			this.onChange();
+		}
+	}, {
 		key: 'onChange',
-		value: function onChange(e) {
+		value: function onChange() {
 			var value = this.refs.vote.value.replace(/[^\d]/g, '');
-			this.props.setVoteValue(value);
+			this.props.setVoteValue(value.length === 0 ? 0 : value);
 		}
 	}, {
 		key: 'onKeyDown',
@@ -2504,7 +2506,8 @@ var VoteInput = function (_React$Component) {
 						className: 'message-vote text-center',
 						value: this.props.value,
 						onKeyDown: this.onKeyDown,
-						onChange: this.onChange
+						onChange: this.onChange,
+						onBlur: this.onBlur
 					})
 				);
 			}
