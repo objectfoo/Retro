@@ -109,6 +109,7 @@ export default class App extends React.Component {
 		}
 
 		newList.unshift(newItem)
+
 		this.setState((prevState) => {
 			return assign({}, prevState, {[id]: newList})
 		}, this.persist)
