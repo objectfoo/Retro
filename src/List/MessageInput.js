@@ -40,7 +40,7 @@ export default class MessageInput extends React.Component {
 	}
 
 	render() {
-		return <form action='#' onSubmit={this.onSubmit}>
+		return <form action='#' className='message-form' onSubmit={this.onSubmit}>
 			<input
 				ref='input'
 				type='text'

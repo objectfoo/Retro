@@ -97,7 +97,7 @@ export default class App extends React.Component {
 	}
 
 	increment(idx) {
-		this.setVoteValue(idx, this.state[BAD][idx].value + 1)
+		this.setVoteValue(idx, parseInt(this.state[BAD][idx].value, 10) + 1)
 	}
 
 	addItem({id, text, value}) {

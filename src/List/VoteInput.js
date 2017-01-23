@@ -50,9 +50,9 @@ export default class VoteInput extends React.Component {
 			return null
 		}
 		else {
-			return <form action='#' onSubmit={this.onSubmit}>
+			return <form className='vote-form' action='#' onSubmit={this.onSubmit}>
 				<input ref='vote'
-					className='message-vote text-center'
+					className='tally-vote text-center'
 					value={this.props.value}
 					onKeyDown={this.onKeyDown}
 					onChange={this.onChange}
